@@ -5,6 +5,7 @@ Let me create some funk for you.
 All rights of quoted sources in part *Used Materials* are in hold of their respective owners. 
 
 ## Description
+Chord Generator is simple program written in C# and Windows Presentation Forms. It lets an user create chords from a text formatted by custom syntax standards, which is written below. Created chords will be displayed as img and be avalaible to play with Midi synthesizer. 
 
 ## Features
 * Custom syntax for Chords
@@ -12,23 +13,18 @@ All rights of quoted sources in part *Used Materials* are in hold of their respe
 * Generated guitar chord diagram
 
 ## How To Use
+User can write his text into the prompt. After that, user should click *generate*, which will generate the chord image and sound to play by button. User will have to write his chord in very specific manner. Settings can be changed via prompt, or by menu Window.
 
 ### Syntax
-It's based on European music theory.
 
-#### Settings
-* **[*SoundValue*]{*Frequency*}** means frequency of predefined sound. 
-  * The standard European frequency for note *A4* is *440 Hz* written like **[*A4*]{*440*}** 
-  * Frequency can be change on all notes, but each change will change all frequencies
-* ...
+#### Frequency
+
+
+#### Instrument Type Synthesizer
+
 
 #### Chord notes
-* **(X)** means base [it can be letter from *A* to *F*]
-  * **(X)** can be for example note ***E3***
-* **(X + value)** is syntax for notes, that are *value* higher from *X* 
-  * For example (**X + 3**) means note ***G3***, which is 3 halfstep higher than **E3**.
-* **(X - value)** is syntax for notes, that are *value* lower from *X* 
-  * For example (**X + 3**) means note ***C#3***, which is 3 halfstep lower than **E3**.
+
 
 ## Implementation
 
