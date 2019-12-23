@@ -4,6 +4,9 @@ Let me create some funk for you.
 ## Legal
 All rights of quoted sources in part *Used Materials* are in hold of their respective owners. 
 
+## Used Libraries
+https://github.com/naudio/NAudio
+
 ## Description
 Chord Generator is simple program written in C# and Windows Presentation Forms. It lets an user create chords from a text formatted by custom syntax standards, which is written below. Created chords will be displayed as img and be avalaible to play with Midi synthesizer. 
 
