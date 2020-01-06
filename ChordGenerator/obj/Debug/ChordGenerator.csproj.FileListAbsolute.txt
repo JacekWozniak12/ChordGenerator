@@ -1,0 +1,14 @@
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\ChordGenerator.csprojAssemblyReference.cache
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\App.g.cs
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\ChordGenerator_MarkupCompile.cache
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\bin\Debug\ChordGenerator.exe.config
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\bin\Debug\ChordGenerator.exe
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\bin\Debug\ChordGenerator.pdb
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\MainWindow.g.cs
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\ChordGenerator_MarkupCompile.lref
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\MainWindow.baml
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\ChordGenerator.g.resources
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\ChordGenerator.Properties.Resources.resources
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\ChordGenerator.csproj.GenerateResource.cache
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\ChordGenerator.exe
+C:\Users\Łukasz\source\repos\ChordGenerator\ChordGenerator\obj\Debug\ChordGenerator.pdb
