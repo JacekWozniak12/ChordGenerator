@@ -7,6 +7,53 @@ using System.Threading.Tasks;
 namespace ChordGenerator
 {
     /// <summary>
+    /// Chord created by user;
+    /// </summary>
+    public struct Chord
+    {
+        private const int MaximalNotesPerChord = 30;
+
+        private MusicalNote[] musicalNotes;
+
+        public Chord(MusicalNote[] notes)
+        {
+            // TODO
+            if (notes.Length > MaximalNotesPerChord) 
+                throw new ArgumentException
+                    ($"To many notes {notes.Length}\nReduce amount by {notes.Length - MaximalNotesPerChord}");
+
+
+            musicalNotes = notes;
+            defaultPlayType =               PlayType.AllATSameTime;
+            defaultTimeToPlaySingleNote =   0.33f;
+        }
+
+        public enum PlayType
+        {
+            Single, AllATSameTime
+        }
+
+        private static PlayType defaultPlayType;
+        /// <summary>
+        /// In seconds
+        /// </summary>
+        private static float defaultTimeToPlaySingleNote;
+
+        public static void Play(Chord chord)
+        {
+            Play(chord, defaultPlayType, defaultTimeToPlaySingleNote);
+        }
+
+        public static void Play(Chord chord, PlayType playType, float timeToPlaySingleNote)
+        {
+            switch (playType)
+            {
+                
+            }
+        }
+    }
+
+    /// <summary>
     /// Handles musical notes from Ab0 to F#9. 
     /// Takes any note in syntaxes: X+D or X+M+D where 
     /// X is the letter from A to G;
@@ -18,22 +65,22 @@ namespace ChordGenerator
         /// <summary>
         /// Can't be changed by settings, initialized once;
         /// </summary>
-        private readonly string Name;
+        private readonly string name;
 
         /// <summary>
         /// Can be changed by settings;
         /// </summary>
-        private float Frequency;
+        private float frequency;
 
-        public MusicalNote(string Name, float Frequency, int Rank)
+        public MusicalNote(string name, float frequency, int Rank)
         {
-            this.Name = Name;
-            this.Frequency = Frequency;
+            this.name = name;
+            this.frequency = frequency;
         }
 
         public override string ToString()
         {
-            return $"{Name}: {Frequency}";
+            return $"{name}: {frequency}";
         }
 
         public bool ChangeFrequency(float Frequency)
@@ -41,7 +88,7 @@ namespace ChordGenerator
             throw new NotImplementedException();
             try
             {
-                this.Frequency = Frequency;
+                this.frequency = Frequency;
             }
             catch
             {
