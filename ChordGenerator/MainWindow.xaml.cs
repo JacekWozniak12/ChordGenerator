@@ -27,7 +27,7 @@ namespace ChordGenerator
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void LearnChordsButton_Click(object sender, RoutedEventArgs e)
