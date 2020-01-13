@@ -12,7 +12,6 @@ namespace ChordGenerator
     /// X is the letter from A to G;
     /// M is one of two chars: #, b;
     /// D is single digit number 0 to 9;
-    /// 
     /// </summary>
     public struct MusicalNote
     {
@@ -30,6 +29,11 @@ namespace ChordGenerator
         {
             this.Name = Name;
             this.Frequency = Frequency;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}: {Frequency}";
         }
 
         public bool ChangeFrequency(float Frequency)
@@ -107,9 +111,15 @@ namespace ChordGenerator
             return Char.IsDigit(Name[1]);
         }
 
+        // In hertz
+        private const int MinimalFreq = 16;
+        private const int MaximalFreq = 20000;
+
         public static bool IsValidFrequency(float Frequency)
         {
-            return false;
+            if (Frequency < MinimalFreq || Frequency > MaximalFreq) 
+                return false;
+            else return true;
         }
     }
 }
