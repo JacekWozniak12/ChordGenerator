@@ -7,6 +7,49 @@ using System.Threading.Tasks;
 namespace ChordGenerator
 {
     /// <summary>
+    /// Class holding settings changes
+    /// </summary>
+    public class Settings
+    {
+        /// <summary>
+        /// Opens file stream and search for config file
+        /// </summary>
+        public Settings()
+        {
+            
+        }
+
+        public Settings
+            (
+            float volume,
+            float pitch,
+            Chord.PlayType defaultPlayType,
+            float defaultTimeToPlaySingleNote,
+            float defaultTimeToPlayChord
+            )
+        {
+            this.volume = volume;
+            this.pitch = pitch;
+            this.defaultPlayType = defaultPlayType;
+            this.defaultTimeToPlaySingleNote = defaultTimeToPlaySingleNote;
+            this.defaultTimeToPlayChord = defaultTimeToPlayChord;
+        }
+
+        public float volume = 0.5f;
+        public float pitch = 0f;
+
+        public Chord.PlayType 
+            defaultPlayType = Chord.PlayType.AllATSameTime;
+        public float 
+            defaultTimeToPlaySingleNote = 0.33f;
+        public float
+            defaultTimeToPlayChord = 2f;
+
+
+        // read settings from stored file
+    }
+
+    /// <summary>
     /// Chord created by user;
     /// </summary>
     public struct Chord
@@ -30,20 +73,40 @@ namespace ChordGenerator
 
         public enum PlayType
         {
-            Single, AllATSameTime
+            /// <summary>
+            /// Chord notes played one after another
+            /// </summary>
+            Single,
+            /// <summary>
+            /// All chord notes played at the same time
+            /// </summary>
+            AllATSameTime
         }
 
+        /// <summary>
+        /// How will chord be played.
+        /// </summary>
         private static PlayType defaultPlayType;
         /// <summary>
         /// In seconds
         /// </summary>
         private static float defaultTimeToPlaySingleNote;
 
+        /// <summary>
+        /// Plays the chord with defaut settings
+        /// </summary>
+        /// <param name="chord"></param>
         public static void Play(Chord chord)
         {
             Play(chord, defaultPlayType, defaultTimeToPlaySingleNote);
         }
 
+        /// <summary>
+        /// Plays the Chord
+        /// </summary>
+        /// <param name="chord"></param>
+        /// <param name="playType"></param>
+        /// <param name="timeToPlaySingleNote"></param>
         public static void Play(Chord chord, PlayType playType, float timeToPlaySingleNote)
         {
             switch (playType)

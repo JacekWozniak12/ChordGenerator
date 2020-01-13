@@ -33,16 +33,18 @@ namespace Tests
             Assert.AreEqual(MusicalNote.IsValidName(a), false);
         }
 
-        [TestCase]
-        public void CreateFrequencyValid()
+        [TestCase(16)]
+        [TestCase(20000)]
+        public void CheckFrequencyValid(int a)
         {
-
+            Assert.AreEqual(MusicalNote.IsValidFrequency(a), true);
         }
 
-        [TestCase]
-        public void CreateFrequencyUnvalid()
+        [TestCase(-16)]
+        [TestCase(20002)]
+        public void CheckFrequencyUnvalid(int a)
         {
-
+            Assert.AreEqual(MusicalNote.IsValidFrequency(a), false);
         }
     }
 }
