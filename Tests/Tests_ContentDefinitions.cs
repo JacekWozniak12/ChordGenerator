@@ -35,6 +35,7 @@ namespace Tests
 
         [TestCase(16)]
         [TestCase(20000)]
+        [TestCase(616)]
         public void CheckFrequencyValid(int a)
         {
             Assert.AreEqual(MusicalNote.IsValidFrequency(a), true);

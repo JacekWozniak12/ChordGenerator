@@ -22,7 +22,7 @@ namespace ChordGenerator
         public Settings
             (
             float volume,
-            float pitch,
+            int pitch,
             Chord.PlayType defaultPlayType,
             float defaultTimeToPlaySingleNote,
             float defaultTimeToPlayChord
@@ -36,7 +36,7 @@ namespace ChordGenerator
         }
 
         public float volume = 0.5f;
-        public float pitch = 0f;
+        public int pitch = 0;
 
         public Chord.PlayType 
             defaultPlayType = Chord.PlayType.AllATSameTime;
