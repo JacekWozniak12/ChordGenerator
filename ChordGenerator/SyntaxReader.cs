@@ -30,16 +30,35 @@ namespace ChordGenerator
 
     public class SyntaxReader
     {
+        /// <summary>
+        /// Reads the Chord content
+        /// </summary>
         public void ReadChord()
         {
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
+
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Tries to read the settings
+        /// </summary>
         public void ReadSetting()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Tries to read the Note, next tries to change frequency of it and
+        /// every single note in base.
+        /// </summary>
         public void ReadNoteToChange(string Note, float frequency)
         {
             throw new NotImplementedException();
@@ -47,4 +66,6 @@ namespace ChordGenerator
 
 
     }
+
+    
 }
