@@ -75,7 +75,7 @@ namespace ChordGenerator
                     ($"To many notes {notes.Length}\nReduce amount by {notes.Length - MaximalNotesPerChord}");
 
 
-            musicalNotes = notes;
+            musicalNotes =                  notes;
             defaultPlayType =               PlayType.AllATSameTime;
             defaultTimeToPlaySingleNote =   0.33f;
         }
@@ -126,7 +126,7 @@ namespace ChordGenerator
     }
 
     /// <summary>
-    /// Handles musical notes from Ab0 to F#9. 
+    /// Handles musical notes from C0 to C9. 
     /// Takes any note in syntaxes: X+D or X+M+D where 
     /// X is the letter from A to G;
     /// M is one of two chars: #, b;

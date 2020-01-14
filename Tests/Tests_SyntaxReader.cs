@@ -38,6 +38,7 @@ namespace Tests
             Assert.AreEqual(true, true);
         }
         
+        
         public void ReadNoteChangeValid(string Input, string ExpectedOutput)
         {
 

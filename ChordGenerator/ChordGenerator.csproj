@@ -73,6 +73,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RuntimeManager.cs" />
     <Compile Include="SyntaxReader.cs" />
     <Compile Include="ContentDefinitions.cs" />
     <Compile Include="MainWindow.xaml.cs">
