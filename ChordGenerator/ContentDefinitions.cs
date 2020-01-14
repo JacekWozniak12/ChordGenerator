@@ -11,6 +11,15 @@ namespace ChordGenerator
     /// </summary>
     public class Settings
     {
+        public enum Type
+        {
+            Pitch,
+            Volume,
+            // SynthType,
+            Delay,
+            DefaultTypeOfPlay
+        }
+
         /// <summary>
         /// Opens file stream and search for config file
         /// </summary>
@@ -177,13 +186,13 @@ namespace ChordGenerator
         /// <summary>
         /// Check if given note name is valid
         /// </summary>
-        /// <param name="Name"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public static bool IsValidName(string Name)
+        public static bool IsValidName(string name)
         {
-            if (Name.Length > 3 || Name.Length < 2) return false;
+            if (name.Length > 3 || name.Length < 2) return false;
 
-            var temp = Name[0];
+            var temp = name[0];
             int NotDigitChars = 0;
 
             foreach (var s in NameChars)
@@ -197,7 +206,7 @@ namespace ChordGenerator
 
             if (NotDigitChars == 0) return false;
 
-            temp = Name[1];
+            temp = name[1];
 
             foreach (var s in SpecialChars)
             {
@@ -210,24 +219,29 @@ namespace ChordGenerator
 
             if (NotDigitChars > 1)
             {
-                if (Name.Length == 2) return false;
+                if (name.Length == 2) return false;
                 else
                 {
-                    return Char.IsDigit(Name[2]);
+                    return Char.IsDigit(name[2]);
                 }
             }
-            else if (Name.Length > 2) return false;
+            else if (name.Length > 2) return false;
 
-            return Char.IsDigit(Name[1]);
+            return Char.IsDigit(name[1]);
         }
 
         // In hertz
         private const int MinimalFreq = 16;
         private const int MaximalFreq = 20000;
 
-        public static bool IsValidFrequency(float Frequency)
+        /// <summary>
+        /// Checks if frequency is hearable.
+        /// </summary>
+        /// <param name="Frequency"></param>
+        /// <returns></returns>
+        public static bool IsValidFrequency(float frequency)
         {
-            if (Frequency < MinimalFreq || Frequency > MaximalFreq) 
+            if (frequency < MinimalFreq || frequency > MaximalFreq) 
                 return false;
             else return true;
         }

@@ -48,7 +48,7 @@ namespace ChordGenerator
         }
 
         /// <summary>
-        /// Tries to read the settings
+        /// Tries to read the single setting. 
         /// </summary>
         public void ReadSetting()
         {
@@ -59,7 +59,7 @@ namespace ChordGenerator
         /// Tries to read the Note, next tries to change frequency of it and
         /// every single note in base.
         /// </summary>
-        public void ReadNoteToChange(string Note, float frequency)
+        public void ReadNoteChange(string Note, float frequency)
         {
             throw new NotImplementedException();
         }
