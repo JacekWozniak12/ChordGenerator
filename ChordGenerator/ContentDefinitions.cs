@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NAudio.Wave.SampleProviders;
 
 namespace ChordGenerator
 {
@@ -15,7 +16,7 @@ namespace ChordGenerator
         {
             Pitch,
             Volume,
-            // SynthType,
+            SynthType,
             Delay,
             DefaultTypeOfPlay
         }
@@ -100,29 +101,6 @@ namespace ChordGenerator
         /// In seconds
         /// </summary>
         private static float defaultTimeToPlaySingleNote;
-
-        /// <summary>
-        /// Plays the chord with defaut settings
-        /// </summary>
-        /// <param name="chord"></param>
-        public static void Play(Chord chord)
-        {
-            Play(chord, defaultPlayType, defaultTimeToPlaySingleNote);
-        }
-
-        /// <summary>
-        /// Plays the Chord
-        /// </summary>
-        /// <param name="chord"></param>
-        /// <param name="playType"></param>
-        /// <param name="timeToPlaySingleNote"></param>
-        public static void Play(Chord chord, PlayType playType, float timeToPlaySingleNote)
-        {
-            switch (playType)
-            {
-                
-            }
-        }
     }
 
     /// <summary>

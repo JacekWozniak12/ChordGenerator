@@ -13,9 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NAudio;
-using NAudio.Wave;
-using NAudio.Wave.SampleProviders;
 
 namespace ChordGenerator
 {
@@ -31,25 +28,8 @@ namespace ChordGenerator
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
-            var sine20Seconds = new SignalGenerator()
-            {
-                Gain = 0.2,
-                Frequency = 42,
-                Type = SignalGeneratorType.Sin
-            }
-                .Take(TimeSpan.FromSeconds(1));
-            using (var wo = new WaveOutEvent())
-            {
-                wo.Init(sine20Seconds);
-                wo.Play();
-                while (wo.PlaybackState == PlaybackState.Playing)
-                {
-                    Thread.Sleep(500);
-                }
-                wo.Dispose();
-            }
-            
-
+            NAudioCommunication.PlaySound(440);
+                  
         }
 
         private void LearnChordsButton_Click(object sender, RoutedEventArgs e)
