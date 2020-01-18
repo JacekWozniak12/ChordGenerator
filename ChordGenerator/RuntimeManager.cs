@@ -12,13 +12,54 @@ namespace ChordGenerator
     /// </summary>
     public class RuntimeManager
     {
+
+        List<MusicalNote> musicalNotes;
+
+        string[] noteNameContent =
+        {
+            "C", "C#", "Db", "D", "D#", 
+            "Eb", "E", "F", "F#", "Gb",
+            "G", "G#", "Ab", "A", "A#",
+            "Bb", "B"
+        };
+
         /// <summary>
         /// Generates the MusicalNote Array from ContentDefinitions;
         /// Does it once and saves is to array.
         /// </summary>
-        public void GenerateMusicalNoteArray()
+        public void GenerateMusicalNoteArray(float defaultFrequency)
         {
 
+            for (int i = 0; i <= 9; i++)
+            {
+                for (int j = 0; j < noteNameContent.Length; j++)
+                {
+                    if(noteNameContent[j].Length == 1)
+                    {
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", 55));
+                    }
+                    else
+                    {
+                        if (noteNameContent[j][1] == '#')
+                        {
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}",   55));
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j+1]}{i}", 55));
+                        }
+                    }
+                }
+            }
+        }
+
+        // https://pages.mtu.edu/~suits/scales.html
+        // https://pages.mtu.edu/~suits/chords.html
+
+        private void AddToMusicalNotes(MusicalNote note)
+        {
+            if(musicalNotes == null)
+            {
+                musicalNotes = new List<MusicalNote>();
+            }
+            musicalNotes.Add(note);
         }
 
         /// <summary>

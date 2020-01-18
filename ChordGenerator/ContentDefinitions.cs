@@ -24,9 +24,9 @@ namespace ChordGenerator
         /// <summary>
         /// Opens file stream and search for config file
         /// </summary>
-        public Settings()
+        public Settings(string fileAdress)
         {
-            
+
         }
 
         public Settings
@@ -45,19 +45,17 @@ namespace ChordGenerator
             this.defaultTimeToPlayChord = defaultTimeToPlayChord;
         }
 
-        public float volume = 0.5f;
-        public int pitch = 0;
-
-        public Chord.PlayType 
-            defaultPlayType = Chord.PlayType.AllATSameTime;
-        public float 
-            defaultTimeToPlaySingleNote = 0.33f;
-        public float
-            defaultTimeToPlayChord = 2f;
-
+        public float volume { get; private set; } = 0.5f;
+        public int pitch { get; private set; }  = 0;
+        public Chord.PlayType defaultPlayType
+        { get; private set; } = Chord.PlayType.AllATSameTime;
+        public float defaultTimeToPlaySingleNote { get; private set; } = 0.33f;
+        public float defaultTimeToPlayChord { get; private set; } = 2f;
 
         // read settings from stored file
     }
+
+
 
     /// <summary>
     /// Chord created by user;
@@ -122,7 +120,7 @@ namespace ChordGenerator
         /// </summary>
         private float frequency;
 
-        public MusicalNote(string name, float frequency, int Rank)
+        public MusicalNote(string name, float frequency)
         {
             this.name = name;
             this.frequency = frequency;

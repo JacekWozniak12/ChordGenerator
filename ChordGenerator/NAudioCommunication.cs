@@ -13,6 +13,10 @@ namespace ChordGenerator
 {
     public class NAudioCommunication
     {
+        double semitone = Math.Pow(2, 1.0 / 12);
+
+
+
         public static void PlaySound(float frequency)
         {
             PlaySound(0.1f, frequency, 1);
@@ -38,10 +42,17 @@ namespace ChordGenerator
                 wo.Play();
                 while (wo.PlaybackState == PlaybackState.Playing)
                 {
-
+                    Thread.Sleep(500);
                 }
                 wo.Dispose();
             }
         }
+
+        public static void PlaySound(Chord chord)
+        {
+            //
+        }
+
+
     }
 }
