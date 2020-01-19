@@ -8,7 +8,6 @@ namespace ChordGenerator
 {
     public class Language
     {
-       
-
+        string test = "Tst";
     }
 }
