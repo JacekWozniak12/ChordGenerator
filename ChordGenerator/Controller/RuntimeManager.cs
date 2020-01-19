@@ -24,10 +24,19 @@ namespace ChordGenerator
         };
 
         /// <summary>
+        /// Handles startup
+        /// </summary>
+        public void InitializeApplication()
+        {
+            GenerateMusicalNoteArray(16.35f);
+
+        }
+
+        /// <summary>
         /// Generates the MusicalNote Array from ContentDefinitions;
         /// Does it once and saves is to array. Uses the frequency for starting point
         /// </summary>
-        public void GenerateMusicalNoteArray(float stratingFrequency)
+        private void GenerateMusicalNoteArray(float stratingFrequency)
         {
             if (musicalNotes == null)
             {
@@ -59,13 +68,24 @@ namespace ChordGenerator
             }
         }
 
-        public void GenerateMusicalNoteArray(string Note, float frequency)
+        /// <summary>
+        /// Generates the MusicalNote array from given note name and frequency.
+        /// </summary>
+        /// <throws>ArgumentException</throws>
+        public void GenerateMusicalNoteArray(string note, float frequency)
         {
-            var s = musicalNotes.Find(x => x.name == Note).frequency;
-            var b = musicalNotes[0].frequency;
-            var d = s / b;
-            frequency /= d;            
-            GenerateMusicalNoteArray(frequency);
+            try
+            {
+                var s = musicalNotes.Find(x => x.name == note).frequency;
+                var b = musicalNotes[0].frequency;
+                var d = s / b;
+                frequency /= d;
+                GenerateMusicalNoteArray(frequency);
+            }
+            catch (ArgumentException e)
+            {
+                //TODO Lukas -> funkcja wyświetlająca błąd 
+            }
         }
 
         // https://pages.mtu.edu/~suits/scales.html

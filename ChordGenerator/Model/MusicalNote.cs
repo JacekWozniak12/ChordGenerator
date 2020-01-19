@@ -32,22 +32,6 @@ namespace ChordGenerator
             return $"{name}: {frequency}";
         }
 
-        public bool ChangeFrequency(float Frequency)
-        {
-            throw new NotImplementedException();
-            try
-            {
-                this.frequency = Frequency;
-            }
-            catch
-            {
-
-                return false;
-            }
-
-            return true;
-        }
-
         /// <summary>
         /// First part of note. Example: [C]#3
         /// </summary>
@@ -67,7 +51,10 @@ namespace ChordGenerator
         /// <returns></returns>
         public static bool IsValidName(string name)
         {
-            if (name.Length > 3 || name.Length < 2) return false;
+            if (name.Length > 3 || name.Length < 2)
+            {
+                throw new ArgumentException();
+            }
 
             var temp = name[0];
             int NotDigitChars = 0;
@@ -81,7 +68,7 @@ namespace ChordGenerator
                 }
             }
 
-            if (NotDigitChars == 0) return false;
+            if (NotDigitChars == 0) throw new ArgumentException(); 
 
             temp = name[1];
 
@@ -96,13 +83,13 @@ namespace ChordGenerator
 
             if (NotDigitChars > 1)
             {
-                if (name.Length == 2) return false;
+                if (name.Length == 2) throw new ArgumentException(); 
                 else
                 {
                     return Char.IsDigit(name[2]);
                 }
             }
-            else if (name.Length > 2) return false;
+            else if (name.Length > 2) throw new ArgumentException(); 
 
             return Char.IsDigit(name[1]);
         }
@@ -115,11 +102,13 @@ namespace ChordGenerator
         /// Checks if frequency is hearable.
         /// </summary>
         /// <param name="Frequency"></param>
-        /// <returns></returns>
+        /// <throws>ArgumentException</throws>
         public static bool IsValidFrequency(float frequency)
         {
-            if (frequency <= MinimalFreq || frequency >= MaximalFreq) 
-                return false;
+            if (frequency <= MinimalFreq || frequency >= MaximalFreq)
+            {
+                throw new ArgumentException();
+            }               
             else return true;
         }
     }

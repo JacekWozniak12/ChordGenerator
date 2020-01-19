@@ -59,9 +59,12 @@ namespace ChordGenerator
         /// Tries to read the Note, next tries to change frequency of it and
         /// every single note in base.
         /// </summary>
-        public void ReadNoteChange(string Note, float frequency)
+        public void ReadNoteChange(RuntimeManager rm, string Note, float frequency)
         {
-            throw new NotImplementedException();
+            if (MusicalNote.IsValidName(Note) && MusicalNote.IsValidFrequency(frequency))
+            {
+                rm.GenerateMusicalNoteArray(Note, frequency);
+            }
         }
 
 
