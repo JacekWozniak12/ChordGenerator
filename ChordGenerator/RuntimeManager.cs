@@ -29,7 +29,6 @@ namespace ChordGenerator
         /// </summary>
         public void GenerateMusicalNoteArray(float defaultFrequency)
         {
-
             for (int i = 0; i <= 9; i++)
             {
                 for (int j = 0; j < noteNameContent.Length; j++)

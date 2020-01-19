@@ -64,7 +64,7 @@ namespace ChordGenerator
     {
         private const int MaximalNotesPerChord = 30;
 
-        private MusicalNote[] musicalNotes;
+        public MusicalNote[] musicalNotes { get; private set; }
 
         public Chord(MusicalNote[] notes)
         {
@@ -118,7 +118,7 @@ namespace ChordGenerator
         /// <summary>
         /// Can be changed by settings;
         /// </summary>
-        private float frequency;
+        public float frequency { get; private set; }
 
         public MusicalNote(string name, float frequency)
         {
