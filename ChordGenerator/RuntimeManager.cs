@@ -17,7 +17,7 @@ namespace ChordGenerator
 
         string[] noteNameContent =
         {
-            "C", "C#", "Db", "D", "D#", 
+            "C", "C#", "Db", "D", "D#",
             "Eb", "E", "F", "F#", "Gb",
             "G", "G#", "Ab", "A", "A#",
             "Bb", "B"
@@ -33,16 +33,16 @@ namespace ChordGenerator
             {
                 for (int j = 0; j < noteNameContent.Length; j++)
                 {
-                    if(noteNameContent[j].Length == 1)
+                    if (noteNameContent[j].Length == 1)
                     {
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", 55));
+                        AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", 55));
                     }
                     else
                     {
                         if (noteNameContent[j][1] == '#')
                         {
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}",   55));
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j+1]}{i}", 55));
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", 55));
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", 55));
                         }
                     }
                 }
@@ -54,7 +54,7 @@ namespace ChordGenerator
 
         private void AddToMusicalNotes(MusicalNote note)
         {
-            if(musicalNotes == null)
+            if (musicalNotes == null)
             {
                 musicalNotes = new List<MusicalNote>();
             }
