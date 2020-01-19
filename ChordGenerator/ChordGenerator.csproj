@@ -75,7 +75,7 @@
     </Compile>
     <Compile Include="Model\Chord.cs" />
     <Compile Include="Model\MusicalNote.cs" />
-    <Compile Include="Language.cs" />
+    <Compile Include="Model\Language.cs" />
     <Compile Include="Controller\NAudioCommunication.cs" />
     <Compile Include="Controller\RuntimeManager.cs" />
     <Compile Include="Controller\SyntaxReader.cs" />

@@ -1,17 +1,9 @@
-﻿using ChordGenerator;
-using NUnit.Framework;
-
-namespace Tests
+﻿namespace Tests
 {
-    class Tests_RuntimeManager
+    internal class Tests_RuntimeManager
     {
-
         public void GenerateArrayValid(float Frequency)
         {
-
         }
-
-        
-
     }
 }

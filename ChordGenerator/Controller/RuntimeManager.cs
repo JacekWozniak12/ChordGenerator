@@ -1,9 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace ChordGenerator
 {
@@ -12,10 +9,11 @@ namespace ChordGenerator
     /// </summary>
     public class RuntimeManager
     {
+        public static RuntimeManager instance { get; private set; }
 
         public List<MusicalNote> musicalNotes { get; private set; }
 
-        string[] noteNameContent =
+        private string[] noteNameContent =
         {
             "C", "C#", "Db", "D", "D#",
             "Eb", "E", "F", "F#", "Gb",
@@ -28,8 +26,8 @@ namespace ChordGenerator
         /// </summary>
         public void InitializeApplication()
         {
+            instance = this;
             GenerateMusicalNoteArray(16.35f);
-
         }
 
         /// <summary>
@@ -53,7 +51,7 @@ namespace ChordGenerator
                     if (noteNameContent[j].Length == 1)
                     {
                         AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp));
-                        temp = 25 * temp / temp;
+                        temp = 25 * temp / 24;
                     }
                     else
                     {
@@ -61,7 +59,7 @@ namespace ChordGenerator
                         {
                             AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp));
                             AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", temp));
-                            temp = 25 * temp / temp;
+                            temp = 25 * temp / 24;
                         }
                     }
                 }
@@ -84,7 +82,7 @@ namespace ChordGenerator
             }
             catch (ArgumentException e)
             {
-                //TODO Lukas -> funkcja wyświetlająca błąd 
+                //TODO Lukas -> funkcja wyświetlająca błąd
             }
         }
 
@@ -111,26 +109,24 @@ namespace ChordGenerator
 
             try
             {
-
                 return true;
             }
             catch (IOException e)
             {
-               
             }
             return false;
         }
 
         public bool SaveMusicalNoteArrayToFile()
         {
-            throw new NotImplementedException();           
+            throw new NotImplementedException();
         }
 
         public bool FindFileWithSettings()
         {
             throw new NotImplementedException();
         }
-        
+
         public void UseDefaultSettings()
         {
             throw new NotImplementedException();
@@ -138,7 +134,6 @@ namespace ChordGenerator
 
         /*public bool SaveUserSettings(Setting setting)
         {
-
         }*/
 
         public bool ChangeFrequencies(MusicalNote note)
@@ -146,5 +141,4 @@ namespace ChordGenerator
             throw new NotImplementedException();
         }
     }
-    
 }

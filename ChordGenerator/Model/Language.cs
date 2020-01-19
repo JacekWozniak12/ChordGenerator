@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChordGenerator
+﻿namespace ChordGenerator
 {
     /// <summary>
     /// Handles language files
@@ -26,13 +20,13 @@ namespace ChordGenerator
         {
             Button_Generate = s[0];
             Button_LearnChords = s[1];
-            
+
             Info_Title = s[2];
             Info_EnterChord = s[3];
-
-
         }
 
-        public Language() { }
+        public Language()
+        {
+        }
     }
 }

@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Tests
 {
-    class Tests_SyntaxReader
+    internal class Tests_SyntaxReader
     {
         /// <summary>
         /// Creates the chord and uses its ToString().
@@ -37,37 +37,29 @@ namespace Tests
 
             Assert.AreEqual(true, true);
         }
-        
-        
+
         public void ReadNoteChangeValid(string Input, string ExpectedOutput)
         {
-
         }
 
         public void ReadNoteChangeUnvalid(string Input)
         {
-
         }
 
         public void ReadSettingValid(string Input)
         {
-
         }
 
         public void ReadSettingUnvalid(string Input)
         {
-
         }
 
         public void HandleMultipleCommandsValid(string Input)
         {
-
         }
 
         public void HandleMultipleCommandsUnvalid(string Input)
         {
-
         }
-
     }
 }

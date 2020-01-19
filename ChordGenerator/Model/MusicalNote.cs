@@ -3,8 +3,8 @@
 namespace ChordGenerator
 {
     /// <summary>
-    /// Handles musical notes from C0 to C9. 
-    /// Takes any note in syntaxes: X+D or X+M+D where 
+    /// Handles musical notes from C0 to C9.
+    /// Takes any note in syntaxes: X+D or X+M+D where
     /// X is the letter from A to G;
     /// M is one of two chars: #, b;
     /// D is single digit number 0 to 9;
@@ -68,7 +68,7 @@ namespace ChordGenerator
                 }
             }
 
-            if (NotDigitChars == 0) throw new ArgumentException(); 
+            if (NotDigitChars == 0) throw new ArgumentException();
 
             temp = name[1];
 
@@ -83,19 +83,20 @@ namespace ChordGenerator
 
             if (NotDigitChars > 1)
             {
-                if (name.Length == 2) throw new ArgumentException(); 
+                if (name.Length == 2) throw new ArgumentException();
                 else
                 {
                     return Char.IsDigit(name[2]);
                 }
             }
-            else if (name.Length > 2) throw new ArgumentException(); 
+            else if (name.Length > 2) throw new ArgumentException();
 
             return Char.IsDigit(name[1]);
         }
 
         // In hertz
         private const int MinimalFreq = 20;
+
         private const int MaximalFreq = 20000;
 
         /// <summary>
@@ -108,7 +109,7 @@ namespace ChordGenerator
             if (frequency <= MinimalFreq || frequency >= MaximalFreq)
             {
                 throw new ArgumentException();
-            }               
+            }
             else return true;
         }
     }

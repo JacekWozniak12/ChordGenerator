@@ -15,7 +15,7 @@ namespace Tests
         [TestCase("C0")]
         [TestCase("C9")]
         public void CheckNoteNameValid(string a)
-        {          
+        {
             Assert.AreEqual(MusicalNote.IsValidName(a), true);
         }
 
