@@ -16,7 +16,7 @@ namespace ChordGenerator
         /// <param name="name"></param>
         public static void PlaySound(string name)
         {
-            float frequency = RuntimeManager.instance.musicalNotes.Find(x => x.name == name).frequency;
+            float frequency = RuntimeManager.Instance.MusicalNotes.Find(x => x.name == name).frequency;
             PlaySound(frequency);
         }
 
@@ -33,7 +33,7 @@ namespace ChordGenerator
         public static void PlaySound(float frequency, float gain, float time, SignalGeneratorType signalType)
         {
             PlaySound(
-                new MusicalNote[] { new MusicalNote(" ", frequency) },
+                new MusicalNote[] { new MusicalNote(" ", frequency, 0) },
                 gain, time, signalType);
         }
 

@@ -9,9 +9,9 @@ namespace ChordGenerator
     /// </summary>
     public class RuntimeManager
     {
-        public static RuntimeManager instance { get; private set; }
 
-        public List<MusicalNote> musicalNotes { get; private set; }
+        public static RuntimeManager Instance { get; private set; }
+        public List<MusicalNote> MusicalNotes { get; private set; }
 
         private string[] noteNameContent =
         {
@@ -26,7 +26,7 @@ namespace ChordGenerator
         /// </summary>
         public void InitializeApplication()
         {
-            instance = this;
+            Instance = this;
             GenerateMusicalNoteArray(16.35f);
         }
 
@@ -36,13 +36,14 @@ namespace ChordGenerator
         /// </summary>
         private void GenerateMusicalNoteArray(float stratingFrequency)
         {
-            if (musicalNotes == null)
+            if (MusicalNotes == null)
             {
-                musicalNotes = new List<MusicalNote>();
+                MusicalNotes = new List<MusicalNote>();
             }
-            else musicalNotes.Clear();
+            else MusicalNotes.Clear();
 
             float temp = stratingFrequency;
+            int rank = 0;
 
             for (int i = 0; i <= 9; i++)
             {
@@ -50,15 +51,15 @@ namespace ChordGenerator
                 {
                     if (noteNameContent[j].Length == 1)
                     {
-                        AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp));
+                        AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank++));
                         temp = 25 * temp / 24;
                     }
                     else
                     {
                         if (noteNameContent[j][1] == '#')
                         {
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp));
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", temp));
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank));
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", temp, rank++));
                             temp = 25 * temp / 24;
                         }
                     }
@@ -74,8 +75,8 @@ namespace ChordGenerator
         {
             try
             {
-                var s = musicalNotes.Find(x => x.name == note).frequency;
-                var b = musicalNotes[0].frequency;
+                var s = MusicalNotes.Find(x => x.name == note).frequency;
+                var b = MusicalNotes[0].frequency;
                 var d = s / b;
                 frequency /= d;
                 GenerateMusicalNoteArray(frequency);
@@ -91,18 +92,18 @@ namespace ChordGenerator
 
         private void AddToMusicalNotes(MusicalNote note)
         {
-            if (musicalNotes == null)
+            if (MusicalNotes == null)
             {
-                musicalNotes = new List<MusicalNote>();
+                MusicalNotes = new List<MusicalNote>();
             }
-            musicalNotes.Add(note);
+            MusicalNotes.Add(note);
         }
 
         /// <summary>
-        /// Generates
+        /// Searching for file with generated array
         /// </summary>
         /// <returns>true if file is found</returns>
-        public bool FindFileWithMusicalNoteArray()
+        private bool FindFileWithMusicalNoteArray()
         {
             // reads input output
             throw new NotImplementedException();
@@ -117,17 +118,21 @@ namespace ChordGenerator
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool SaveMusicalNoteArrayToFile()
         {
             throw new NotImplementedException();
         }
 
-        public bool FindFileWithSettings()
+        private bool FindFileWithSettings()
         {
             throw new NotImplementedException();
         }
 
-        public void UseDefaultSettings()
+        private void UseDefaultSettings()
         {
             throw new NotImplementedException();
         }

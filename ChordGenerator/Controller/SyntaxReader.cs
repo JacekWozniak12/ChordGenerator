@@ -33,12 +33,12 @@ namespace ChordGenerator
         {
             try
             {
+
             }
             catch
             {
-            }
 
-            throw new NotImplementedException();
+            }
         }
 
         /// <summary>

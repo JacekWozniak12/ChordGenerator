@@ -19,13 +19,16 @@ namespace ChordGenerator
         /// <summary>
         /// Can be changed by settings;
         /// </summary>
-        public float frequency { get; private set; }
+        public float frequency { get; private set; }       
+        public int rank { get; private set;  }
 
-        public MusicalNote(string name, float frequency)
+        public MusicalNote(string name, float frequency, int rank)
         {
             this.name = name;
             this.frequency = frequency;
+            this.rank = rank;
         }
+
 
         public override string ToString()
         {
@@ -96,7 +99,6 @@ namespace ChordGenerator
 
         // In hertz
         private const int MinimalFreq = 20;
-
         private const int MaximalFreq = 20000;
 
         /// <summary>

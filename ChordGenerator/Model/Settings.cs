@@ -16,6 +16,7 @@
 
         public void Change(Type type)
         {
+
         }
 
         /// <summary>
@@ -23,26 +24,24 @@
         /// </summary>
         public Settings(string fileAdress)
         {
+
         }
 
         public Settings
             (
-            float volume,
-            int pitch,
-            Chord.PlayType defaultPlayType,
-            float defaultTimeToPlaySingleNote,
-            float defaultTimeToPlayChord
+            float volume = 0.5f,
+            Chord.PlayType defaultPlayType = Chord.PlayType.AllATSameTime,
+            float defaultTimeToPlaySingleNote = 0.33f,
+            float defaultTimeToPlayChord = 2f
             )
         {
             this.volume = volume;
-            this.pitch = pitch;
             this.defaultPlayType = defaultPlayType;
             this.defaultTimeToPlaySingleNote = defaultTimeToPlaySingleNote;
             this.defaultTimeToPlayChord = defaultTimeToPlayChord;
         }
 
         public float volume { get; private set; } = 0.5f;
-        public int pitch { get; private set; } = 0;
 
         public Chord.PlayType defaultPlayType { get; private set; } =
             Chord.PlayType.AllATSameTime;
