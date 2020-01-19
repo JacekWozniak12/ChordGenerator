@@ -108,7 +108,7 @@ namespace ChordGenerator
         }
 
         // In hertz
-        private const int MinimalFreq = 16;
+        private const int MinimalFreq = 20;
         private const int MaximalFreq = 20000;
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace ChordGenerator
         /// <returns></returns>
         public static bool IsValidFrequency(float frequency)
         {
-            if (frequency < MinimalFreq || frequency > MaximalFreq) 
+            if (frequency <= MinimalFreq || frequency >= MaximalFreq) 
                 return false;
             else return true;
         }
