@@ -29,16 +29,6 @@ namespace ChordGenerator
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
             NAudioCommunication.PlaySound(0);
-
-          /*  NAudioCommunication.
-                PlaySounds(
-                new MusicalNote[]
-                {
-                    new MusicalNote("A4", 440),
-                    new MusicalNote("A5", 880)
-                }
-                , 0.5f, 1, NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
-           */
         }
 
         private void LearnChordsButton_Click(object sender, RoutedEventArgs e)

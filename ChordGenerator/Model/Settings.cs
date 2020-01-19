@@ -20,6 +20,11 @@ namespace ChordGenerator
             DefaultTypeOfPlay
         }
 
+        public void Change(Type type)
+        {
+
+        }
+
         /// <summary>
         /// Opens file stream and search for config file
         /// </summary>
@@ -46,10 +51,12 @@ namespace ChordGenerator
 
         public float volume { get; private set; } = 0.5f;
         public int pitch { get; private set; }  = 0;
-        public Chord.PlayType defaultPlayType
-        { get; private set; } = Chord.PlayType.AllATSameTime;
-        public float defaultTimeToPlaySingleNote { get; private set; } = 0.33f;
-        public float defaultTimeToPlayChord { get; private set; } = 2f;
+        public Chord.PlayType defaultPlayType { get; private set; } = 
+            Chord.PlayType.AllATSameTime;
+        public float defaultTimeToPlaySingleNote { get; private set; } = 
+            0.33f;
+        public float defaultTimeToPlayChord { get; private set; } = 
+            2f;
 
         // read settings from stored file
     }

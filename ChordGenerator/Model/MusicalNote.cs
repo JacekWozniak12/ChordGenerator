@@ -14,7 +14,7 @@ namespace ChordGenerator
         /// <summary>
         /// Can't be changed by settings, initialized once;
         /// </summary>
-        private readonly string name;
+        public readonly string name;
 
         /// <summary>
         /// Can be changed by settings;

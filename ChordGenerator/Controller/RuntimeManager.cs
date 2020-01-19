@@ -13,7 +13,7 @@ namespace ChordGenerator
     public class RuntimeManager
     {
 
-        List<MusicalNote> musicalNotes;
+        public List<MusicalNote> musicalNotes { get; private set; }
 
         string[] noteNameContent =
         {
@@ -25,28 +25,47 @@ namespace ChordGenerator
 
         /// <summary>
         /// Generates the MusicalNote Array from ContentDefinitions;
-        /// Does it once and saves is to array.
+        /// Does it once and saves is to array. Uses the frequency for starting point
         /// </summary>
-        public void GenerateMusicalNoteArray(float defaultFrequency)
+        public void GenerateMusicalNoteArray(float stratingFrequency)
         {
+            if (musicalNotes == null)
+            {
+                musicalNotes = new List<MusicalNote>();
+            }
+            else musicalNotes.Clear();
+
+            float temp = stratingFrequency;
+
             for (int i = 0; i <= 9; i++)
             {
                 for (int j = 0; j < noteNameContent.Length; j++)
                 {
                     if (noteNameContent[j].Length == 1)
                     {
-                        AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", 55));
+                        AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp));
+                        temp = 25 * temp / temp;
                     }
                     else
                     {
                         if (noteNameContent[j][1] == '#')
                         {
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", 55));
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", 55));
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp));
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", temp));
+                            temp = 25 * temp / temp;
                         }
                     }
                 }
             }
+        }
+
+        public void GenerateMusicalNoteArray(string Note, float frequency)
+        {
+            var s = musicalNotes.Find(x => x.name == Note).frequency;
+            var b = musicalNotes[0].frequency;
+            var d = s / b;
+            frequency /= d;            
+            GenerateMusicalNoteArray(frequency);
         }
 
         // https://pages.mtu.edu/~suits/scales.html
