@@ -23,20 +23,20 @@ namespace ChordGenerator
         /// Uses RuntimeManager to find note;
         /// </summary>
         /// <param name="name"></param>
-        public void PlaySound(float frequency)
+        public void PlaySound(float frequency, string name)
         {
-            PlaySound(0.1f, frequency, 1);
+            PlaySound(frequency, name, 0.1f, 1);
         }
 
-        public void PlaySound(float frequency, float gain, float time)
+        public void PlaySound(float frequency, string name, float gain, float time)
         {
-            PlaySound(gain, frequency, time, SignalGeneratorType.Sin);
+            PlaySound(frequency, name, gain, time, SignalGeneratorType.Sin);
         }
 
-        public void PlaySound(float frequency, float gain, float time, SignalGeneratorType signalType)
+        public void PlaySound(float frequency, string name, float gain, float time, SignalGeneratorType signalType)
         {
             PlaySound(
-                new MusicalNote[] { new MusicalNote(" ", frequency, 0) },
+                new MusicalNote[] { new MusicalNote(name, frequency, 0) },
                 gain, time, signalType);
         }
 

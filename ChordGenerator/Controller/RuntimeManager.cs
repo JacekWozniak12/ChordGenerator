@@ -53,7 +53,7 @@ namespace ChordGenerator
                     if (noteNameContent[j].Length == 1)
                     {
                         AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank++));
-                        temp = 25 * temp / 24;
+                        temp = temp * 1.05946f;
                     }
                     else
                     {
@@ -61,7 +61,7 @@ namespace ChordGenerator
                         {
                             AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank));
                             AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", temp, rank++));
-                            temp = 25 * temp / 24;
+                            temp = temp * 1.05946f;
                         }
                     }
                 }

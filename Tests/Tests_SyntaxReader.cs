@@ -11,6 +11,7 @@ namespace Tests
         [TestCase("Bb3 + 3", "C#4")]
         [TestCase("C#3", "C#3")]
         [TestCase("Cb3 + 4 + 6", "A3")]
+        [TestCase("Cb3 - 4 + 6", "A3")]
         [TestCase("C#3 ^ Cb3 + 3", "C#3 ^ D3")]
         [TestCase("Ab0 + 5 ^ G4 + 1", "C#1 ^ G4#")]
         [TestCase("C#9 + 3 ^ C2", "E9 ^ C2")]
@@ -35,31 +36,44 @@ namespace Tests
             SyntaxReader SR = new SyntaxReader();
             SR.ReadChord();
 
+            Assert.AreEqual(Input, true);
+        }
+
+        [TestCase("A4:440", "A4: 440")]
+        [TestCase("A3 : 440", "A3: 400")]
+        [TestCase("A2 :  341", "A2: 341")]
+        public void ReadNoteChangeValid(string Input, string ExpectedOutput)
+        {
+            Assert.AreEqual(Input, ExpectedOutput);
+        }
+
+        [TestCase("440:A4")]
+        [TestCase("a3 : 440")]
+        [TestCase("A:  341")]
+        public void ReadNoteChangeUnvalid(string Input)
+        {
             Assert.AreEqual(true, true);
         }
 
-        public void ReadNoteChangeValid(string Input, string ExpectedOutput)
-        {
-        }
-
-        public void ReadNoteChangeUnvalid(string Input)
-        {
-        }
 
         public void ReadSettingValid(string Input)
         {
+            Assert.AreEqual(true, true);
         }
 
         public void ReadSettingUnvalid(string Input)
         {
+            Assert.AreEqual(true, true);
         }
 
         public void HandleMultipleCommandsValid(string Input)
         {
+            Assert.AreEqual(true, true);
         }
 
         public void HandleMultipleCommandsUnvalid(string Input)
         {
+            Assert.AreEqual(true, true);
         }
     }
 }

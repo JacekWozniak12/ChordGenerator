@@ -31,7 +31,7 @@ namespace ChordGenerator
         public void ReadInput(string input)
         {
             float frequency = RuntimeManager.Instance.MusicalNotes.Find(x => x.Name == input).Frequency;
-            NAudioCommunication.Instance.PlaySound(frequency);
+            NAudioCommunication.Instance.PlaySound(frequency, input);
         }
 
         public SyntaxReader()
@@ -44,14 +44,7 @@ namespace ChordGenerator
         /// </summary>
         public void ReadChord()
         {
-            try
-            {
 
-            }
-            catch
-            {
-
-            }
         }
 
         /// <summary>

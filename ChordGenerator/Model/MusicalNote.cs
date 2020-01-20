@@ -59,7 +59,7 @@ namespace ChordGenerator
         public MusicalNote(string input, int rank)
         {
             this = new MusicalNote();
-            var i = input.Split(' ');
+            var i = input.Split(':');
             Name = i[0];
             Frequency = Int32.Parse(i[1]);
             Rank = rank;

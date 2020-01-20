@@ -69,7 +69,7 @@ namespace Tests
             Assert.AreEqual(null, obj);
         }
 
-        [TestCase("A4 440")]
+        [TestCase("A4:440")]
         public void MusicalNoteFromStringValid(string a)
         {
             MusicalNote? obj = null;

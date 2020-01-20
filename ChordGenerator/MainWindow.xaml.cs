@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 
 namespace ChordGenerator
@@ -30,13 +31,24 @@ namespace ChordGenerator
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            nAudioCommunication.PlaySound(440);
+            nAudioCommunication.PlaySound(440, "A4");
             nAudioCommunication.Dispose();
         }
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
-            SyntaxReader.Instance.ReadInput(NameOfChord.Text.Trim());           
+            try
+            {
+                SyntaxReader.Instance.ReadInput(NameOfChord.Text.Trim());
+            }
+            catch (ArgumentException err)
+            {
+                // Łukasz, tu napisz mi przechwytywanie błędu
+            }
+            finally
+            {
+
+            }
         }
 
         private void LearnChordsButton_Click(object sender, RoutedEventArgs e)
