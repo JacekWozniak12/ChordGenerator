@@ -10,34 +10,37 @@ namespace ChordGenerator
 
     public class NAudioCommunication
     {
+        public static NAudioCommunication Instance { get; private set; }
+        private WaveOutEvent wo;
+        
+        public NAudioCommunication()
+        {
+            Instance = this;
+            wo = new WaveOutEvent();
+        }
+
         /// <summary>
         /// Uses RuntimeManager to find note;
         /// </summary>
         /// <param name="name"></param>
-        public static void PlaySound(string name)
-        {
-            float frequency = RuntimeManager.Instance.MusicalNotes.Find(x => x.name == name).frequency;
-            PlaySound(frequency);
-        }
-
-        public static void PlaySound(float frequency)
+        public void PlaySound(float frequency)
         {
             PlaySound(0.1f, frequency, 1);
         }
 
-        public static void PlaySound(float frequency, float gain, float time)
+        public void PlaySound(float frequency, float gain, float time)
         {
             PlaySound(gain, frequency, time, SignalGeneratorType.Sin);
         }
 
-        public static void PlaySound(float frequency, float gain, float time, SignalGeneratorType signalType)
+        public void PlaySound(float frequency, float gain, float time, SignalGeneratorType signalType)
         {
             PlaySound(
                 new MusicalNote[] { new MusicalNote(" ", frequency, 0) },
                 gain, time, signalType);
         }
 
-        public static void PlaySound(MusicalNote[] musicalNotes, float gain, float time, SignalGeneratorType signalType)
+        public void PlaySound(MusicalNote[] musicalNotes, float gain, float time, SignalGeneratorType signalType)
         {
             var waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(44100, 2);
             var mix = new MixingSampleProvider(waveFormat);
@@ -54,16 +57,18 @@ namespace ChordGenerator
 
                 mix.AddMixerInput(Signal);
             }
-            using (var wo = new WaveOutEvent())
-            {
-                wo.Init(mix);
-                wo.Play();
-                while (wo.PlaybackState == PlaybackState.Playing)
+            wo.Init(mix);
+            wo.Play();
+            while (wo.PlaybackState == PlaybackState.Playing)
                 {
                     Thread.Sleep(15);
                 }
-                wo.Dispose();
-            }
+        }
+
+        public void Dispose()
+        {
+            wo.Dispose();
+            Instance = null;
         }
     }
 }

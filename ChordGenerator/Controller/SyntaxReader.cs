@@ -26,6 +26,19 @@ namespace ChordGenerator
 
     public class SyntaxReader
     {
+        public static SyntaxReader Instance {get; private set;}
+
+        public void ReadInput(string input)
+        {
+            float frequency = RuntimeManager.Instance.MusicalNotes.Find(x => x.name == input).frequency;
+            NAudioCommunication.Instance.PlaySound(frequency);
+        }
+
+        public SyntaxReader()
+        {
+            Instance = this;
+        }
+
         /// <summary>
         /// Reads the Chord content
         /// </summary>
