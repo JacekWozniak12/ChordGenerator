@@ -50,7 +50,7 @@ namespace ChordGenerator
                 var Signal = new SignalGenerator
                 {
                     Gain = gain,
-                    Frequency = I.frequency,
+                    Frequency = I.Frequency,
                     Type = signalType
                 }
                 .Take(TimeSpan.FromSeconds(time));

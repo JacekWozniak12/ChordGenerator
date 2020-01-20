@@ -15,14 +15,20 @@ namespace ChordGenerator
         public MainWindow()
         {
             InitializeComponent();
-            runtimeManager =        new RuntimeManager();
-            syntaxReader =          new SyntaxReader();
-            nAudioCommunication =   new NAudioCommunication();
-            runtimeManager.InitializeApplication();
+            InitializeApplication();
             Application.Current.MainWindow.Closing += new CancelEventHandler(MainWindow_Closing);
         }
 
-        void MainWindow_Closing(object sender, CancelEventArgs e)
+        private void InitializeApplication()
+        {
+            runtimeManager =        new RuntimeManager();
+            syntaxReader =          new SyntaxReader();
+            nAudioCommunication =   new NAudioCommunication();
+
+            runtimeManager.InitializeApplication();
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             nAudioCommunication.PlaySound(440);
             nAudioCommunication.Dispose();

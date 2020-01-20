@@ -30,7 +30,7 @@ namespace ChordGenerator
 
         public void ReadInput(string input)
         {
-            float frequency = RuntimeManager.Instance.MusicalNotes.Find(x => x.name == input).frequency;
+            float frequency = RuntimeManager.Instance.MusicalNotes.Find(x => x.Name == input).Frequency;
             NAudioCommunication.Instance.PlaySound(frequency);
         }
 

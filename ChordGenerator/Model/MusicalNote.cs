@@ -11,28 +11,63 @@ namespace ChordGenerator
     /// </summary>
     public struct MusicalNote
     {
-        /// <summary>
-        /// Can't be changed by settings, initialized once;
-        /// </summary>
-        public readonly string name;
+
+        private string _name;
+        private float _frequency;
 
         /// <summary>
         /// Can be changed by settings;
         /// </summary>
-        public float frequency { get; private set; }       
-        public int rank { get; private set;  }
+        public float Frequency 
+        { 
+            get => _frequency;
+            private set
+            {
+                if (IsValidFrequency(value))
+                {
+                    _frequency = value;
+                }
+                else throw new ArgumentException();
+            }
+        }       
+        public int Rank { get; private set;  }
+
+        /// <summary>
+        /// Can't be changed by settings, initialized once;
+        /// </summary>
+        public string Name
+        {
+            get => _name;
+            private set
+            {
+                if (IsValidName(value))
+                {
+                    _name = value;
+                }
+                else throw new ArgumentException();
+            }
+        }
 
         public MusicalNote(string name, float frequency, int rank)
         {
-            this.name = name;
-            this.frequency = frequency;
-            this.rank = rank;
+            this = new MusicalNote();
+            Name = name;
+            Frequency = frequency;
+            Rank = rank;
         }
 
+        public MusicalNote(string input, int rank)
+        {
+            this = new MusicalNote();
+            var i = input.Split(' ');
+            Name = i[0];
+            Frequency = Int32.Parse(i[1]);
+            Rank = rank;
+        }
 
         public override string ToString()
         {
-            return $"{name}: {frequency}";
+            return $"{Name}: {Frequency}";
         }
 
         /// <summary>
@@ -98,8 +133,8 @@ namespace ChordGenerator
         }
 
         // In hertz
-        private const int MinimalFreq = 20;
-        private const int MaximalFreq = 20000;
+        private const double MinimalFreq = 16;
+        private const double MaximalFreq = 20000;
 
         /// <summary>
         /// Checks if frequency is hearable.
@@ -108,7 +143,7 @@ namespace ChordGenerator
         /// <throws>ArgumentException</throws>
         public static bool IsValidFrequency(float frequency)
         {
-            if (frequency <= MinimalFreq || frequency >= MaximalFreq)
+            if (frequency < MinimalFreq || frequency > MaximalFreq)
             {
                 throw new ArgumentException();
             }

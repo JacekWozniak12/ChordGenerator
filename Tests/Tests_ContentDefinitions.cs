@@ -1,5 +1,6 @@
 using ChordGenerator;
 using NUnit.Framework;
+using System;
 
 namespace Tests
 {
@@ -14,9 +15,10 @@ namespace Tests
         [TestCase("Cb3")]
         [TestCase("C0")]
         [TestCase("C9")]
+        [TestCase("Cb0")]
         public void CheckNoteNameValid(string a)
         {
-            Assert.AreEqual(MusicalNote.IsValidName(a), true);
+            Assert.AreEqual(true, MusicalNote.IsValidName(a));
         }
 
         /// <summary>
@@ -26,30 +28,76 @@ namespace Tests
         [TestCase("C3b")]
         [TestCase("CC")]
         [TestCase("C")]
-        [TestCase("Cb0")]
-        [TestCase("A0")]
         [TestCase("CCCC")]
         [TestCase("K3")]
         [TestCase("3C")]
-        [TestCase("C#9")]
         public void CheckNoteNameUnvalid(string a)
         {
-            Assert.AreEqual(MusicalNote.IsValidName(a), false);
+            MusicalNote? obj = null;
+
+            try
+            {
+                obj = new MusicalNote(a, 440, 0);
+            }
+            catch (ArgumentException e)
+            { }
+
+            Assert.AreEqual(null, obj);
         }
 
         [TestCase(16)]
         [TestCase(20000)]
         [TestCase(616)]
-        public void CheckFrequencyValid(int a)
+        public void CheckFrequencyValid(float a)
         {
-            Assert.AreEqual(MusicalNote.IsValidFrequency(a), true);
+            Assert.AreEqual(a, new MusicalNote("A4", a, 0).Frequency);
         }
 
         [TestCase(-16)]
         [TestCase(20002)]
-        public void CheckFrequencyUnvalid(int a)
+        public void CheckFrequencyUnvalid(float a)
         {
-            Assert.AreEqual(MusicalNote.IsValidFrequency(a), false);
+            MusicalNote ?obj = null;
+
+            try
+            {
+                obj = new MusicalNote("A4", a, 0);
+            }
+            catch (ArgumentException e)
+            { }
+
+            Assert.AreEqual(null, obj);
+        }
+
+        [TestCase("A4 440")]
+        public void MusicalNoteFromStringValid(string a)
+        {
+            MusicalNote? obj = null;
+
+            try
+            {
+                obj = new MusicalNote(a, 0);
+            }
+            catch (ArgumentException e)
+            { }
+
+            Assert.AreEqual("A4: 440", obj.ToString());
+        }
+
+        [TestCase("aa4 440")]
+        [TestCase("aa4440")]
+        public void MusicalNoteFromStringUnvalid(string a)
+        {
+            MusicalNote? obj = null;
+
+            try
+            {
+                obj = new MusicalNote(a, 0);
+            }
+            catch (ArgumentException e)
+            { }
+
+            Assert.AreEqual(null, obj);
         }
     }
 }

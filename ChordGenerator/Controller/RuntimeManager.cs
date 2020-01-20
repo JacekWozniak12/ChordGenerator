@@ -27,6 +27,7 @@ namespace ChordGenerator
         public void InitializeApplication()
         {
             Instance = this;
+            // to do -> loading from file
             GenerateMusicalNoteArray(16.35f);
         }
 
@@ -75,8 +76,8 @@ namespace ChordGenerator
         {
             try
             {
-                var s = MusicalNotes.Find(x => x.name == note).frequency;
-                var b = MusicalNotes[0].frequency;
+                var s = MusicalNotes.Find(x => x.Name == note).Frequency;
+                var b = MusicalNotes[0].Frequency;
                 var d = s / b;
                 frequency /= d;
                 GenerateMusicalNoteArray(frequency);
