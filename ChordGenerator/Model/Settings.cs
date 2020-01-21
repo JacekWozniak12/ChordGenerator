@@ -5,6 +5,13 @@
     /// </summary>
     public class Settings
     {
+        //TODO
+        // settings to save:
+        // those settings in type
+        // MusicalNote array
+        // Chords played by the user 
+        // how I can access them
+
         public enum Type
         {
             NoteTime,
