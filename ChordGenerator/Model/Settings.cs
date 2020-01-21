@@ -7,16 +7,29 @@
     {
         public enum Type
         {
-            Pitch,
+            NoteTime,
+            ChordTime,
             Volume,
-            SynthType,
-            Delay,
             DefaultTypeOfPlay
         }
 
-        public void Change(Type type)
+        public void Change(Type type, float value)
         {
-
+            switch (type)
+            {
+                case Type.NoteTime:
+                    this.defaultTimeToPlaySingleNote = value;
+                    break;
+                case Type.ChordTime:
+                    this.defaultTimeToPlayChord = value;
+                    break;
+                case Type.Volume:
+                    this.volume = value;
+                    break;
+                case Type.DefaultTypeOfPlay:  
+                    this.defaultPlayType = (Chord.PlayType) (int) value;
+                    break;
+            }
         }
 
         /// <summary>
@@ -46,11 +59,11 @@
         public Chord.PlayType defaultPlayType { get; private set; } =
             Chord.PlayType.AllATSameTime;
 
-        public float defaultTimeToPlaySingleNote { get; private set; } =
-            0.33f;
+        public float defaultTimeToPlaySingleNote 
+        { get; private set; } = 0.33f;
 
-        public float defaultTimeToPlayChord { get; private set; } =
-            2f;
+        public float defaultTimeToPlayChord 
+        { get; private set; } = 2f;
 
         // read settings from stored file
     }

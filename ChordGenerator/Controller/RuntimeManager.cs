@@ -11,7 +11,6 @@ namespace ChordGenerator
     {
         public static RuntimeManager Instance { get; private set; }
         public List<MusicalNote> MusicalNotes { get; private set; }
-
         private string[] noteNameContent =
         {
             "C", "C#", "Db", "D", "D#",
@@ -67,10 +66,7 @@ namespace ChordGenerator
                     }
                 }
             }
-            catch(ArgumentException e)
-            {
-
-            }
+            catch(ArgumentException e) { }
         }
 
         /// <summary>
@@ -96,9 +92,6 @@ namespace ChordGenerator
                 MusicalNotes.Clear();
             }
         }
-
-        // https://pages.mtu.edu/~suits/scales.html
-        // https://pages.mtu.edu/~suits/chords.html
 
         private void AddToMusicalNotes(MusicalNote note)
         {
@@ -147,9 +140,10 @@ namespace ChordGenerator
             throw new NotImplementedException();
         }
 
-        /*public bool SaveUserSettings(Setting setting)
+        public bool SaveUserSettings(Settings setting)
         {
-        }*/
+            return false;
+        }
 
         public bool ChangeFrequencies(MusicalNote note)
         {

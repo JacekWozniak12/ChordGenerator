@@ -31,7 +31,6 @@ namespace ChordGenerator
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            nAudioCommunication.PlaySound(440, "A4");
             nAudioCommunication.Dispose();
         }
 
@@ -39,7 +38,7 @@ namespace ChordGenerator
         {
             try
             {
-                SyntaxReader.Instance.ReadInput(NameOfChord.Text.Trim());
+                syntaxReader.ReadInput(NameOfChord.Text.Trim());
             }
             catch (ArgumentException err)
             {
@@ -53,6 +52,7 @@ namespace ChordGenerator
 
         private void LearnChordsButton_Click(object sender, RoutedEventArgs e)
         {
+
         }
     }
 }

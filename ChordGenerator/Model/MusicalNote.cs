@@ -30,7 +30,7 @@ namespace ChordGenerator
                 else throw new ArgumentException();
             }
         }       
-        public int Rank { get; private set;  }
+        public int Rank { get; private set; }
 
         /// <summary>
         /// Can't be changed by settings, initialized once;
@@ -65,6 +65,17 @@ namespace ChordGenerator
             Rank = rank;
         }
 
+        public MusicalNote(MusicalNote note)
+        {
+            this = new MusicalNote();
+            Name =      note.Name;
+            Frequency = note.Frequency;
+            Rank =      note.Rank;
+        }
+
+        /// <summary>
+        /// Returns string as "Name: Frequency", for example: "A4: 440"
+        /// </summary>
         public override string ToString()
         {
             return $"{Name}: {Frequency}";
@@ -85,8 +96,6 @@ namespace ChordGenerator
         /// <summary>
         /// Check if given note name is valid
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
         public static bool IsValidName(string name)
         {
             if (name.Length > 3 || name.Length < 2)
@@ -139,13 +148,11 @@ namespace ChordGenerator
         /// <summary>
         /// Checks if frequency is hearable.
         /// </summary>
-        /// <param name="Frequency"></param>
-        /// <throws>ArgumentException</throws>
         public static bool IsValidFrequency(float frequency)
         {
             if (frequency < MinimalFreq || frequency > MaximalFreq)
             {
-                throw new ArgumentException();
+                return false;
             }
             else return true;
         }
