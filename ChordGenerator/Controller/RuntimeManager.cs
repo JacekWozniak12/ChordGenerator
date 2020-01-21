@@ -42,29 +42,35 @@ namespace ChordGenerator
                 MusicalNotes = new List<MusicalNote>();
             }
             else MusicalNotes.Clear();
-
-            float temp = stratingFrequency;
-            int rank = 0;
-
-            for (int i = 0; i <= 9; i++)
+            try
             {
-                for (int j = 0; j < noteNameContent.Length; j++)
+                float temp = stratingFrequency;
+                int rank = 0;
+
+                for (int i = 0; i <= 9; i++)
                 {
-                    if (noteNameContent[j].Length == 1)
+                    for (int j = 0; j < noteNameContent.Length; j++)
                     {
-                        AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank++));
-                        temp = temp * 1.05946f;
-                    }
-                    else
-                    {
-                        if (noteNameContent[j][1] == '#')
+                        if (noteNameContent[j].Length == 1)
                         {
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank));
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", temp, rank++));
+                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank++));
                             temp = temp * 1.05946f;
+                        }
+                        else
+                        {
+                            if (noteNameContent[j][1] == '#')
+                            {
+                                AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank));
+                                AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", temp, rank++));
+                                temp = temp * 1.05946f;
+                            }
                         }
                     }
                 }
+            }
+            catch(ArgumentException e)
+            {
+
             }
         }
 
@@ -74,6 +80,10 @@ namespace ChordGenerator
         /// <throws>ArgumentException</throws>
         public void GenerateMusicalNoteArray(string note, float frequency)
         {
+            if(MusicalNotes == null)
+            {
+                GenerateMusicalNoteArray(440);
+            }
             try
             {
                 var s = MusicalNotes.Find(x => x.Name == note).Frequency;
@@ -84,7 +94,7 @@ namespace ChordGenerator
             }
             catch (ArgumentException e)
             {
-                //TODO Lukas -> funkcja wyświetlająca błąd
+                MusicalNotes = null;
             }
         }
 
