@@ -9,7 +9,6 @@ namespace ChordGenerator
     /// </summary>
     public class RuntimeManager
     {
-
         public static RuntimeManager Instance { get; private set; }
         public List<MusicalNote> MusicalNotes { get; private set; }
 

@@ -3,31 +3,9 @@ using System.Collections.Generic;
 
 namespace ChordGenerator
 {
-    // {x}(Frequency}
-    // sets frequency of note x;
-
-    // [setting](value)
-    // sets value of known setting
-
-    // (x)
-    // note x
-
-    // (x + 7)
-    // note being 7 semitones further than x
-
-    // x ^ (x + 7)
-    // note x and note being 7 semitones further than x
-
-    // x ^ y
-    // note x and note y
-
-    // x + 5 ^ y - 2
-    // note being 5 semitones further than x and
-    // note being 2 semitones behing y
-
     public class SyntaxReader
     {
-        public static SyntaxReader Instance {get; private set;}
+        public static SyntaxReader Instance { get; private set; }
 
         public void ReadInput(string input)
         {
@@ -44,15 +22,37 @@ namespace ChordGenerator
                         break;
                 }
             }
-            catch
-            {
-
-            }
+            catch { }
         }
 
         public SyntaxReader()
         {
             Instance = this;
+        }
+
+        /// <summary>
+        /// Tries to read the single setting.
+        /// </summary>
+        public void ReadSetting(string input)
+        {
+            var part = input.Split('}');
+            part[0].Replace("{", "");
+            if (int.TryParse(part[1].Replace("[", "").Replace("]", ""), out int result))
+            {
+                ReadNoteChange(RuntimeManager.Instance, part[0], result);
+            }
+            else
+            {
+                switch (part[0].ToLower())
+                {
+                    case "volume":
+                        break;
+                    case "playtype":
+                        break;
+                    case "synth":
+                        break;
+                }
+            }
         }
 
         /// <summary>
@@ -84,6 +84,7 @@ namespace ChordGenerator
 
                 string note = "";
                 int modifier = 0;
+
                 foreach(var part in parts)
                 {
                     try
@@ -101,9 +102,7 @@ namespace ChordGenerator
                         }
                     }
                     catch
-                    {
-
-                    }
+                    {}
                 }
                 var z = 
                     RuntimeManager.Instance.MusicalNotes.
@@ -112,17 +111,17 @@ namespace ChordGenerator
                     Rank + modifier);
                 notes.Add(z);
             }
-            NAudioCommunication.Instance.PlaySound(notes.ToArray(), 0.1f, 0.5f, NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
+
+            // all at once
+            // NAudioCommunication.Instance.PlaySound(notes.ToArray(), 0.1f, 0.5f, NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
+            
+            // one note after another
+            foreach(var i in notes)
+            {
+                NAudioCommunication.Instance.PlaySound(new MusicalNote[] {i}, 0.1f, 0.5f, NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
+            }
 
 
-        }
-
-        /// <summary>
-        /// Tries to read the single setting.
-        /// </summary>
-        public void ReadSetting(string input)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace ChordGenerator
     public class NAudioCommunication
     {
         public static NAudioCommunication Instance { get; private set; }
-        private WaveOutEvent wo;
+        public WaveOutEvent wo { get; private set; }
         
         public NAudioCommunication()
         {
