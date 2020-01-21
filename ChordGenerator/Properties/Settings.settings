@@ -2,20 +2,17 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
+    <Setting Name="NoteTime" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="Volume" Type="System.Single" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="Pitch" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="SynthType" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="Delay" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">3</Value>
+    <Setting Name="ChordTime" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="DefaultTypeOfPlay" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">4</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
   </Settings>
 </SettingsFile>
