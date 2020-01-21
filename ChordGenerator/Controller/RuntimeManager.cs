@@ -22,22 +22,17 @@ namespace ChordGenerator
             "Bb", "B"
         };
 
-        public string Name = "chord";
-
         /// <summary>
         /// Handles startup
         /// </summary>
-        public void InitializeApplication()
+        public RuntimeManager()
         {
             Instance = this;
-            // to do -> loading from file
             GenerateMusicalNoteArray(16.35f);
         }
 
         public void PlaySound(Chord chord)
         {
-            NAudioCommunication.Instance.PlaySound(440, "c4");
-
             try
             {
             NAudioCommunication.

@@ -26,8 +26,6 @@ namespace ChordGenerator
             runtimeManager =        new RuntimeManager();
             syntaxReader =          new SyntaxReader();
             nAudioCommunication =   new NAudioCommunication();
-
-            runtimeManager.InitializeApplication();
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)

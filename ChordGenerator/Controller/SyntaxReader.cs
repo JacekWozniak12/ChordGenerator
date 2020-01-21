@@ -5,7 +5,12 @@ namespace ChordGenerator
 {
     public class SyntaxReader
     {        
-        private RuntimeManager rm = RuntimeManager.Instance;
+        private RuntimeManager rm;
+
+        public SyntaxReader()
+        {
+            rm = RuntimeManager.Instance;
+        }
 
         /// <summary>
         /// Checks user input.

@@ -7,6 +7,8 @@ namespace ChordGenerator
     /// </summary>
     public struct Chord
     {
+        // public string Name = "Chord";
+
         private const int MaximalNotesPerChord = 30;
 
         public MusicalNote[] musicalNotes { get; private set; }
