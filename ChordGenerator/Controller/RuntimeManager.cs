@@ -67,15 +67,18 @@ namespace ChordGenerator
                     {
                         if (noteNameContent[j].Length == 1)
                         {
-                            AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank++));
+                            AddToMusicalNotes(
+                                new MusicalNote($"{noteNameContent[j]}{i}", temp, rank++));
                             temp = temp * 1.05946f;
                         }
                         else
                         {
                             if (noteNameContent[j][1] == '#')
                             {
-                                AddToMusicalNotes(new MusicalNote($"{noteNameContent[j]}{i}", temp, rank));
-                                AddToMusicalNotes(new MusicalNote($"{noteNameContent[j + 1]}{i}", temp, rank++));
+                                AddToMusicalNotes(
+                                    new MusicalNote($"{noteNameContent[j]}{i}", temp, rank));
+                                AddToMusicalNotes(
+                                    new MusicalNote($"{noteNameContent[j + 1]}{i}", temp, rank++));
                                 temp = temp * 1.05946f;
                             }
                         }
@@ -106,6 +109,7 @@ namespace ChordGenerator
             catch (ArgumentException e)
             {
                 MusicalNotes.Clear();
+                GenerateMusicalNoteArray(440);
             }
         }
 
