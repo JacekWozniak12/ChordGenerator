@@ -4,9 +4,13 @@ using System.Collections.Generic;
 namespace ChordGenerator
 {
     public class SyntaxReader
-    {
-        public static SyntaxReader Instance { get; private set; }
+    {        
+        private RuntimeManager rm = RuntimeManager.Instance;
 
+        /// <summary>
+        /// Checks user input.
+        /// Handled by GenerateButton_Click.
+        /// </summary>
         public void ReadInput(string input)
         {
             try
@@ -15,31 +19,27 @@ namespace ChordGenerator
                 switch (input[0])
                 {
                     case '{':
-                        ReadSetting(input);
+                        var b = ReadSetting(input);
                         break;
                     default:
-                        ReadChord(input);
+                        var a = ReadChord(input);
+                        rm.PlaySound(a);
                         break;
                 }
             }
             catch { }
         }
 
-        public SyntaxReader()
-        {
-            Instance = this;
-        }
-
         /// <summary>
         /// Tries to read the single setting.
         /// </summary>
-        public void ReadSetting(string input)
+        public Settings ReadSetting(string input)
         {
             var part = input.Split('}');
             part[0].Replace("{", "");
             if (int.TryParse(part[1].Replace("[", "").Replace("]", ""), out int result))
             {
-                ReadNoteChange(RuntimeManager.Instance, part[0], result);
+                ReadNoteChange(part[0], result);
             }
             else
             {
@@ -49,16 +49,22 @@ namespace ChordGenerator
                         break;
                     case "playtype":
                         break;
-                    case "synth":
+                    case "singlenotetime":
+                        break;
+                    case "chordtime":
+                        break;
+                    default:
                         break;
                 }
             }
+
+            return new Settings();
         }
 
         /// <summary>
         /// Reads the Chord content
         /// </summary>
-        public void ReadChord(string input)
+        public Chord ReadChord(string input)
         {
             input = input.Replace(" ", "");
             var s = input.Split('^');
@@ -105,30 +111,20 @@ namespace ChordGenerator
                     {}
                 }
                 var z = 
-                    RuntimeManager.Instance.MusicalNotes.
+                    rm.MusicalNotes.
                     Find(y => y.Rank == RuntimeManager.
                     Instance.MusicalNotes.Find(x => x.Name == note).
                     Rank + modifier);
                 notes.Add(z);
-            }
-
-            // all at once
-            // NAudioCommunication.Instance.PlaySound(notes.ToArray(), 0.1f, 0.5f, NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
-            
-            // one note after another
-            foreach(var i in notes)
-            {
-                NAudioCommunication.Instance.PlaySound(new MusicalNote[] {i}, 0.1f, 0.5f, NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
-            }
-
-
+            }           
+            return new Chord(notes.ToArray());
         }
 
         /// <summary>
         /// Tries to read the Note, next tries to change frequency of it and
         /// every single note in base.
         /// </summary>
-        public void ReadNoteChange(RuntimeManager rm, string Note, float frequency)
+        public void ReadNoteChange(string Note, float frequency)
         {
             if (MusicalNote.IsValidName(Note) && MusicalNote.IsValidFrequency(frequency))
             {

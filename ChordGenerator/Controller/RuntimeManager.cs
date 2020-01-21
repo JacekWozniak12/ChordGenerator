@@ -10,7 +10,10 @@ namespace ChordGenerator
     public class RuntimeManager
     {
         public static RuntimeManager Instance { get; private set; }
+
+        public List<Chord> ChordsPlayed = new List<Chord>();     
         public List<MusicalNote> MusicalNotes { get; private set; }
+
         private string[] noteNameContent =
         {
             "C", "C#", "Db", "D", "D#",
@@ -18,6 +21,8 @@ namespace ChordGenerator
             "G", "G#", "Ab", "A", "A#",
             "Bb", "B"
         };
+
+        public string Name = "chord";
 
         /// <summary>
         /// Handles startup
@@ -27,6 +32,22 @@ namespace ChordGenerator
             Instance = this;
             // to do -> loading from file
             GenerateMusicalNoteArray(16.35f);
+        }
+
+        public void PlaySound(Chord chord)
+        {
+            NAudioCommunication.Instance.PlaySound(440, "c4");
+
+            try
+            {
+            NAudioCommunication.
+                Instance.
+                PlaySound(chord, 0.5f, 0.5f, 
+                    NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
+
+            ChordsPlayed.Add(chord);
+            }
+            catch { }
         }
 
         /// <summary>

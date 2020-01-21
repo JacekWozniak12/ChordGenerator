@@ -54,6 +54,14 @@
             this.defaultTimeToPlayChord = defaultTimeToPlayChord;
         }
 
+        public Settings(Settings settings)
+        {
+            volume = settings.volume;
+            defaultPlayType = settings.defaultPlayType;
+            defaultTimeToPlaySingleNote = settings.defaultTimeToPlaySingleNote;
+            defaultTimeToPlayChord = settings.defaultTimeToPlayChord;
+        }
+
         public float volume { get; private set; } = 0.5f;
 
         public Chord.PlayType defaultPlayType { get; private set; } =

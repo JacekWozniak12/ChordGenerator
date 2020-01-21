@@ -20,7 +20,7 @@ namespace Tests
         public void ReadChordValid(string Input, string ExpectedOutput)
         {
             SyntaxReader SR = new SyntaxReader();
-            SR.ReadChord();
+            SR.ReadChord(Input);
 
             Assert.AreEqual(true, true);
         }
@@ -34,7 +34,7 @@ namespace Tests
         public void ReadChordUnvalid(string Input)
         {
             SyntaxReader SR = new SyntaxReader();
-            SR.ReadChord();
+            SR.ReadChord(Input);
 
             Assert.AreEqual(Input, true);
         }
@@ -55,7 +55,7 @@ namespace Tests
             Assert.AreEqual(true, true);
         }
 
-
+        [TestCase("")]
         public void ReadSettingValid(string Input)
         {
             Assert.AreEqual(true, true);

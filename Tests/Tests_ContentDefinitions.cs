@@ -5,7 +5,24 @@ using System;
 namespace Tests
 {
     public class Tests_ContentDefinitions
-    {
+    {    
+
+        [TestCase("C0 ^ C1", "C0 ^ C1")]
+        [TestCase("C0 + 2 ^ C1 ", "D2 ^ C1")]
+        public void Chord_ToStringValid(string a, string expected)
+        {
+            RuntimeManager RM = new RuntimeManager();
+
+            
+        }
+
+        public void Chord_ToStringUnvalid(string a, string expected)
+        {
+            RuntimeManager RM = new RuntimeManager();
+
+
+        }
+
         /// <summary>
         /// Test names only
         /// </summary>
@@ -16,7 +33,7 @@ namespace Tests
         [TestCase("C0")]
         [TestCase("C9")]
         [TestCase("Cb0")]
-        public void CheckNoteNameValid(string a)
+        public void MusicalNote_CheckNoteNameValid(string a)
         {
             Assert.AreEqual(true, MusicalNote.IsValidName(a));
         }
@@ -31,7 +48,7 @@ namespace Tests
         [TestCase("CCCC")]
         [TestCase("K3")]
         [TestCase("3C")]
-        public void CheckNoteNameUnvalid(string a)
+        public void MusicalNote_CheckNoteNameUnvalid(string a)
         {
             MusicalNote? obj = null;
 
@@ -48,14 +65,14 @@ namespace Tests
         [TestCase(16)]
         [TestCase(20000)]
         [TestCase(616)]
-        public void CheckFrequencyValid(float a)
+        public void MusicalNote_CheckFrequencyValid(float a)
         {
             Assert.AreEqual(a, new MusicalNote("A4", a, 0).Frequency);
         }
 
         [TestCase(-16)]
         [TestCase(20002)]
-        public void CheckFrequencyUnvalid(float a)
+        public void MusicalNote_CheckFrequencyUnvalid(float a)
         {
             MusicalNote ?obj = null;
 
@@ -70,7 +87,7 @@ namespace Tests
         }
 
         [TestCase("A4:440")]
-        public void MusicalNoteFromStringValid(string a)
+        public void MusicalNote_FromStringValid(string a)
         {
             MusicalNote? obj = null;
 
@@ -86,7 +103,7 @@ namespace Tests
 
         [TestCase("aa4 440")]
         [TestCase("aa4440")]
-        public void MusicalNoteFromStringUnvalid(string a)
+        public void MusicalNote_FromStringUnvalid(string a)
         {
             MusicalNote? obj = null;
 

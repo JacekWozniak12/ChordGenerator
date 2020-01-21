@@ -13,14 +13,23 @@ namespace ChordGenerator
 
         public Chord(MusicalNote[] notes)
         {
-            // TODO
             if (notes.Length > MaximalNotesPerChord)
                 throw new ArgumentException
                     ($"To many notes {notes.Length}\nReduce amount by {notes.Length - MaximalNotesPerChord}");
 
             musicalNotes = notes;
-            defaultPlayType = PlayType.AllATSameTime;
-            defaultTimeToPlaySingleNote = 0.33f;
+        }
+
+        public new string ToString()
+        {
+            string result = "";
+
+            foreach(var item in musicalNotes)
+            {
+                result += $"{item.Name} ^";
+            }
+
+            return result.Substring(0, result.Length - 1).Trim();
         }
 
         public enum PlayType
@@ -40,10 +49,5 @@ namespace ChordGenerator
         /// How will chord be played.
         /// </summary>
         private static PlayType defaultPlayType;
-
-        /// <summary>
-        /// In seconds
-        /// </summary>
-        private static float defaultTimeToPlaySingleNote;
     }
 }
