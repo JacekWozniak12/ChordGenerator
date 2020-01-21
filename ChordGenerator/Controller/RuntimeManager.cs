@@ -101,13 +101,17 @@ namespace ChordGenerator
                 var b = MusicalNotes[0].Frequency;
                 var d = s / b;
                 frequency /= d;
+                if (!MusicalNote.IsValidFrequency(frequency)) 
+                    throw new ArgumentException();
                 GenerateMusicalNoteArray(frequency);
             }
             catch (ArgumentException e)
             {
                 MusicalNotes.Clear();
-                GenerateMusicalNoteArray(440);
+                
+                throw new ArgumentException(e.Message);
             }
+            finally { }
 
             return MusicalNotes.ToArray();
         }
