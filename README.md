@@ -27,7 +27,7 @@ User can write his text into the prompt. After that, user should click *generate
 * Single note examples:
   * `A4` -> Note A4
   * `A4 + 5` -> Note D4
-  * `A4 - 1` -> Note G4b / G4#
+  * `A4 - 1` -> Note Ab4 / G#4
 * Multi note examples:
   * `A4 ^ E4` -> Powerchord A4
   * `A4 ^ D4 + 2` -> Powerchord A4
