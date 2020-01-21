@@ -69,7 +69,18 @@ namespace ChordGenerator
             {
                 int t = 0;
 
-                
+                List<string> parts = new List<string>();
+                parts.Add("");
+
+                for(int i = 0; i < item.Length; i++)
+                {
+                    if (item[i] == '-' || item[i] == '+')
+                    {
+                        parts.Add("");
+                        t++;
+                    }                   
+                    parts[t] += item[i];
+                }
 
                 string note = "";
                 int modifier = 0;
