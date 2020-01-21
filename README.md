@@ -1,5 +1,5 @@
 # ChordGenerator
-Let me create some funk for you.
+Let me create some funk for you. Windows 10 WPF application.
 
 ## Legal
 All rights of quoted sources in part *Used Materials* are in hold of their respective owners. 
@@ -21,17 +21,17 @@ User can write his text into the prompt. After that, user should click *generate
 ### Syntax
 
 #### Settings
-"{Name of setting}`[value of setting`]"
+`{Name of setting}[value of setting]`
 
 #### Chord notes
 * Single note examples:
-  * *A4* -> Note A4
-  * *A4 + 5* -> Note D4
-  * *A4 - 1* -> Note G4b / G4#
+  * `A4` -> Note A4
+  * `A4 + 5` -> Note D4
+  * `A4 - 1` -> Note G4b / G4#
 * Multi note examples:
- * *A4 ^ E4* -> Powerchord A4
- * *A4 ^ D4 + 2* -> Powerchord A4
- * *A4 ^ C4 ^ E4* -> A minor chord
+  * `A4 ^ E4` -> Powerchord A4
+  * `A4 ^ D4 + 2` -> Powerchord A4
+  * `A4 ^ C4 ^ E4` -> A minor chord
 
 ## Implementation
 
@@ -71,43 +71,13 @@ Using WPF XAML
   * Contains only chord scheme, without additional settings
 
 #### Window
-
 Standard Windows Metro theme
-
 * Modern flat UI
 * Rather simple
 * *Roboto* or *Montserrat* font suggested.
 
 ## Used materials
 ### Learn X in Y Minutes
-* [C# features]( https://learnxinyminutes.com/docs/csharp/ ), most notable:
-  * *params string[]*, the way that we can pass objects or arrays
-
-     ```c#
-     int MethodSignatures(
-              int maxCount, // First variable, expects an int
-              int count = 0, // will default the value to 0 if not passed in
-              int another = 3,
-              params string[] otherParams 
-     			// captures all other parameters passed to method
-          )
-          {
-              return -1;
-          }
-     
-     ```
-  * *where*, the way of narrowing down types of objects
-  
-    ```c#
-    public static void IterateAndPrint<T>(T toPrint) where T: IEnumerable<int>
-            {
-                // We can iterate, since T is a IEnumerable
-                foreach (var item in toPrint)
-                    // Item is an int
-                    Console.WriteLine(item.ToString());
-            }
-    ```
-
 ### Microsoft Documentation
 * [WPF tutorial]( https://docs.microsoft.com/en-us/visualstudio/designers/introduction-to-wpf?view=vs-2019 )
 
