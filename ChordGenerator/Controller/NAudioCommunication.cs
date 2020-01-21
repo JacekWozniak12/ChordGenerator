@@ -12,7 +12,7 @@ namespace ChordGenerator
     {
         public static NAudioCommunication Instance { get; private set; }
         public WaveOutEvent wo { get; private set; }
-        
+
         public NAudioCommunication()
         {
             Instance = this;
@@ -25,7 +25,7 @@ namespace ChordGenerator
         /// <param name="name"></param>
         public void PlaySound(float frequency, string name)
         {
-            PlaySound(frequency, name, 0.1f, 1);
+            PlaySound(frequency, name, 0.1f, 1f);
         }
 
         public void PlaySound(float frequency, string name, float gain, float time)
@@ -65,9 +65,9 @@ namespace ChordGenerator
             wo.Init(mix);
             wo.Play();
             while (wo.PlaybackState == PlaybackState.Playing)
-                {
-                    Thread.Sleep(15);
-                }
+            {
+                Thread.Sleep(15);
+            }
         }
 
         public void Dispose()

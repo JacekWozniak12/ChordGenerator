@@ -26,7 +26,7 @@ namespace ChordGenerator
         {
             string result = "";
 
-            foreach(var item in musicalNotes)
+            foreach (var item in musicalNotes)
             {
                 result += $"{item.Name} ^";
             }

@@ -11,7 +11,7 @@ namespace ChordGenerator
     {
         public static RuntimeManager Instance { get; private set; }
 
-        public List<Chord> ChordsPlayed = new List<Chord>();     
+        public List<Chord> ChordsPlayed = new List<Chord>();
         public List<MusicalNote> MusicalNotes { get; private set; }
 
         private string[] noteNameContent =
@@ -35,12 +35,12 @@ namespace ChordGenerator
         {
             try
             {
-            NAudioCommunication.
-                Instance.
-                PlaySound(chord, 0.5f, 0.5f, 
-                    NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
+                NAudioCommunication.
+                    Instance.
+                    PlaySound(chord, 0.5f, 0.5f,
+                        NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
 
-            ChordsPlayed.Add(chord);
+                ChordsPlayed.Add(chord);
             }
             catch { }
         }
@@ -56,45 +56,42 @@ namespace ChordGenerator
                 MusicalNotes = new List<MusicalNote>();
             }
             else MusicalNotes.Clear();
-            try
-            {
-                float temp = stratingFrequency;
-                int rank = 0;
 
-                for (int i = 0; i <= 9; i++)
+            float temp = stratingFrequency;
+            int rank = 0;
+
+            for (int i = 0; i <= 9; i++)
+            {
+                for (int j = 0; j < noteNameContent.Length; j++)
                 {
-                    for (int j = 0; j < noteNameContent.Length; j++)
+                    if (noteNameContent[j].Length == 1)
                     {
-                        if (noteNameContent[j].Length == 1)
+                        AddToMusicalNotes(
+                            new MusicalNote($"{noteNameContent[j]}{i}", temp, rank++));
+                        temp = temp * 1.05946f;
+                    }
+                    else
+                    {
+                        if (noteNameContent[j][1] == '#')
                         {
                             AddToMusicalNotes(
-                                new MusicalNote($"{noteNameContent[j]}{i}", temp, rank++));
+                                new MusicalNote($"{noteNameContent[j]}{i}", temp, rank));
+                            AddToMusicalNotes(
+                                new MusicalNote($"{noteNameContent[j + 1]}{i}", temp, rank++));
                             temp = temp * 1.05946f;
-                        }
-                        else
-                        {
-                            if (noteNameContent[j][1] == '#')
-                            {
-                                AddToMusicalNotes(
-                                    new MusicalNote($"{noteNameContent[j]}{i}", temp, rank));
-                                AddToMusicalNotes(
-                                    new MusicalNote($"{noteNameContent[j + 1]}{i}", temp, rank++));
-                                temp = temp * 1.05946f;
-                            }
                         }
                     }
                 }
             }
-            catch(ArgumentException e) { }
         }
 
         /// <summary>
         /// Generates the MusicalNote array from given note name and frequency.
         /// </summary>
         /// <throws>ArgumentException</throws>
-        public void GenerateMusicalNoteArray(string note, float frequency)
+        public MusicalNote[] GenerateMusicalNoteArray(string note, float frequency)
         {
-            if(MusicalNotes == null)
+            if (MusicalNotes == null)
             {
                 GenerateMusicalNoteArray(440);
             }
@@ -111,6 +108,8 @@ namespace ChordGenerator
                 MusicalNotes.Clear();
                 GenerateMusicalNoteArray(440);
             }
+
+            return MusicalNotes.ToArray();
         }
 
         private void AddToMusicalNotes(MusicalNote note)
@@ -142,7 +141,7 @@ namespace ChordGenerator
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public bool SaveMusicalNoteArrayToFile()

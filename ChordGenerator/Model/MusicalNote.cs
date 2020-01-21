@@ -11,15 +11,14 @@ namespace ChordGenerator
     /// </summary>
     public struct MusicalNote
     {
-
         private string _name;
         private float _frequency;
 
         /// <summary>
         /// Can be changed by settings;
         /// </summary>
-        public float Frequency 
-        { 
+        public float Frequency
+        {
             get => _frequency;
             private set
             {
@@ -29,7 +28,8 @@ namespace ChordGenerator
                 }
                 else throw new ArgumentException();
             }
-        }       
+        }
+
         public int Rank { get; private set; }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace ChordGenerator
         public MusicalNote(MusicalNote note)
         {
             this = new MusicalNote();
-            Name =      note.Name;
+            Name = note.Name;
             Frequency = note.Frequency;
-            Rank =      note.Rank;
+            Rank = note.Rank;
         }
 
         /// <summary>
@@ -143,6 +143,7 @@ namespace ChordGenerator
 
         // In hertz
         private const double MinimalFreq = 16;
+
         private const double MaximalFreq = 20000;
 
         /// <summary>

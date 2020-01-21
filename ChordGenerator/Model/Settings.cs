@@ -20,14 +20,17 @@
                 case Type.NoteTime:
                     this.defaultTimeToPlaySingleNote = value;
                     break;
+
                 case Type.ChordTime:
                     this.defaultTimeToPlayChord = value;
                     break;
+
                 case Type.Volume:
                     this.volume = value;
                     break;
-                case Type.DefaultTypeOfPlay:  
-                    this.defaultPlayType = (Chord.PlayType) (int) value;
+
+                case Type.DefaultTypeOfPlay:
+                    this.defaultPlayType = (Chord.PlayType)(int)value;
                     break;
             }
         }
@@ -37,7 +40,6 @@
         /// </summary>
         public Settings(string fileAdress)
         {
-
         }
 
         public Settings
@@ -64,13 +66,14 @@
 
         public float volume { get; private set; } = 0.5f;
 
-        public Chord.PlayType defaultPlayType { get; private set; } =
+        public Chord.PlayType defaultPlayType
+        { get; private set; } =
             Chord.PlayType.AllATSameTime;
 
-        public float defaultTimeToPlaySingleNote 
+        public float defaultTimeToPlaySingleNote
         { get; private set; } = 0.33f;
 
-        public float defaultTimeToPlayChord 
+        public float defaultTimeToPlayChord
         { get; private set; } = 2f;
 
         // read settings from stored file

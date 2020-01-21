@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 
@@ -10,8 +9,8 @@ namespace ChordGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private RuntimeManager      runtimeManager;
-        private SyntaxReader        syntaxReader;
+        private RuntimeManager runtimeManager;
+        private SyntaxReader syntaxReader;
         private NAudioCommunication nAudioCommunication;
 
         public MainWindow()
@@ -23,9 +22,9 @@ namespace ChordGenerator
 
         private void InitializeApplication()
         {
-            runtimeManager =        new RuntimeManager();
-            syntaxReader =          new SyntaxReader();
-            nAudioCommunication =   new NAudioCommunication();
+            runtimeManager = new RuntimeManager();
+            syntaxReader = new SyntaxReader();
+            nAudioCommunication = new NAudioCommunication();
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
@@ -45,13 +44,11 @@ namespace ChordGenerator
             }
             finally
             {
-
             }
         }
 
         private void LearnChordsButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

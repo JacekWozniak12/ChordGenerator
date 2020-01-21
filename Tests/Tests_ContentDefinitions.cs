@@ -5,22 +5,17 @@ using System;
 namespace Tests
 {
     public class Tests_ContentDefinitions
-    {    
-
+    {
         [TestCase("C0 ^ C1", "C0 ^ C1")]
         [TestCase("C0 + 2 ^ C1 ", "D2 ^ C1")]
         public void Chord_ToStringValid(string a, string expected)
         {
             RuntimeManager RM = new RuntimeManager();
-
-            
         }
 
         public void Chord_ToStringUnvalid(string a, string expected)
         {
             RuntimeManager RM = new RuntimeManager();
-
-
         }
 
         /// <summary>
@@ -74,7 +69,7 @@ namespace Tests
         [TestCase(20002)]
         public void MusicalNote_CheckFrequencyUnvalid(float a)
         {
-            MusicalNote ?obj = null;
+            MusicalNote? obj = null;
 
             try
             {

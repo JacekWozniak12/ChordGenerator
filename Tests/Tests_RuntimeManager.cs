@@ -1,7 +1,6 @@
 ﻿using ChordGenerator;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 
 namespace Tests
 {
@@ -20,7 +19,6 @@ namespace Tests
             RM.GenerateMusicalNoteArray("A4", frequency);
 
             Assert.AreEqual(true, RM.MusicalNotes[3] is MusicalNote);
-
         }
 
         [TestCase(2555)]
@@ -29,7 +27,7 @@ namespace Tests
         public void GenerateArrayUnvalid(float frequency)
         {
             RuntimeManager RM = new RuntimeManager();
-           
+
             try
             {
                 RM.GenerateMusicalNoteArray("A4", frequency);
