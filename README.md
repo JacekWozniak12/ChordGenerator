@@ -20,14 +20,18 @@ User can write his text into the prompt. After that, user should click *generate
 
 ### Syntax
 
-#### Frequency
-
-
-#### Instrument Type Synthesizer
-
+#### Settings
+"{Name of setting}`[value of setting`]"
 
 #### Chord notes
-
+* Single note examples:
+  * *A4* -> Note A4
+  * *A4 + 5* -> Note D4
+  * *A4 - 1* -> Note G4b / G4#
+* Multi note examples:
+ * *A4 ^ E4* -> Powerchord A4
+ * *A4 ^ D4 + 2* -> Powerchord A4
+ * *A4 ^ C4 ^ E4* -> A minor chord
 
 ## Implementation
 
@@ -39,95 +43,15 @@ User can write his text into the prompt. After that, user should click *generate
   * Contains 12 notes
     * Third octave consists of notes 
       * {***C3, C#3, D3, D#3, E3, F3, F#3, G3, G#3, A3, A#3, B3***} 
-      * Note naming depends on system and context, you can for example meet with notes like ***Db3***, which is the same thing as ***C#3***
-      * Let's pretend for now that we can write only with sharps.
+      * Note naming depends on system and context, you can for example meet with notes like ***Db3***, which in context of our program is the same thing as ***C#3***
 
 * Each time when single note frequency is changed, change all to correspond the change.
-* Write database as array of the objects based on class
-
-  ```c#
-  public class MusicalNote
-  {
-      private string Name;
-      private float Frequency;
-      
-      public MusicalNote(string name, float freq)
-      {
-          if( IsValidName(name) )
-          	Name = name;
-          if( IsValidFrequency(freq) )
-          	Frequency = freq;
-          if (Name == Null || Frequency == Null)
-              Throw New System.ArgumentException("Object lacks name or frequency")
-      }
-      
-      public void ChangeMusicalNote(float freq, bool test)
-      {
-          if (test) 
-              if (!IsValidFrequency(freq))
-              {
-                 Throw New System.ArgumentException("Frequency out of range")
-                 return;
-              };
-         
-           Frequency = freq;
-      }
-      
-      public void ChangeMusicalNote(float freq)
-      {
-          ChangeMusicalNote(freq, false)
-      }
-      
-      private bool IsValidName()
-      {
-          // length test
-          	// C#3 is 3 symbols
-          	// C2 is 2 symbols
-          // passed length test
-          	// check first char for range <A, G>
-          	// check last char for range <0, 9>
-          	// if length = 3 check mid symbol for #
-          // if passed then true      	
-      }
-      
-      private bool IsValidFrequency()
-      {
-          // is number?
-          // is within range?
-          // if passed then true 
-      }
-  }
-  ```
-  
-* There should be initialized two databases, one which hold change and another, that is fallback, if first one got issues within.
-
-* Database should be changed in order:
-
-  	1. First element (check if is possible to make new frequency)
-   	2. Last element (check if is possible to make new frequency)
-   	3. Second first to last but one
-
-### Syntax reader
-* Order
-  * Settings
-    * Frequency
-    * ...
-  * Notes
-* Error handling
-  * General issues
-    * Syntax misspellings
-    * Not closed brackets
-      * Content within brackets should be only made out of 1 string.
-      * Check for type of brackets.
-    * Notes out of range 
-  * Settings - notes
-    * Frequency out of range 
 
 ### Sound engine
-wip
+Using NAudio;
 
 ### GUI
-wip
+Using WPF XAML
 
 #### Guitar chord diagram
 * Standard EADGBE tuning with 24 frets
