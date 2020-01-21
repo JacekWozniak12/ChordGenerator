@@ -91,7 +91,7 @@ namespace ChordGenerator
         {
             if (name.Length > 3 || name.Length < 2)
             {
-                throw new ArgumentException();
+                return false;
             }
 
             var temp = name[0];
@@ -106,7 +106,7 @@ namespace ChordGenerator
                 }
             }
 
-            if (NotDigitChars == 0) throw new ArgumentException();
+            if (NotDigitChars == 0) return false;
 
             temp = name[1];
 
@@ -121,13 +121,13 @@ namespace ChordGenerator
 
             if (NotDigitChars > 1)
             {
-                if (name.Length == 2) throw new ArgumentException();
+                if (name.Length == 2) return false;
                 else
                 {
                     return Char.IsDigit(name[2]);
                 }
             }
-            else if (name.Length > 2) throw new ArgumentException();
+            else if (name.Length > 2) return false;
 
             return Char.IsDigit(name[1]);
         }

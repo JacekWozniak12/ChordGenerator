@@ -94,7 +94,7 @@ namespace ChordGenerator
             }
             catch (ArgumentException e)
             {
-                MusicalNotes = null;
+                MusicalNotes.Clear();
             }
         }
 
