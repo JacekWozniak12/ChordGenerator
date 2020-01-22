@@ -22,7 +22,9 @@ namespace ChordGenerator
         private void InitializeApplication()
         {
             runtimeManager =        new RuntimeManager();
+            //display lang window
             syntaxReader =          new SyntaxReader();
+            ReadInputPrompt();
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
@@ -32,9 +34,14 @@ namespace ChordGenerator
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
         {
+            ReadInputPrompt();
+        }
+
+        private void ReadInputPrompt()
+        {
             try
             {
-                syntaxReader.ReadInput(NameOfChord.Text.Trim());
+                syntaxReader.ReadInput(InputPrompt.Text.Trim());
             }
             catch (ArgumentException err)
             {
@@ -45,9 +52,9 @@ namespace ChordGenerator
             }
         }
 
-        private void LearnChordsButton_Click(object sender, RoutedEventArgs e)
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-
+            runtimeManager.PlaySound();
         }
     }
 }
