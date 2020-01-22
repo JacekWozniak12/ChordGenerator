@@ -18,7 +18,7 @@ namespace Tests
 
             RM.runtimeSettings.GenerateMusicalNoteArray("A4", frequency);
 
-            Assert.AreEqual(true, RM.MusicalNotes[3] is MusicalNote);
+            Assert.AreEqual(true, RM.runtimeSettings.MusicalNotes[3] is MusicalNote);
         }
 
         [TestCase(2555)]
@@ -36,7 +36,7 @@ namespace Tests
             { }
 
             Assert.AreEqual
-                (0f, RM.MusicalNotes.Find(x => x.Name == "A4").Frequency);
+                (0f, RM.runtimeSettings.MusicalNotes.Find(x => x.Name == "A4").Frequency);
         }
     }
 }

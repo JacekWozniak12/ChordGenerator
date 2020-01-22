@@ -63,7 +63,7 @@ namespace ChordGenerator
         /// Generates the MusicalNote Array from ContentDefinitions;
         /// Does it once and saves is to array. Uses the frequency for starting point
         /// </summary>
-        private void GenerateMusicalNoteArray(float stratingFrequency)
+        private void GenerateMusicalNoteArray(double stratingFrequency)
         {
             if (MusicalNotes == null)
             {
@@ -71,7 +71,7 @@ namespace ChordGenerator
             }
             else MusicalNotes.Clear();
 
-            float temp = stratingFrequency;
+            double temp = stratingFrequency;
             int rank = 0;
 
             for (int i = 0; i <= 9; i++)
@@ -99,11 +99,26 @@ namespace ChordGenerator
             }
         }
 
+        public MusicalNote[] GenerateNoteArrayFromAnotherNoteArray(MusicalNote note, MusicalNote[] array, int amount)
+        {
+            List<MusicalNote> musicalNotes = new List<MusicalNote>();
+
+            var arrayOfNotes = new List<MusicalNote>(array);
+            var a = arrayOfNotes.Find(x => x.Name == note.Name).Rank;
+
+            for(int i = 0; i < amount; i++)
+            {
+                musicalNotes.Add(arrayOfNotes.Find(x => x.Rank == a));
+                a++;
+            }
+            return musicalNotes.ToArray();
+        }
+
         /// <summary>
         /// Generates the MusicalNote array from given note name and frequency.
         /// </summary>
         /// <throws>ArgumentException</throws>
-        public MusicalNote[] GenerateMusicalNoteArray(string note, float frequency)
+        public MusicalNote[] GenerateMusicalNoteArray(string note, double frequency)
         {
             if (MusicalNotes == null)
             {

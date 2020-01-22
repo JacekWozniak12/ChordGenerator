@@ -24,7 +24,7 @@ namespace ChordGenerator
         /// Uses RuntimeManager to find note;
         /// </summary>
         /// <param name="name"></param>
-        public void PlaySound(float frequency, string name)
+        public void PlaySound(double frequency, string name)
         {
             PlaySound(
                 frequency, 
@@ -34,7 +34,7 @@ namespace ChordGenerator
         } 
 
 
-        public void PlaySound(float frequency, string name, float gain, float time)
+        public void PlaySound(double frequency, string name, float gain, float time)
         {
             PlaySound(
                 new MusicalNote(name, frequency, -1),

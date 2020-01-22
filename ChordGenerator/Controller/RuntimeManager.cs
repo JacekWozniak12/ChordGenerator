@@ -43,8 +43,7 @@ namespace ChordGenerator
             try
             {
                 var chord = ChordsPlayed[ChordsPlayed.Count - 1];
-                NAudioCommunication.
-                        Instance.
+                nAudioCommunication.
                         PlaySound(
                         chord,
                         runtimeSettings.Volume,

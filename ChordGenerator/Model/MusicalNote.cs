@@ -12,7 +12,7 @@ namespace ChordGenerator
     public struct MusicalNote
     {
         private string _name;
-        private float _frequency;
+        private double _frequency;
 
         // In hertz
         private const double MinimalFreq = 16;
@@ -34,7 +34,7 @@ namespace ChordGenerator
         /// <summary>
         /// Can be changed by settings;
         /// </summary>
-        public float Frequency
+        public double Frequency
         {
             get => _frequency;
             private set
@@ -65,7 +65,7 @@ namespace ChordGenerator
             }
         }
 
-        public MusicalNote(string name, float frequency, int rank)
+        public MusicalNote(string name, double frequency, int rank)
         {
             this = new MusicalNote();
             Name = name;
@@ -149,7 +149,7 @@ namespace ChordGenerator
         /// <summary>
         /// Checks if frequency is hearable.
         /// </summary>
-        public static bool IsValidFrequency(float frequency)
+        public static bool IsValidFrequency(double frequency)
         {
             if (frequency < MinimalFreq || frequency > MaximalFreq)
             {
