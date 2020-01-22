@@ -29,7 +29,7 @@ namespace ChordGenerator
 
             foreach (var item in musicalNotes)
             {
-                result += $"{item.Name} ^";
+                result += $"{item.Name} ^ ";
             }
 
             return result.Substring(0, result.Length - 1).Trim();

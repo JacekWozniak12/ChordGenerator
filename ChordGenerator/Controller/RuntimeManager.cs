@@ -46,6 +46,12 @@ namespace ChordGenerator
             catch { }
         }
 
+        public void ChangeNoteArray(string note, float frequency)
+        {
+            nAudioCommunication.AudioOut.Stop();
+            runtimeSettings.GenerateMusicalNoteArray(note, frequency);
+        }
+
         public void Dispose()
         {
             nAudioCommunication.Dispose();

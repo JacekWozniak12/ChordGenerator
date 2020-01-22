@@ -124,12 +124,14 @@ namespace ChordGenerator
                     catch
                     { }
                 }
-                var z =
-                    rm.runtimeSettings.MusicalNotes.
-                    Find(y => y.Rank == RuntimeManager.
-                    Instance.runtimeSettings.MusicalNotes.Find(x => x.Name == note).
-                    Rank + modifier);
-                notes.Add(z);
+                var u = RuntimeManager.
+                    Instance.runtimeSettings.MusicalNotes.Find(x => x.Name == note);
+
+                if(!(u.Frequency == 0))
+                {
+                    var z = rm.runtimeSettings.MusicalNotes.Find(y => y.Rank == u.Rank + modifier);
+                    notes.Add(z);
+                }
             }
             return new Chord(notes.ToArray());
         }
@@ -138,11 +140,11 @@ namespace ChordGenerator
         /// Tries to read the Note, next tries to change frequency of it and
         /// every single note in base.
         /// </summary>
-        public void ReadNoteChange(string Note, float frequency)
+        public void ReadNoteChange(string note, float frequency)
         {
-            if (MusicalNote.IsValidName(Note) && MusicalNote.IsValidFrequency(frequency))
+            if (MusicalNote.IsValidName(note) && MusicalNote.IsValidFrequency(frequency))
             {
-                rm.runtimeSettings.GenerateMusicalNoteArray(Note, frequency);
+                rm.ChangeNoteArray(note, frequency);
             }
         }
     }
