@@ -22,14 +22,15 @@ namespace ChordGenerator
 
         private void InitializeApplication()
         {
-            runtimeManager = new RuntimeManager();
-            syntaxReader = new SyntaxReader();
-            nAudioCommunication = new NAudioCommunication();
+            runtimeManager =        new RuntimeManager();
+            syntaxReader =          new SyntaxReader();
+            nAudioCommunication =   new NAudioCommunication();
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             nAudioCommunication.Dispose();
+            //save files
         }
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)

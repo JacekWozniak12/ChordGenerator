@@ -4,7 +4,7 @@ namespace ChordGenerator
 {
     public class SyntaxReader
     {
-        private RuntimeManager rm;
+        private readonly RuntimeManager rm;
 
         public SyntaxReader()
         {
@@ -121,9 +121,9 @@ namespace ChordGenerator
                     { }
                 }
                 var z =
-                    rm.MusicalNotes.
+                    rm.runtimeSettings.MusicalNotes.
                     Find(y => y.Rank == RuntimeManager.
-                    Instance.MusicalNotes.Find(x => x.Name == note).
+                    Instance.runtimeSettings.MusicalNotes.Find(x => x.Name == note).
                     Rank + modifier);
                 notes.Add(z);
             }
@@ -138,7 +138,7 @@ namespace ChordGenerator
         {
             if (MusicalNote.IsValidName(Note) && MusicalNote.IsValidFrequency(frequency))
             {
-                rm.GenerateMusicalNoteArray(Note, frequency);
+                rm.runtimeSettings.GenerateMusicalNoteArray(Note, frequency);
             }
         }
     }

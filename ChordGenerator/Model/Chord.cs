@@ -7,7 +7,7 @@ namespace ChordGenerator
     /// </summary>
     public struct Chord
     {
-        // public string Name = "Chord";
+        public string Name;
 
         private const int MaximalNotesPerChord = 30;
 
@@ -20,6 +20,7 @@ namespace ChordGenerator
                     ($"To many notes {notes.Length}\nReduce amount by {notes.Length - MaximalNotesPerChord}");
 
             musicalNotes = notes;
+            Name = "chord";
         }
 
         public new string ToString()
@@ -33,23 +34,5 @@ namespace ChordGenerator
 
             return result.Substring(0, result.Length - 1).Trim();
         }
-
-        public enum PlayType
-        {
-            /// <summary>
-            /// Chord notes played one after another
-            /// </summary>
-            Single,
-
-            /// <summary>
-            /// All chord notes played at the same time
-            /// </summary>
-            AllATSameTime
-        }
-
-        /// <summary>
-        /// How will chord be played.
-        /// </summary>
-        private static PlayType defaultPlayType;
     }
 }

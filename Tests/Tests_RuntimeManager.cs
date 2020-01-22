@@ -16,7 +16,7 @@ namespace Tests
         {
             RuntimeManager RM = new RuntimeManager();
 
-            RM.GenerateMusicalNoteArray("A4", frequency);
+            RM.runtimeSettings.GenerateMusicalNoteArray("A4", frequency);
 
             Assert.AreEqual(true, RM.MusicalNotes[3] is MusicalNote);
         }
@@ -30,7 +30,7 @@ namespace Tests
 
             try
             {
-                RM.GenerateMusicalNoteArray("A4", frequency);
+                RM.runtimeSettings.GenerateMusicalNoteArray("A4", frequency);
             }
             catch (ArgumentException e)
             { }

@@ -82,18 +82,6 @@ namespace ChordGenerator
         }
 
         /// <summary>
-        /// First part of note. Example: [C]#3
-        /// </summary>
-        private readonly static char[] NameChars =
-            {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
-
-        /// <summary>
-        /// Second part of note, not obligatory. Example: C[#]3
-        /// </summary>
-        private readonly static char[] SpecialChars =
-            { '#', 'b' };
-
-        /// <summary>
         /// Check if given note name is valid
         /// </summary>
         public static bool IsValidName(string name)
@@ -141,11 +129,6 @@ namespace ChordGenerator
             return Char.IsDigit(name[1]);
         }
 
-        // In hertz
-        private const double MinimalFreq = 16;
-
-        private const double MaximalFreq = 20000;
-
         /// <summary>
         /// Checks if frequency is hearable.
         /// </summary>
@@ -157,5 +140,23 @@ namespace ChordGenerator
             }
             else return true;
         }
+
+        // In hertz
+        private const double MinimalFreq = 16;
+
+        private const double MaximalFreq = 20000;
+
+        /// <summary>
+        /// First part of note. Example: [C]#3
+        /// </summary>
+        private readonly static char[] NameChars =
+            {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
+
+        /// <summary>
+        /// Second part of note, not obligatory. Example: C[#]3
+        /// </summary>
+        private readonly static char[] SpecialChars =
+            { '#', 'b' };
+
     }
 }

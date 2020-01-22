@@ -11,12 +11,12 @@ namespace ChordGenerator
     public class NAudioCommunication
     {
         public static NAudioCommunication Instance { get; private set; }
-        public WaveOutEvent wo { get; private set; }
+        public WaveOutEvent AudioOut { get; private set; }
 
         public NAudioCommunication()
         {
             Instance = this;
-            wo = new WaveOutEvent();
+            AudioOut = new WaveOutEvent();
         }
 
         /// <summary>
@@ -25,25 +25,45 @@ namespace ChordGenerator
         /// <param name="name"></param>
         public void PlaySound(float frequency, string name)
         {
-            PlaySound(frequency, name, 0.1f, 1f);
-        }
+            PlaySound(
+                frequency, 
+                name, 
+                0.1f, 
+                1f);
+        } 
+
 
         public void PlaySound(float frequency, string name, float gain, float time)
         {
-            PlaySound(frequency, name, gain, time, SignalGeneratorType.Sin);
+            PlaySound(
+                new MusicalNote(name, frequency, -1),
+                gain, 
+                time, 
+                SignalGeneratorType.Sin
+                );
         }
 
-        public void PlaySound(float frequency, string name, float gain, float time, SignalGeneratorType signalType)
+
+        public void PlaySound(MusicalNote note, float gain, float time, SignalGeneratorType signalType)
         {
             PlaySound(
-                new MusicalNote[] { new MusicalNote(name, frequency, 0) },
-                gain, time, signalType);
+                new MusicalNote[] {note},
+                gain, 
+                time, 
+                signalType
+                );
         }
 
         public void PlaySound(Chord chord, float gain, float time, SignalGeneratorType signalType)
         {
-            PlaySound(chord.musicalNotes, gain, time, signalType);
+            PlaySound(
+                chord.musicalNotes, 
+                gain, 
+                time, 
+                signalType
+                );
         }
+
 
         public void PlaySound(MusicalNote[] musicalNotes, float gain, float time, SignalGeneratorType signalType)
         {
@@ -62,9 +82,9 @@ namespace ChordGenerator
 
                 mix.AddMixerInput(Signal);
             }
-            wo.Init(mix);
-            wo.Play();
-            while (wo.PlaybackState == PlaybackState.Playing)
+            AudioOut.Init(mix);
+            AudioOut.Play();
+            while (AudioOut.PlaybackState == PlaybackState.Playing)
             {
                 Thread.Sleep(15);
             }
@@ -72,7 +92,7 @@ namespace ChordGenerator
 
         public void Dispose()
         {
-            wo.Dispose();
+            AudioOut.Dispose();
             Instance = null;
         }
     }
