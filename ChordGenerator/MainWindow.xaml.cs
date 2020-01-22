@@ -11,7 +11,6 @@ namespace ChordGenerator
     {
         private RuntimeManager runtimeManager;
         private SyntaxReader syntaxReader;
-        private NAudioCommunication nAudioCommunication;
 
         public MainWindow()
         {
@@ -24,13 +23,11 @@ namespace ChordGenerator
         {
             runtimeManager =        new RuntimeManager();
             syntaxReader =          new SyntaxReader();
-            nAudioCommunication =   new NAudioCommunication();
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            nAudioCommunication.Dispose();
-            //save files
+            runtimeManager.Dispose();
         }
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e)
@@ -50,6 +47,7 @@ namespace ChordGenerator
 
         private void LearnChordsButton_Click(object sender, RoutedEventArgs e)
         {
+
         }
     }
 }

@@ -41,8 +41,12 @@ namespace ChordGenerator
         public Settings ReadSetting(string input)
         {
             var part = input.Split('}');
-            part[0] = part[0].Replace("{", "");
-            part[1] = part[1].Trim('[').Trim(']');
+
+            part[0] = 
+                part[0].Replace("{", "");
+            part[1] = 
+                part[1].Trim('[').Trim(']');
+            
             if (int.TryParse(part[1], out int result))
             {
                 ReadNoteChange(part[0], result);

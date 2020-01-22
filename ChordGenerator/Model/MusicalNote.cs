@@ -14,6 +14,23 @@ namespace ChordGenerator
         private string _name;
         private float _frequency;
 
+        // In hertz
+        private const double MinimalFreq = 16;
+
+        private const double MaximalFreq = 20000;
+
+        /// <summary>
+        /// First part of note. Example: [C]#3
+        /// </summary>
+        private readonly static char[] NameChars =
+            {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
+
+        /// <summary>
+        /// Second part of note, not obligatory. Example: C[#]3
+        /// </summary>
+        private readonly static char[] SpecialChars =
+            { '#', 'b' };
+
         /// <summary>
         /// Can be changed by settings;
         /// </summary>
@@ -140,23 +157,5 @@ namespace ChordGenerator
             }
             else return true;
         }
-
-        // In hertz
-        private const double MinimalFreq = 16;
-
-        private const double MaximalFreq = 20000;
-
-        /// <summary>
-        /// First part of note. Example: [C]#3
-        /// </summary>
-        private readonly static char[] NameChars =
-            {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
-
-        /// <summary>
-        /// Second part of note, not obligatory. Example: C[#]3
-        /// </summary>
-        private readonly static char[] SpecialChars =
-            { '#', 'b' };
-
     }
 }

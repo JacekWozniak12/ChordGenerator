@@ -8,12 +8,20 @@ namespace ChordGenerator
     /// </summary>
     public class Settings
     {
-        public float volume { get; private set; } = 0.5f;
+        public float Volume { get; private set; } = 0.5f;
         public PlayType HowToPlay { get; private set; } = PlayType.AllAtTheSameTime;
-        public float TimeToPlaySingleNote { get; private set; } = 0.33f;
+        public float TimeToPlaySingleNote { get; private set; } = 2f;
         public float TimeToPlayChord { get; private set; } = 2f;
 
         public List<MusicalNote> MusicalNotes;
+
+        private string[] noteNameContent =
+        {
+            "C", "C#", "Db", "D", "D#",
+            "Eb", "E", "F", "F#", "Gb",
+            "G", "G#", "Ab", "A", "A#",
+            "Bb", "B"
+        };
 
         public enum Type
         {
@@ -42,7 +50,7 @@ namespace ChordGenerator
                     break;
 
                 case Type.Volume:
-                    this.volume = value;
+                    this.Volume = value;
                     break;
 
                 case Type.DefaultTypeOfPlay:
@@ -147,7 +155,7 @@ namespace ChordGenerator
             float defaultTimeToPlayChord = 2f
             )
         {
-            this.volume = volume;
+            this.Volume = volume;
             this.HowToPlay = defaultPlayType;
             this.TimeToPlaySingleNote = defaultTimeToPlaySingleNote;
             this.TimeToPlayChord = defaultTimeToPlayChord;
@@ -156,7 +164,7 @@ namespace ChordGenerator
 
         public Settings(Settings settings)
         {
-            volume = settings.volume;
+            Volume = settings.Volume;
             HowToPlay = settings.HowToPlay;
             TimeToPlaySingleNote = settings.TimeToPlaySingleNote;
             TimeToPlayChord = settings.TimeToPlayChord;
@@ -166,13 +174,6 @@ namespace ChordGenerator
         {
             GenerateMusicalNoteArray(16.35f);
         }
-        
-        private string[] noteNameContent =
-        {
-            "C", "C#", "Db", "D", "D#",
-            "Eb", "E", "F", "F#", "Gb",
-            "G", "G#", "Ab", "A", "A#",
-            "Bb", "B"
-        };
+      
     }
 }

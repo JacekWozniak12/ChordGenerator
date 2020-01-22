@@ -3,6 +3,7 @@ using NAudio.Wave.SampleProviders;
 using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ChordGenerator
 {
@@ -64,8 +65,7 @@ namespace ChordGenerator
                 );
         }
 
-
-        public void PlaySound(MusicalNote[] musicalNotes, float gain, float time, SignalGeneratorType signalType)
+        public async void PlaySound(MusicalNote[] musicalNotes, float gain, float time, SignalGeneratorType signalType)
         {
             var waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(44100, 2);
             var mix = new MixingSampleProvider(waveFormat);
@@ -82,11 +82,12 @@ namespace ChordGenerator
 
                 mix.AddMixerInput(Signal);
             }
+            AudioOut.Stop();
             AudioOut.Init(mix);
             AudioOut.Play();
             while (AudioOut.PlaybackState == PlaybackState.Playing)
             {
-                Thread.Sleep(15);
+                await Task.Delay((int) time*1000);
             }
         }
 

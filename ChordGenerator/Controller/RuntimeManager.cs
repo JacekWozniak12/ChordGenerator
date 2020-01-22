@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Wave.SampleProviders;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -9,6 +10,7 @@ namespace ChordGenerator
     /// </summary>
     public class RuntimeManager
     {
+        private NAudioCommunication nAudioCommunication;
         public static RuntimeManager Instance { get; private set; }
         public Settings runtimeSettings;
         public List<Chord> ChordsPlayed = new List<Chord>();
@@ -20,22 +22,34 @@ namespace ChordGenerator
         {
             Instance = this;
             runtimeSettings = new Settings();
+            nAudioCommunication = new NAudioCommunication();
         }
 
+        /// <summary>
+        /// Handles playing sound in view
+        /// </summary>
+        /// <param name="chord"></param>
         public void PlaySound(Chord chord)
         {
             try
             {
                 NAudioCommunication.
                     Instance.
-                    PlaySound(chord, 0.5f, 0.5f,
-                        NAudio.Wave.SampleProviders.SignalGeneratorType.Sin);
-
+                    PlaySound(
+                    chord, 
+                    runtimeSettings.Volume, 
+                    runtimeSettings.TimeToPlaySingleNote,                       
+                    SignalGeneratorType.Sin //todo przenieść to
+                );
                 ChordsPlayed.Add(chord);
             }
             catch { }
         }
 
+        public void Dispose()
+        {
+            nAudioCommunication.Dispose();
+        }
 
         /// <summary>
         /// Searching for file with generated array
