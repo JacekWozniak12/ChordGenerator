@@ -29,19 +29,28 @@ namespace ChordGenerator
         /// Handles playing sound in view
         /// </summary>
         /// <param name="chord"></param>
-        public void PlaySound(Chord chord)
+        public void AddSound(Chord chord)
         {
             try
             {
-                NAudioCommunication.
-                    Instance.
-                    PlaySound(
-                    chord, 
-                    runtimeSettings.Volume, 
-                    runtimeSettings.TimeToPlaySingleNote,                       
-                    SignalGeneratorType.Sin //todo przenieść to
-                );
                 ChordsPlayed.Add(chord);
+            }
+            catch { }
+        }
+
+        public void PlaySound()
+        {
+            try
+            {
+                var chord = ChordsPlayed[ChordsPlayed.Count - 1];
+                NAudioCommunication.
+                        Instance.
+                        PlaySound(
+                        chord,
+                        runtimeSettings.Volume,
+                        runtimeSettings.TimeToPlaySingleNote,
+                        SignalGeneratorType.Sin //todo przenieść to
+                    );
             }
             catch { }
         }

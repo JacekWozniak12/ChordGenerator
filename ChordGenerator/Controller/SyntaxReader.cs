@@ -28,7 +28,7 @@ namespace ChordGenerator
 
                     default:
                         var a = ReadChord(input);
-                        rm.PlaySound(a);
+                        rm.AddSound(a);
                         break;
                 }
             }
