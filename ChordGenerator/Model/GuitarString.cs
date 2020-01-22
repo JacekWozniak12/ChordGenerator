@@ -27,6 +27,7 @@ namespace ChordGenerator.Model
         public GuitarString(MusicalNote musicalNote, Settings settings)
         {
             this.settings = settings;
+            notesOnString = new List<MusicalNote>();
             Creator(musicalNote);
         }
 
@@ -34,25 +35,31 @@ namespace ChordGenerator.Model
         {
             if (musicalNote.Frequency < MINIMAL_OPENSTRING_FREQUENCY_POSSIBLE)
             {
-                settings.
+                notesOnString.AddRange(
+                    settings.
                     GenerateNoteArrayFromAnotherNoteArray
                     (settings.MusicalNotes.Find
                     (x => x.Frequency >= MINIMAL_OPENSTRING_FREQUENCY_POSSIBLE),
-                    settings.MusicalNotes.ToArray(), STRINGS_NOTES);
+                    settings.MusicalNotes.ToArray(), STRINGS_NOTES)
+                );
             }
             else
             if (musicalNote.Frequency > MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE)
             {
+                notesOnString.AddRange(
                 settings.
                     GenerateNoteArrayFromAnotherNoteArray
                     (settings.MusicalNotes.FindLast
-                    (x => x.Frequency <= MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE), 
-                    settings.MusicalNotes.ToArray(), STRINGS_NOTES);
+                    (x => x.Frequency <= MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE),
+                    settings.MusicalNotes.ToArray(), STRINGS_NOTES)
+                );
             }
             else
             {
+                notesOnString.AddRange(
                 settings.GenerateNoteArrayFromAnotherNoteArray
-                    (musicalNote, settings.MusicalNotes.ToArray(), STRINGS_NOTES);
+                    (musicalNote, settings.MusicalNotes.ToArray(), STRINGS_NOTES)
+                    );
             }
         }
     }
