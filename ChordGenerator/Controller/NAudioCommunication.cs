@@ -58,7 +58,7 @@ namespace ChordGenerator
         public void PlaySound(Chord chord, float gain, float time, SignalGeneratorType signalType)
         {
             PlaySound(
-                chord.musicalNotes, 
+                chord.MusicalNotes, 
                 gain, 
                 time, 
                 signalType

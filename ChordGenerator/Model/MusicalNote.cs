@@ -9,6 +9,7 @@ namespace ChordGenerator
     /// M is one of two chars: #, b;
     /// D is single digit number 0 to 9;
     /// </summary>
+    [Serializable]
     public struct MusicalNote
     {
         // In hertz
@@ -31,12 +32,28 @@ namespace ChordGenerator
         private double _frequency;
 
         /// <summary>
+        /// Can't be changed by settings, initialized once;
+        /// </summary>
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                if (IsValidName(value))
+                {
+                    _name = value;
+                }
+                else throw new ArgumentException();
+            }
+        }
+
+        /// <summary>
         /// Can be changed by settings;
         /// </summary>
         public double Frequency
         {
             get => _frequency;
-            private set
+            set
             {
                 if (IsValidFrequency(value))
                 {
@@ -49,23 +66,7 @@ namespace ChordGenerator
         /// <summary>
         /// Used to sygnalize if note is higher, lower or at same frequency as other in note array.
         /// </summary>
-        public int Rank { get; private set; }
-
-        /// <summary>
-        /// Can't be changed by settings, initialized once;
-        /// </summary>
-        public string Name
-        {
-            get => _name;
-            private set
-            {
-                if (IsValidName(value))
-                {
-                    _name = value;
-                }
-                else throw new ArgumentException();
-            }
-        }
+        public int Rank { get; set; }
 
         public MusicalNote(string name, double frequency, int rank)
         {

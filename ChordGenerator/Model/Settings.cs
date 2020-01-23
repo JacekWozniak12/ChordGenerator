@@ -7,12 +7,17 @@ namespace ChordGenerator
     /// <summary>
     /// Class holding settings changes, like note dictionary or volume
     /// </summary>
+    [Serializable]
     public class Settings
     {
+        public const float MINIMAL_DURATION = 00.5f;
+        public const float MAXIMAL_DURATION = 15.0f;
+
+
         public Guitar guitar { get; private set; }
         public float Volume { get; private set; } = 0.5f;
         public PlayType HowToPlay { get; private set; } = PlayType.AllAtTheSameTime;
-        public float TimeToPlaySingleNote { get; private set; } = 2f;
+        public float Duration { get; private set; } = 2f;
         public float TimeToPlayChord { get; private set; } = 2f;
 
         public List<MusicalNote> MusicalNotes;
@@ -27,8 +32,7 @@ namespace ChordGenerator
 
         public enum Type
         {
-            NoteTime,
-            ChordTime,
+            Duration,
             Volume,
             DefaultTypeOfPlay
         }
@@ -43,12 +47,8 @@ namespace ChordGenerator
         {
             switch (type)
             {
-                case Type.NoteTime:
-                    this.TimeToPlaySingleNote = value;
-                    break;
-
-                case Type.ChordTime:
-                    this.TimeToPlayChord = value;
+                case Type.Duration:
+                    this.Duration = value;
                     break;
 
                 case Type.Volume:
@@ -174,8 +174,7 @@ namespace ChordGenerator
         {
             this.Volume = volume;
             this.HowToPlay = defaultPlayType;
-            this.TimeToPlaySingleNote = defaultTimeToPlaySingleNote;
-            this.TimeToPlayChord = defaultTimeToPlayChord;
+            this.Duration = defaultTimeToPlaySingleNote;
             GenerateMusicalNoteArray(16.35f);
         }
 
@@ -183,8 +182,7 @@ namespace ChordGenerator
         {
             Volume = settings.Volume;
             HowToPlay = settings.HowToPlay;
-            TimeToPlaySingleNote = settings.TimeToPlaySingleNote;
-            TimeToPlayChord = settings.TimeToPlayChord;
+            Duration = settings.Duration;
         }
 
         public Settings()

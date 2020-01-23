@@ -10,6 +10,7 @@ namespace ChordGenerator.Model
     /// Object that has 24 notes. 
     /// Uses const to prevent creating unrealistic string setups.
     /// </summary>
+    [Serializable]
     public struct GuitarString
     {
         public const double MINIMAL_OPENSTRING_FREQUENCY_POSSIBLE = 30.87f;

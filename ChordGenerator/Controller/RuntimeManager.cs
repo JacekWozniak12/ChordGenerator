@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ChordGenerator
 {
@@ -24,6 +27,8 @@ namespace ChordGenerator
             Instance = this;
             runtimeSettings = new Settings();
             nAudioCommunication = new NAudioCommunication();
+            HandleReadingSettings();
+            HandleReadingChords();
         }
 
         /// <summary>
@@ -50,7 +55,7 @@ namespace ChordGenerator
             {
                 var chord = ChordsPlayed[ChordsPlayed.Count - 1];
                 if (AllAtOnce)
-                { 
+                {
                     nAudioCommunication.
                             PlaySound(
                             chord,
@@ -61,26 +66,26 @@ namespace ChordGenerator
                 }
                 else
                 {
-                    foreach(var note in chord.musicalNotes)
+                    foreach (var note in chord.MusicalNotes)
                     {
                         nAudioCommunication.
                             PlaySound(
                             note,
                             runtimeSettings.Volume,
-                            runtimeSettings.Duration 
-                            / chord.musicalNotes.Length,
+                            runtimeSettings.Duration
+                            / chord.MusicalNotes.Length,
                             SignalGeneratorType.Sin //todo przenieść to
                         );
 
-                        await Task.Delay((int)runtimeSettings.Duration 
-                            / chord.musicalNotes.Length * 1000);
+                        await Task.Delay((int)runtimeSettings.Duration
+                            / chord.MusicalNotes.Length * 1000);
                     }
                 }
 
             }
             catch (ArgumentException e)
             {
-                
+                throw e;
             }
         }
 
@@ -90,57 +95,93 @@ namespace ChordGenerator
             runtimeSettings.GenerateMusicalNoteArray(note, frequency);
         }
 
-        public void Dispose()
+        public void Close()
         {
+            HandleSavingSettings();
+            HandleSavingChords();
             nAudioCommunication.Dispose();
         }
 
-        /// <summary>
-        /// Searching for file with generated array
-        /// </summary>
-        /// <returns>true if file is found</returns>
-        private bool FindFileWithMusicalNoteArray()
+        private void HandleSavingChords()
         {
-            // reads input output
-            throw new NotImplementedException();
-
             try
             {
-                return true;
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Chord>));
+                TextWriter writer = new StreamWriter("Chords.xml");
+                serializer.Serialize(writer, ChordsPlayed);
+                writer.Close();
             }
-            catch (IOException e)
+            catch (IOException e){ }
+        }
+
+        private void HandleSavingSettings()
+        {
+            try
             {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("Settings.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+                formatter.Serialize(stream, runtimeSettings);
+                stream.Close();
             }
-            return false;
+            catch (IOException e) { }
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <returns></returns>
-        public bool SaveMusicalNoteArrayToFile()
+        private void HandleReadingSettings()
         {
-            throw new NotImplementedException();
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("Settings.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+                Settings runtimeSettings = (Settings) formatter.Deserialize(stream);
+                stream.Close();
+            }
+            catch (IOException e)  { }
         }
 
-        private bool FindFileWithSettings()
+        private void HandleReadingChords()
         {
-            throw new NotImplementedException();
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(List<Chord>));
+                FileStream fileStream = new FileStream("Chords.xml", FileMode.Open);
+                ChordsPlayed = (List<Chord>) serializer.Deserialize(fileStream);
+                serializer.UnknownNode += new
+                XmlNodeEventHandler(serializer_UnknownNode);
+                serializer.UnknownAttribute += new
+                XmlAttributeEventHandler(serializer_UnknownAttribute);
+
+                foreach (var i in ChordsPlayed)
+                {
+                    int e = 0;
+                    foreach (var n in i.MusicalNotes)
+                    {
+                        if (!MusicalNote.IsValidFrequency(n.Frequency) || !MusicalNote.IsValidName(n.Name))
+                        {
+                            e++;
+                        }
+                    }
+                    if (e > 0)
+                    {
+                        ChordsPlayed.Remove(i);
+                        e = 0;
+                    }
+                }
+            }
+            catch (IOException e)  { }
         }
 
-        private void UseDefaultSettings()
+        private void serializer_UnknownNode
+        (object sender, XmlNodeEventArgs e)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Unknown Node:" + e.Name + "\t" + e.Text);
         }
 
-        public bool SaveUserSettings(Settings setting)
+        private void serializer_UnknownAttribute
+        (object sender, XmlAttributeEventArgs e)
         {
-            return false;
-        }
-
-        public bool ChangeFrequencies(MusicalNote note)
-        {
-            throw new NotImplementedException();
+            System.Xml.XmlAttribute attr = e.Attr;
+            Console.WriteLine("Unknown attribute " +
+            attr.Name + "='" + attr.Value + "'");
         }
     }
 }
