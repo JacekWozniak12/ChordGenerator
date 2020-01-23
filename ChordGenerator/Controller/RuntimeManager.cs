@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ChordGenerator
 {
@@ -41,18 +42,41 @@ namespace ChordGenerator
             }
         }
 
-        public void PlaySound()
+        public async void PlaySound()
         {
+            bool AllAtOnce = false;
+
             try
             {
                 var chord = ChordsPlayed[ChordsPlayed.Count - 1];
-                nAudioCommunication.
-                        PlaySound(
-                        chord,
-                        runtimeSettings.Volume,
-                        runtimeSettings.TimeToPlaySingleNote,
-                        SignalGeneratorType.Sin //todo przenieść to
-                    );
+                if (AllAtOnce)
+                { 
+                    nAudioCommunication.
+                            PlaySound(
+                            chord,
+                            runtimeSettings.Volume,
+                            runtimeSettings.Duration,
+                            SignalGeneratorType.Sin //todo przenieść to
+                        );
+                }
+                else
+                {
+                    foreach(var note in chord.musicalNotes)
+                    {
+                        nAudioCommunication.
+                            PlaySound(
+                            note,
+                            runtimeSettings.Volume,
+                            runtimeSettings.Duration 
+                            / chord.musicalNotes.Length,
+                            SignalGeneratorType.Sin //todo przenieść to
+                        );
+
+                        await Task.Delay((int)runtimeSettings.Duration 
+                            / chord.musicalNotes.Length * 1000);
+                    }
+                }
+
             }
             catch (ArgumentException e)
             {

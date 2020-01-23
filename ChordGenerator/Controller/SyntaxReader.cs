@@ -65,10 +65,7 @@ namespace ChordGenerator
                     case "playtype":
                         break;
 
-                    case "singlenotetime":
-                        break;
-
-                    case "chordtime":
+                    case "duration":
                         break;
 
                     default:
