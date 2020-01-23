@@ -32,9 +32,19 @@ namespace ChordGenerator
             runtimeManager.Dispose();
         }
 
-        private void GenerateButton_Click(object sender, RoutedEventArgs e)
+        private void Generate_Button_Click(object sender, RoutedEventArgs e)
         {
             ReadInputPrompt();
+        }
+
+        private void Play_Button_Click(object sender, RoutedEventArgs e)
+        {
+            runtimeManager.PlaySound();
+        }
+
+        private void SaveSettings_Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void ReadInputPrompt()
@@ -50,11 +60,6 @@ namespace ChordGenerator
             finally
             {
             }
-        }
-
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            runtimeManager.PlaySound();
         }
     }
 }
