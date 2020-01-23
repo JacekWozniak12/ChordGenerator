@@ -5,45 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChordGenerator"
         mc:Ignorable="d"
-        ResizeMode="CanMinimize"
+        ResizeMode="CanResize"
+        MinHeight="600"
+        MinWidth="400"
         Title="Chord Generator" 
         Height="800" 
         Width="500" 
         FontFamily="Roboto" 
         FontSize="24"
         Icon="./Resources/ChordApp.ico">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" 
+                    x:Name="Lang_InputName" Text="Enter chord"></TextBlock>
+        <TextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" 
+                    x:Name="InputPrompt" Text="A4 ^ A4 + 7"></TextBox>
+        
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" x:Name="GenerateButton" Content="Generate"  Click="GenerateButton_Click" />
+
+        <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Text="Volume"></TextBlock>
+        <TextBox Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Text="03"></TextBox>
+        
+        
+
+    </Grid>
     
-    <StackPanel>
-        <Border BorderBrush="#f3f3f3" BorderThickness="1" Padding="0"></Border>
-        
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Enter chord" Grid.ColumnSpan="2"  HorizontalAlignment="Center" />
 
-        <TextBox x:Name="InputPrompt" Grid.Column="1" Grid.Row="2" Margin="8,8,8,0" Padding="5,2,2,2" Text="A4 ^ A4 + 7" />
-        
-        <Button x:Name="GenerateButton" Content="Generate" Grid.Column="1" Grid.Row="3" Margin="8" Grid.ColumnSpan="2" Click="GenerateButton_Click" />
-        <Border BorderBrush="#f3f3f3" BorderThickness="1" Padding="0"></Border>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Settings" Grid.ColumnSpan="2"  HorizontalAlignment="Center" />
-        
-        <TextBox x:Name="A4Frequency" IsReadOnly="True" Grid.Column="1" Grid.Row="2" Margin="8,8,8,0" Padding="5,2,2,2" Text="A4: 440 hz" />
-        
-        <TextBox x:Name="Volume" IsReadOnly="True" Grid.Column="1" Grid.Row="2" Margin="8,8,8,0" Padding="5,2,2,2" Text="Volume: 0.5" />
-
-        <ComboBox x:Name="PlayType" IsReadOnly="True" Grid.Column="1" Grid.Row="2" Margin="8,8,8,0" Padding="5,2,2,2">
-            <ComboBoxItem Padding="5,2,2,2">
-                Appregio
-            </ComboBoxItem>
-            <ComboBoxItem Padding="5,2,2,2" IsSelected="True">
-                Chord
-            </ComboBoxItem>
-        </ComboBox>
-        
-        <TextBox x:Name="HowLongToPlay" IsReadOnly="True" Grid.Column="1" Grid.Row="2" Margin="8" Padding="5,2,2,2" Text="How Long To Play: 1 second" />
-        <Border BorderBrush="#f3f3f3" BorderThickness="1" Padding="0"></Border>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Played Chord" Grid.ColumnSpan="2"  HorizontalAlignment="Center"  Margin="8" />
-        <Canvas Height="300" Margin="8">
-            
-            
-        </Canvas>
-        <Button x:Name="PlayButton" Content="Play" Grid.Column="1" Grid.Row="5" Margin="8" Grid.ColumnSpan="1" Click="PlayButton_Click" VerticalAlignment="Bottom"/>
-    </StackPanel>
 </Window>
