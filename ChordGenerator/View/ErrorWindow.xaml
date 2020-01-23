@@ -10,7 +10,7 @@
         Topmost="True"
         FontFamily="Roboto"
         FontSize="24"
-        Title="Error Message" Height="175" Width="400"
+        Title="Error message" Height="175" Width="400"
         Icon="../Resources/ChordApp.ico"
         >
     <Grid>

@@ -15,6 +15,27 @@
         FontSize="24"
         Icon="../Resources/ChordApp.ico">
 
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Padding" Value="1"></Setter>
+            <Setter Property="Margin" Value="3"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="1"></Setter>
+            <Setter Property="Margin" Value="3"></Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Padding" Value="1"></Setter>
+            <Setter Property="Margin" Value="3"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="1"></Setter>
+            <Setter Property="Margin" Value="3"></Setter>
+        </Style>
+
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
