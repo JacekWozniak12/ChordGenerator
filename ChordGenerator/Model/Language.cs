@@ -13,7 +13,7 @@
 
         public readonly string Error_InvalidFreq = "Invalid note frequency";
         public readonly string Error_InvalidNoteName = "Invalid note name";
-        public readonly string Error_InvalidSetting = "Invalid setting name or paramter";
+        public readonly string Error_InvalidSetting = "Invalid setting name or parameter";
         public readonly string Error_InvalidSyntax = "Invalid chord syntax";
 
         public Language(params string[] s)

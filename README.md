@@ -1,120 +1,54 @@
-# ChordGenerator
-Let me create some funk for you. Windows 10 WPF application.
+# Chord Generator
 
-## Legal
-All rights of quoted sources in part *Used Materials* are in hold of their respective owners. 
-
-## Used Libraries
-https://github.com/naudio/NAudio
-
-## Description
-Chord Generator is simple program written in C# and Windows Presentation Forms. It lets an user create chords from a text formatted by custom syntax standards, which is written below. Created chords will be displayed as img and be avalaible to play with Midi synthesizer. 
+Application. that let's you test note combination by using **custom** syntax. It lets an user create chords from a text formatted by custom syntax standards, which is written below. Created chords will be displayed as image and be available to play with basic NAudio synthesizer. 
 
 ## Features
-* Custom syntax for Chords
-* Last 5 chords are saved within app history
-* Generated guitar chord diagram
+
+- Custom syntax for Chords
+- Chords are saved within app directory
+- Generated guitar chord diagram
+- Frequency based on [equal-tempered scales](https://pages.mtu.edu/~suits/notefreqs.html)
 
 ## How To Use
-User can write his text into the prompt. After that, user should click *generate*, which will generate the chord image and sound to play by button. User will have to write his chord in very specific manner. Settings can be changed via prompt, or by menu Window.
+
+User can write his text into the prompt. User will have to write his chord in very specific manner described below. Syntax is case sensitive but let's user make mistakes. After that, user should click *generate*, which will generate the chord which be displayed on screen and being able to play by button.
+
+User can change the settings of app for his liking, but he need to save them before they'll be applied to played chord. 
 
 ### Syntax
 
-#### Settings
-`{Name of setting}[value of setting]`
-
 #### Chord notes
-* Single note examples:
-  * `A4` -> Note A4
-  * `A4 + 5` -> Note D4
-  * `A4 - 1` -> Note Ab4 / G#4
-* Multi note examples:
-  * `A4 ^ E4` -> Powerchord A4
-  * `A4 ^ D4 + 2` -> Powerchord A4
-  * `A4 ^ C4 ^ E4` -> A minor chord
 
-## Implementation
+##### Symbols
 
-### Database - notes
-* Sound note database should be initialized from **C0** to **C9**
-* Init once, give base freq to each one note, based on freqs from this [page]( https://pages.mtu.edu/~suits/notefreqs.html )
-* Octave 
-  * Starts from ***C*** note
-  * Contains 12 notes
-    * Third octave consists of notes 
-      * {***C3, C#3, D3, D#3, E3, F3, F#3, G3, G#3, A3, A#3, B3***} 
-      * Note naming depends on system and context, you can for example meet with notes like ***Db3***, which in context of our program is the same thing as ***C#3***
+* `+` Add semitone amount
+* `-` Subtract semitone amount
+* `^` Add another note to chord
 
-* Each time when single note frequency is changed, change all to correspond the change.
 
-### Sound engine
-Using NAudio;
+##### Examples
 
-### GUI
-Using WPF XAML
+- Single note examples:
+  - `A4` Note A4
+  - `A4 + 5` Note D4
+  - `A4 - 1` Note Ab4 / G#4
+- Multi note examples:
+  - `A4 ^ E4` Powerchord A4
+  - `A4 ^ D4 + 2` Powerchord A4
+  - `A4 ^ C4 ^ E4` A minor chord
 
-#### Guitar chord diagram
-* Standard EADGBE tuning with 24 frets
-* Possible chords to play or also those impossible aswell?
-  * Possible
-    * One note per string
-    * Notes can't be stretched more than 5 frets and empty
-    * Empty strings are counted before anything else
-    * More important notes first
-  * Impossible:
-    * All notes within a string
-    * Notes can't be stretched more than 5 frets and empty
-    * Importance does not matter
-* History: 
-  * From fresh to old.
-  * 5 last chords
-  * Contains only chord scheme, without additional settings
+#### Settings
 
-#### Window
-Standard Windows Metro theme
-* Modern flat UI
-* Rather simple
-* *Roboto* or *Montserrat* font suggested.
+```
+{Name of setting}[value of setting]
+```
 
-## Used materials
-### Learn X in Y Minutes
-### Microsoft Documentation
-* [WPF tutorial]( https://docs.microsoft.com/en-us/visualstudio/designers/introduction-to-wpf?view=vs-2019 )
+## Used Software / Libraries
 
-### Youtube
-* [C++ Sound Implementation tutorial]( https://www.youtube.com/watch?v=tgamhuQnOkM )
-* [WPF tutorial]( https://www.youtube.com/watch?v=gSfMNjWNoX0 )
+* Program written in C# and Windows Presentation Forms. 
+* Icon created in Inkscape and GIMP
+* Audio rendering provided by https://github.com/naudio/NAudio
 
-### Other
-* [Frequencies of musical notes]( https://pages.mtu.edu/~suits/notefreqs.html )
-* [Chord symbols and how they are made]( http://www.guitarchordspedia.com/chords/chord-symbols/ )
-* [Midi Format]( https://www.csie.ntu.edu.tw/~r92092/ref/midi/ )
+## Legal
 
-## Milestones
-### 0.1
-- Basic sound engine
-- Sound fade-out
-- Oscillators
-### 0.2
-* String to sound implementation
-* Sound engine additions
-### 0.3
-* Playing chord one sound after another
-* Playing chord as a whole in one step
-### 0.4
-* Guitar chord diagram
-### 0.5
-* Guitar chord diagram reworks
-### 0.6
-* Flat to sharp integrations
-  * Simple method to convert flat to sharp if needed.
-* Midi instruments integration
-### 0.7
-* Loading from the MIDI
-  * Choosing one tick within midi track
-### 0.8
-* Saving chord to MIDI file
-### 0.9
-* Fixing stuff
-### 1.0
-* Fixes and refractoring 
+All rights of quoted sources in part *Used Materials* are in hold of their respective owners.

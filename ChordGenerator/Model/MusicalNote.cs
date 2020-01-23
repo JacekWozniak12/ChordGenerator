@@ -9,45 +9,27 @@ namespace ChordGenerator
     /// M is one of two chars: #, b;
     /// D is single digit number 0 to 9;
     /// </summary>
+    [Serializable]
     public struct MusicalNote
     {
-        private string _name;
-        private float _frequency;
-
         // In hertz
-        private const double MinimalFreq = 16;
-
-        private const double MaximalFreq = 20000;
+        private const double MINIMAL_FREQUENCY = 16;
+        private const double MAXIMAL_FREQUENCY = 20000;
 
         /// <summary>
         /// First part of note. Example: [C]#3
         /// </summary>
-        private readonly static char[] NameChars =
+        private readonly static char[] NAME_CHARS =
             {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
 
         /// <summary>
         /// Second part of note, not obligatory. Example: C[#]3
         /// </summary>
-        private readonly static char[] SpecialChars =
+        private readonly static char[] SPECIAL_CHARS =
             { '#', 'b' };
 
-        /// <summary>
-        /// Can be changed by settings;
-        /// </summary>
-        public float Frequency
-        {
-            get => _frequency;
-            private set
-            {
-                if (IsValidFrequency(value))
-                {
-                    _frequency = value;
-                }
-                else throw new ArgumentException();
-            }
-        }
-
-        public int Rank { get; private set; }
+        private string _name;
+        private double _frequency;
 
         /// <summary>
         /// Can't be changed by settings, initialized once;
@@ -55,7 +37,7 @@ namespace ChordGenerator
         public string Name
         {
             get => _name;
-            private set
+            set
             {
                 if (IsValidName(value))
                 {
@@ -65,7 +47,28 @@ namespace ChordGenerator
             }
         }
 
-        public MusicalNote(string name, float frequency, int rank)
+        /// <summary>
+        /// Can be changed by settings;
+        /// </summary>
+        public double Frequency
+        {
+            get => _frequency;
+            set
+            {
+                if (IsValidFrequency(value))
+                {
+                    _frequency = value;
+                }
+                else throw new ArgumentException();
+            }
+        }
+
+        /// <summary>
+        /// Used to sygnalize if note is higher, lower or at same frequency as other in note array.
+        /// </summary>
+        public int Rank { get; set; }
+
+        public MusicalNote(string name, double frequency, int rank)
         {
             this = new MusicalNote();
             Name = name;
@@ -111,7 +114,7 @@ namespace ChordGenerator
             var temp = name[0];
             int NotDigitChars = 0;
 
-            foreach (var s in NameChars)
+            foreach (var s in NAME_CHARS)
             {
                 if (temp == s)
                 {
@@ -124,7 +127,7 @@ namespace ChordGenerator
 
             temp = name[1];
 
-            foreach (var s in SpecialChars)
+            foreach (var s in SPECIAL_CHARS)
             {
                 if (temp == s)
                 {
@@ -149,9 +152,9 @@ namespace ChordGenerator
         /// <summary>
         /// Checks if frequency is hearable.
         /// </summary>
-        public static bool IsValidFrequency(float frequency)
+        public static bool IsValidFrequency(double frequency)
         {
-            if (frequency < MinimalFreq || frequency > MaximalFreq)
+            if (frequency < MINIMAL_FREQUENCY || frequency > MAXIMAL_FREQUENCY)
             {
                 return false;
             }

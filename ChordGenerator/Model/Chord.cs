@@ -5,13 +5,14 @@ namespace ChordGenerator
     /// <summary>
     /// Chord created by user;
     /// </summary>
+    [Serializable]
     public struct Chord
     {
         public string Name;
 
         private const int MaximalNotesPerChord = 30;
 
-        public MusicalNote[] musicalNotes { get; private set; }
+        public MusicalNote[] MusicalNotes { get; set; }
 
         public Chord(MusicalNote[] notes)
         {
@@ -19,7 +20,7 @@ namespace ChordGenerator
                 throw new ArgumentException
                     ($"To many notes {notes.Length}\nReduce amount by {notes.Length - MaximalNotesPerChord}");
 
-            musicalNotes = notes;
+            MusicalNotes = notes;
             Name = "chord";
         }
 
@@ -27,7 +28,7 @@ namespace ChordGenerator
         {
             string result = "";
 
-            foreach (var item in musicalNotes)
+            foreach (var item in MusicalNotes)
             {
                 result += $"{item.Name} ^ ";
             }
