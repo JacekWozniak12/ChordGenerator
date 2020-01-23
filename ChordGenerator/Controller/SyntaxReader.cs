@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ChordGenerator
 {
@@ -32,7 +33,10 @@ namespace ChordGenerator
                         break;
                 }
             }
-            catch { }
+            catch (ArgumentException e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>
@@ -68,7 +72,7 @@ namespace ChordGenerator
                         break;
 
                     default:
-                        break;
+                        throw new ArgumentException();
                 }
             }
 
@@ -119,10 +123,13 @@ namespace ChordGenerator
                             {
                                 modifier += result;
                             }
+                            else throw new ArgumentException();
                         }
                     }
-                    catch
-                    { }
+                    catch (ArgumentException e)
+                    {
+                        throw e;
+                    }
                 }
                 var u = RuntimeManager.
                     Instance.runtimeSettings.MusicalNotes.Find(x => x.Name == note);

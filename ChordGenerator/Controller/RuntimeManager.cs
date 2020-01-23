@@ -35,7 +35,10 @@ namespace ChordGenerator
             {
                 ChordsPlayed.Add(chord);
             }
-            catch { }
+            catch (ArgumentException e)
+            {
+                throw e;
+            }
         }
 
         public void PlaySound()
@@ -51,7 +54,10 @@ namespace ChordGenerator
                         SignalGeneratorType.Sin //todo przenieść to
                     );
             }
-            catch { }
+            catch (ArgumentException e)
+            {
+                
+            }
         }
 
         public void ChangeNoteArray(string note, float frequency)
