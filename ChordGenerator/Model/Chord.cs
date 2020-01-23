@@ -1,5 +1,6 @@
 ﻿using ChordGenerator.Model;
 using System;
+using System.ComponentModel;
 
 namespace ChordGenerator
 {
@@ -7,10 +8,13 @@ namespace ChordGenerator
     /// Chord created by user;
     /// </summary>
     [Serializable]
-    public struct Chord
+    public struct Chord : INotifyPropertyChanged
     {
         private const int MAXIMAL_NOTES_PER_CHORD = 30;
-        public string Name;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string Name { get; set; }
         public Note[] MusicalNotes { get; set; }
 
         public Chord(Note[] notes)
@@ -20,7 +24,11 @@ namespace ChordGenerator
                     ($"To many notes {notes.Length}\nReduce amount by {notes.Length - MAXIMAL_NOTES_PER_CHORD}");
 
             MusicalNotes = notes;
-            Name = "Chord";
+            Name = $"";
+            foreach (var note in notes)
+            {
+                Name += $"{note.Name} ";
+            }
         }
 
         public new string ToString()

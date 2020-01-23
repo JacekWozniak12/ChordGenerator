@@ -1,6 +1,7 @@
 ﻿using ChordGenerator.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ChordGenerator
 {
@@ -8,16 +9,16 @@ namespace ChordGenerator
     /// Class holding settings changes, like note dictionary or volume
     /// </summary>
     [Serializable]
-    public class Settings
+    public class Settings : INotifyPropertyChanged
     {
         public const float MINIMAL_DURATION = 00.5f;
         public const float MAXIMAL_DURATION = 15.0f;
 
-        public Guitar guitar { get; private set; }
-        public float Volume { get; private set; } = 0.5f;
-        public PlayType HowToPlay { get; private set; } = PlayType.AllAtTheSameTime;
-        public float Duration { get; private set; } = 2f;
-        public float TimeToPlayChord { get; private set; } = 2f;
+        public Guitar Guitar { get; set; }
+        public float Volume { get; set; } = 0.5f;
+        public PlayType HowToPlay { get; set; } = PlayType.AllAtTheSameTime;
+        public float Duration { get; set; } = 2f;
+        public float TimeToPlayChord { get; set; } = 2f;
 
         public List<MusicalNote> MusicalNotes;
 
@@ -28,6 +29,8 @@ namespace ChordGenerator
             "G", "G#", "Ab", "A", "A#",
             "Bb", "B"
         };
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public enum Type
         {

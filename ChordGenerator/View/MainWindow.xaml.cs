@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 
 namespace ChordGenerator
 {
@@ -9,19 +11,22 @@ namespace ChordGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private RuntimeManager runtimeManager;
-        private SyntaxReader syntaxReader;
+        public RuntimeManager runtimeManager;
+        public SyntaxReader syntaxReader;
+
 
         public MainWindow()
         {
-            InitializeComponent();
             InitializeApplication();
+
             Application.Current.MainWindow.Closing += new CancelEventHandler(MainWindow_Closing);
+            InitializeComponent();
         }
 
         private void InitializeApplication()
         {
             runtimeManager = new RuntimeManager();
+            this.DataContext = runtimeManager;
             //display lang window
             syntaxReader = new SyntaxReader();
         }

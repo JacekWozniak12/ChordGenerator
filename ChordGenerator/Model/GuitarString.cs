@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ChordGenerator.Model
 {
@@ -8,13 +9,15 @@ namespace ChordGenerator.Model
     /// Uses const to prevent creating unrealistic string setups.
     /// </summary>
     [Serializable]
-    public struct GuitarString
+    public struct GuitarString : INotifyPropertyChanged
     {
         public const double MINIMAL_OPENSTRING_FREQUENCY_POSSIBLE = 30.87f;
         public const double MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE = 440f;
         public const int STRINGS_NOTES = 24;
 
         private Settings settings;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// From the lowest to the highest note;

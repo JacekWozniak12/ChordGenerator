@@ -2,6 +2,7 @@
 using NAudio.Wave.SampleProviders;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace ChordGenerator
@@ -11,12 +12,16 @@ namespace ChordGenerator
     /// </summary>
     public class RuntimeManager
     {
+        private const int MAXIMAL_AMOUNT_OF_CHORDS = 30;
+
         public static RuntimeManager Instance { get; private set; }
-        public Settings RuntimeSettings;
-        public List<Chord> ChordsPlayed;
+        public Settings RuntimeSettings { get; set; }
+        public ObservableCollection<Chord> ChordsPlayed { get; set; }
 
         private IOHandler ioHandler = new IOHandler();
         private NAudioCommunication nAudioCommunication;
+
+        public Chord SelectedChord { get; set; }
 
         /// <summary>
         /// Handles startup
@@ -24,9 +29,12 @@ namespace ChordGenerator
         public RuntimeManager()
         {
             Instance = this;
+            
             nAudioCommunication = new NAudioCommunication();
+            
             RuntimeSettings = ioHandler.HandleReadingSettings(obj: new Settings());
-            ChordsPlayed = ioHandler.HandleReadingChords(obj: new List<Chord>());
+            
+            ChordsPlayed = new ObservableCollection<Chord>(ioHandler.HandleReadingChords(obj: new List<Chord>()));
         }
 
         /// <summary>
@@ -37,6 +45,10 @@ namespace ChordGenerator
         {
             try
             {
+                while (ChordsPlayed.Count > MAXIMAL_AMOUNT_OF_CHORDS)
+                {
+                    ChordsPlayed.Remove(ChordsPlayed[0]);
+                }
                 ChordsPlayed.Add(chord);
             }
             catch (ArgumentException e)
@@ -51,8 +63,16 @@ namespace ChordGenerator
 
             try
             {
+                Chord chord;
                 if (ChordsPlayed.Count == 0) return;
-                Chord chord = ChordsPlayed[ChordsPlayed.Count - 1];
+                if (MusicalNote.IsValidName(SelectedChord.Name))
+                {
+                    chord = SelectedChord;
+                }
+                else
+                {
+                    chord = ChordsPlayed[ChordsPlayed.Count - 1];
+                }
                 List<MusicalNote> chordWithFrequencies = new List<MusicalNote>();
                 foreach (var n in chord.MusicalNotes)
                 {
@@ -103,7 +123,7 @@ namespace ChordGenerator
         {
             nAudioCommunication.Dispose();
             ioHandler.HandleSavingSettings(obj: RuntimeSettings);
-            ioHandler.HandleSavingChords(obj: ChordsPlayed);
+            ioHandler.HandleSavingChords(obj: new List<Chord>(ChordsPlayed));
         }
     }
 }

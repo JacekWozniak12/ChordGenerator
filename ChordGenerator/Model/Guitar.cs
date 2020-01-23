@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ChordGenerator.Model
 {
@@ -7,10 +8,12 @@ namespace ChordGenerator.Model
     /// Object that can contain multiple strings from 1 up to 10.
     /// </summary>
     [Serializable]
-    public struct Guitar
+    public struct Guitar : INotifyPropertyChanged
     {
         public const int MAXIMAL_STRING_AMOUNT = 10;
         public const int MINIMAL_STRING_AMOUNT = 1;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public List<GuitarString> GuitarStrings { get; private set; }
 

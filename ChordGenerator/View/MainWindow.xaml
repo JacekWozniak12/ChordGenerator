@@ -61,6 +61,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="10*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6"
@@ -76,13 +77,13 @@
                     x:Name="Lang_Volume" Text="Volume"></TextBlock>
 
         <TextBox    Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3"
-                    x:Name="Volume" Text="03"></TextBox>
+                    x:Name="S_Volume" Text="03"></TextBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"
                     x:Name="Lang_PlayType" Text="Volume"></TextBlock>
 
         <ComboBox   Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="3"
-                    x:Name="PlayType">
+                    x:Name="S_PlayType">
 
             <ComboBoxItem>
                 Appregio
@@ -95,24 +96,35 @@
         <TextBlock  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3"
                     x:Name="Lang_A4Frequency" Text="Frequency of A4"></TextBlock>
         <TextBox    Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3"
-                    x:Name="Frequency" Text="440"></TextBox>
+                    x:Name="S_Frequency" Text="{Binding Volume}"></TextBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="Lang_PlayDuration" Text="Duration in seconds"></TextBlock>
         <TextBox    Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3"
-                    x:Name="Duration" Text="1"></TextBox>
+                    x:Name="S_Duration" Text="1"></TextBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"
                     x:Name="Lang_NumberOfStrings" Text="Number Of Strings"></TextBlock>
         <TextBox    Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3"
-                    x:Name="NumberOfStrings" Text="6"></TextBox>
+                    x:Name="S_NumberOfStrings" Text="6"></TextBox>
         <TextBlock  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"
                     x:Name="Lang_StringSettings" Text="String setup"></TextBlock>
         <Button     Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="6"
                     x:Name="Lang_SaveSettings" Content="Save Settings"  Click="SaveSettings_Button_Click" />
 
-        <Button     Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6"
+        <Button     Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="6"
                     x:Name="Lang_Play" Content="Play"  Click="Play_Button_Click" />
+
+        <ComboBox x:Name="Chords" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6" SelectedItem="{Binding SelectedChord}" 
+                  ItemsSource="{Binding ChordsPlayed, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}">
+                        
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <ScrollViewer Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="10">
             <Canvas>
