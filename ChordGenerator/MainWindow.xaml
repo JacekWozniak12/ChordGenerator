@@ -14,11 +14,14 @@
         FontFamily="Roboto" 
         FontSize="24"
         Icon="./Resources/ChordApp.ico">
-    
-    
-    
+
     <Grid>
+
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -29,21 +32,24 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
+        <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" 
+                    x:Name="Lang_InputName" Text="Enter chord"></TextBlock>
+        <TextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" 
+                    x:Name="InputPrompt" Text="A4 ^ A4 + 7"></TextBox>
         
-        <StackPanel Grid.RowSpan="1" Grid.ColumnSpan="2">
-            <TextBlock Text="Enter chord" Grid.ColumnSpan="2"  HorizontalAlignment="Center" />
-            <TextBox x:Name="InputPrompt" Margin="8,8,8,0" Padding="5,2,2,2" Text="A4 ^ A4 + 7" />
-            <Button x:Name="GenerateButton" Content="Generate" Grid.Column="1" Grid.Row="3" Margin="8" Grid.ColumnSpan="2" Click="GenerateButton_Click" />
-            <Border BorderBrush="#f3f3f3" BorderThickness="1" Padding="0"></Border>
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="Settings" Grid.ColumnSpan="2"  HorizontalAlignment="Center" />
-        </StackPanel>
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" x:Name="GenerateButton" Content="Generate"  Click="GenerateButton_Click" />
 
-        <TextBlock Grid.ColumnSpan="1" Grid.Row="2" x:Name="Lang_Setting_A4_Frequency" Text="Write A4 frequency" Margin="8,8,8,0" Padding="5,2,2,2"/>
-        <TextBox Grid.ColumnSpan="1" Grid.Row="2" x:Name="A4Frequency" Margin="8,8,8,0" Padding="5,2,2,2" Text="A4: 440 hz" />
-
-
-
+        <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Text="Volume"></TextBlock>
+        <TextBox Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Text="03"></TextBox>
+        
+        
 
     </Grid>
     
