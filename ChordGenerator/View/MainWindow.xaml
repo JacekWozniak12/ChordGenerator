@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:ChordGenerator"
         mc:Ignorable="d"
         ResizeMode="CanResize"
-        MinHeight="600"
+        MinHeight="750"
         MinWidth="400"
         Title="Chord Generator" 
         Height="800" 
         Width="500" 
         FontFamily="Roboto" 
-        FontSize="24"
+        FontSize="18"
         Icon="../Resources/ChordApp.ico">
 
     <Window.Resources>
@@ -33,7 +33,10 @@
             <Setter Property="Padding" Value="1"></Setter>
             <Setter Property="Margin" Value="3"></Setter>
         </Style>
-
+        <Style TargetType="ScrollViewer">
+            <Setter Property="Padding" Value="1"></Setter>
+            <Setter Property="Margin" Value="3"></Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -56,12 +59,14 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="300" />
+            <RowDefinition Height="10*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" 
-                    x:Name="Lang_InputName" Text="Enter chord"></TextBlock>
+                    x:Name="Lang_InputName" Text="Enter chord" HorizontalAlignment="Center">
+                       
+        </TextBlock>
         <TextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" 
                     x:Name="InputPrompt" Text="A4 ^ A4 + 7"></TextBox>
         
@@ -110,6 +115,13 @@
 
         <Button     Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6" 
                     x:Name="Lang_Play" Content="Play"  Click="Play_Button_Click" />
+
+        <ScrollViewer Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="10">
+            <Canvas>
+
+            </Canvas>
+        </ScrollViewer>
+
     </Grid>
     
 </Window>
