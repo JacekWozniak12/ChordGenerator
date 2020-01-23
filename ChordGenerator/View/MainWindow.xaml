@@ -13,7 +13,7 @@
         Width="500" 
         FontFamily="Roboto" 
         FontSize="24"
-        Icon="./Resources/ChordApp.ico">
+        Icon="../Resources/ChordApp.ico">
 
     <Grid>
         <Grid.ColumnDefinitions>
