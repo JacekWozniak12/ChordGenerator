@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChordGenerator.Model;
+using System;
 using System.Collections.Generic;
 
 namespace ChordGenerator
@@ -8,6 +9,7 @@ namespace ChordGenerator
     /// </summary>
     public class Settings
     {
+        public Guitar guitar { get; private set; }
         public float Volume { get; private set; } = 0.5f;
         public PlayType HowToPlay { get; private set; } = PlayType.AllAtTheSameTime;
         public float TimeToPlaySingleNote { get; private set; } = 2f;

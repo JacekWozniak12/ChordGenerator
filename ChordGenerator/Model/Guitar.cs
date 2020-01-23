@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ChordGenerator.Model
 {
-    struct Guitar
+    /// <summary>
+    /// Object that can contain multiple strings from 1 up to 10.
+    /// </summary>
+    public struct Guitar
     {
         public const int MAXIMAL_STRING_AMOUNT = 10;
         public const int MINIMAL_STRING_AMOUNT = 1;
@@ -22,6 +25,7 @@ namespace ChordGenerator.Model
                 throw new ArgumentException();
 
             GuitarStrings = new List<GuitarString>(guitarStrings);
-        }         
+        }     
+
     }
 }

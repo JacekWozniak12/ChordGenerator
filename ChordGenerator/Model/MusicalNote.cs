@@ -11,25 +11,24 @@ namespace ChordGenerator
     /// </summary>
     public struct MusicalNote
     {
-        private string _name;
-        private double _frequency;
-
         // In hertz
-        private const double MinimalFreq = 16;
-
-        private const double MaximalFreq = 20000;
+        private const double MINIMAL_FREQUENCY = 16;
+        private const double MAXIMAL_FREQUENCY = 20000;
 
         /// <summary>
         /// First part of note. Example: [C]#3
         /// </summary>
-        private readonly static char[] NameChars =
+        private readonly static char[] NAME_CHARS =
             {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
 
         /// <summary>
         /// Second part of note, not obligatory. Example: C[#]3
         /// </summary>
-        private readonly static char[] SpecialChars =
+        private readonly static char[] SPECIAL_CHARS =
             { '#', 'b' };
+
+        private string _name;
+        private double _frequency;
 
         /// <summary>
         /// Can be changed by settings;
@@ -47,6 +46,9 @@ namespace ChordGenerator
             }
         }
 
+        /// <summary>
+        /// Used to sygnalize if note is higher, lower or at same frequency as other in note array.
+        /// </summary>
         public int Rank { get; private set; }
 
         /// <summary>
@@ -111,7 +113,7 @@ namespace ChordGenerator
             var temp = name[0];
             int NotDigitChars = 0;
 
-            foreach (var s in NameChars)
+            foreach (var s in NAME_CHARS)
             {
                 if (temp == s)
                 {
@@ -124,7 +126,7 @@ namespace ChordGenerator
 
             temp = name[1];
 
-            foreach (var s in SpecialChars)
+            foreach (var s in SPECIAL_CHARS)
             {
                 if (temp == s)
                 {
@@ -151,7 +153,7 @@ namespace ChordGenerator
         /// </summary>
         public static bool IsValidFrequency(double frequency)
         {
-            if (frequency < MinimalFreq || frequency > MaximalFreq)
+            if (frequency < MINIMAL_FREQUENCY || frequency > MAXIMAL_FREQUENCY)
             {
                 return false;
             }
