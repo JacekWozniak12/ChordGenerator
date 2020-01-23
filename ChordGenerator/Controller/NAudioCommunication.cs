@@ -55,16 +55,6 @@ namespace ChordGenerator
                 );
         }
 
-        public void PlaySound(Chord chord, float gain, float time, SignalGeneratorType signalType)
-        {
-            PlaySound(
-                chord.MusicalNotes, 
-                gain, 
-                time, 
-                signalType
-                );
-        }
-
         public async void PlaySound(MusicalNote[] musicalNotes, float gain, float time, SignalGeneratorType signalType)
         {
             var waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(44100, 2);
