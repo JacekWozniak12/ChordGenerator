@@ -8,14 +8,22 @@
         ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow"
         Topmost="True"
-        Title="Window1" Height="175" Width="400">
+        FontFamily="Roboto"
+        FontSize="24"
+        Title="Error Message" Height="175" Width="400"
+        Icon="../Resources/ChordApp.ico"
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="4*" />
+            
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Error" Grid.Row="0"></TextBlock>
-        <TextBox x:Name="Error_Content" IsReadOnlyCaretVisible="true" Grid.Row="1"></TextBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="Error_Content" TextWrapping="Wrap"
+                 Padding="7" IsReadOnly="true" Grid.Row="1" Grid.Column="1"></TextBox>
     </Grid>
 </Window>

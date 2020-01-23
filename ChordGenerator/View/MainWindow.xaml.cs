@@ -55,7 +55,8 @@ namespace ChordGenerator {
             }
             catch (ArgumentException err)
             {
-                // Łukasz, tu napisz mi przechwytywanie błędu
+                ErrorWindow errorWindow = new ErrorWindow(err.Message);
+                errorWindow.Show();
             }
             finally
             {
