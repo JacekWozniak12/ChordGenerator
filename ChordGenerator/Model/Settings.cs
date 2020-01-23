@@ -13,7 +13,6 @@ namespace ChordGenerator
         public const float MINIMAL_DURATION = 00.5f;
         public const float MAXIMAL_DURATION = 15.0f;
 
-
         public Guitar guitar { get; private set; }
         public float Volume { get; private set; } = 0.5f;
         public PlayType HowToPlay { get; private set; } = PlayType.AllAtTheSameTime;
@@ -108,7 +107,7 @@ namespace ChordGenerator
             var arrayOfNotes = new List<MusicalNote>(array);
             var a = arrayOfNotes.Find(x => x.Name == note.Name).Rank;
 
-            for(int i = 0; i < amount; i++)
+            for (int i = 0; i < amount; i++)
             {
                 musicalNotes.Add(arrayOfNotes.Find(x => x.Rank == a));
                 a++;
@@ -161,7 +160,6 @@ namespace ChordGenerator
         /// </summary>
         public Settings(string fileAdress)
         {
-
         }
 
         public Settings
@@ -189,6 +187,5 @@ namespace ChordGenerator
         {
             GenerateMusicalNoteArray(16.35f);
         }
-      
     }
 }

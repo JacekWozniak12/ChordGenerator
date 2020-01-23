@@ -47,11 +47,11 @@ namespace ChordGenerator
         {
             var part = input.Split('}');
 
-            part[0] = 
+            part[0] =
                 part[0].Replace("{", "");
-            part[1] = 
+            part[1] =
                 part[1].Trim('[').Trim(']');
-            
+
             if (int.TryParse(part[1], out int result))
             {
                 ReadNoteChange(part[0], result);
@@ -132,7 +132,7 @@ namespace ChordGenerator
                 var u = RuntimeManager.
                     Instance.RuntimeSettings.MusicalNotes.Find(x => x.Name == note);
 
-                if(!(u.Frequency == 0))
+                if (!(u.Frequency == 0))
                 {
                     var z = rm.RuntimeSettings.MusicalNotes.Find(y => y.Rank == u.Rank + modifier);
                     Note o = new Note();

@@ -10,9 +10,7 @@ namespace ChordGenerator
     public struct Chord
     {
         private const int MAXIMAL_NOTES_PER_CHORD = 30;
-
         public string Name;
-        
         public Note[] MusicalNotes { get; set; }
 
         public Chord(Note[] notes)
@@ -28,12 +26,10 @@ namespace ChordGenerator
         public new string ToString()
         {
             string result = "";
-
             foreach (var item in MusicalNotes)
             {
                 result += $"{item.Name} ^ ";
             }
-
             return result.Substring(0, result.Length - 1).Trim();
         }
     }

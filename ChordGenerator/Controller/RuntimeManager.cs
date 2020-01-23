@@ -1,13 +1,8 @@
 ﻿using ChordGenerator.Controller;
-using ChordGenerator.Model;
 using NAudio.Wave.SampleProviders;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace ChordGenerator
 {
@@ -18,10 +13,10 @@ namespace ChordGenerator
     {
         public static RuntimeManager Instance { get; private set; }
         public Settings RuntimeSettings;
-        public List<Chord> ChordsPlayed;        
-        
-        IOHandler ioHandler = new IOHandler();
-        NAudioCommunication nAudioCommunication;
+        public List<Chord> ChordsPlayed;
+
+        private IOHandler ioHandler = new IOHandler();
+        private NAudioCommunication nAudioCommunication;
 
         /// <summary>
         /// Handles startup
@@ -59,7 +54,7 @@ namespace ChordGenerator
                 if (ChordsPlayed.Count == 0) return;
                 Chord chord = ChordsPlayed[ChordsPlayed.Count - 1];
                 List<MusicalNote> chordWithFrequencies = new List<MusicalNote>();
-                foreach(var n in chord.MusicalNotes)
+                foreach (var n in chord.MusicalNotes)
                 {
                     chordWithFrequencies.Add(RuntimeSettings.MusicalNotes.Find(x => x.Name == n.Name));
                 }
@@ -91,7 +86,6 @@ namespace ChordGenerator
                             / chord.MusicalNotes.Length * 1000);
                     }
                 }
-
             }
             catch (ArgumentException e)
             {

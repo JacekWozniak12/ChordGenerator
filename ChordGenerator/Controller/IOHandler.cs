@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace ChordGenerator.Controller
 {
-    public class IOHandler 
+    public class IOHandler
     {
         public const string FILE_SETTINGS = "settings.bin";
         public const string FILE_CHORD = "chords.xml";
@@ -27,15 +24,15 @@ namespace ChordGenerator.Controller
                 serializer.Serialize(writer, obj);
                 writer.Close();
             }
-            catch (IOException e) { 
-            
+            catch (IOException e)
+            {
             }
 
             return (List<Chord>)obj;
         }
 
         /// <summary>
-        /// Tries to save binary files with app settings 
+        /// Tries to save binary files with app settings
         /// </summary>
         public Settings HandleSavingSettings(string fileName = FILE_SETTINGS, object obj = null)
         {
@@ -48,7 +45,7 @@ namespace ChordGenerator.Controller
             }
             catch (Exception e) { }
 
-            return (Settings) obj;
+            return (Settings)obj;
         }
 
         /// <summary>
@@ -60,24 +57,24 @@ namespace ChordGenerator.Controller
             {
                 IFormatter formatter = new BinaryFormatter();
                 Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-                obj = (Settings) formatter.Deserialize(stream);
+                obj = (Settings)formatter.Deserialize(stream);
                 stream.Close();
             }
             catch (Exception e) { }
 
-            return (Settings) obj;
+            return (Settings)obj;
         }
 
         /// <summary>
         /// Tries to read chord files
-        /// </summary> 
+        /// </summary>
         public List<Chord> HandleReadingChords(string fileName = FILE_CHORD, object obj = null)
         {
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Chord>));
                 FileStream fileStream = new FileStream(fileName, FileMode.Open);
-                obj = (List<Chord>) serializer.Deserialize(fileStream);
+                obj = (List<Chord>)serializer.Deserialize(fileStream);
                 serializer.UnknownNode += new
                 XmlNodeEventHandler(serializer_UnknownNode);
                 serializer.UnknownAttribute += new
@@ -85,10 +82,10 @@ namespace ChordGenerator.Controller
             }
             catch (Exception e)
             {
-                Chords_CheckXMLFileForUnvalidChanges((List<Chord>) obj);
+                Chords_CheckXMLFileForUnvalidChanges((List<Chord>)obj);
             }
 
-            return (List<Chord>) obj;
+            return (List<Chord>)obj;
         }
 
         public void Chords_CheckXMLFileForUnvalidChanges(List<Chord> Chords)

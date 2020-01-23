@@ -10,12 +10,13 @@ namespace ChordGenerator
     /// M is one of two chars: #, b;
     /// D is single digit number 0 to 9;
     /// </summary>
-    
+
     [Serializable]
     public class MusicalNote : Note
     {
         // In hertz
         private const double MINIMAL_FREQUENCY = 16;
+
         private const double MAXIMAL_FREQUENCY = 20000;
         private double _frequency;
 
@@ -62,7 +63,9 @@ namespace ChordGenerator
             Rank = note.Rank;
         }
 
-        public MusicalNote(){ }
+        public MusicalNote()
+        {
+        }
 
         /// <summary>
         /// Returns string as "Name: Frequency", for example: "A4: 440"

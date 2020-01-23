@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChordGenerator.Model
 {
     /// <summary>
-    /// Object that has 24 notes. 
+    /// Object that has 24 notes.
     /// Uses const to prevent creating unrealistic string setups.
     /// </summary>
     [Serializable]
@@ -17,16 +14,16 @@ namespace ChordGenerator.Model
         public const double MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE = 440f;
         public const int STRINGS_NOTES = 24;
 
-        Settings settings;
-      
+        private Settings settings;
+
         /// <summary>
         /// From the lowest to the highest note;
         /// </summary>
         public List<MusicalNote> notesOnString { get; private set; }
 
         /// <summary>
-        /// Creates single string from given note. 
-        /// If note is to low/high for string to handle, then string 
+        /// Creates single string from given note.
+        /// If note is to low/high for string to handle, then string
         /// creates from minimal / maximal const
         /// </summary>
         public GuitarString(MusicalNote musicalNote, Settings settings)

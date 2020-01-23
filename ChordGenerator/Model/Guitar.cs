@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChordGenerator.Model
 {
@@ -22,11 +19,10 @@ namespace ChordGenerator.Model
             if (
                 guitarStrings.Count > MAXIMAL_STRING_AMOUNT ||
                 guitarStrings.Count < MINIMAL_STRING_AMOUNT
-                ) 
+                )
                 throw new ArgumentException();
 
             GuitarStrings = new List<GuitarString>(guitarStrings);
-        }     
-
+        }
     }
 }

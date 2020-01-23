@@ -2,7 +2,6 @@
 using NAudio.Wave.SampleProviders;
 using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace ChordGenerator
@@ -27,30 +26,28 @@ namespace ChordGenerator
         public void PlaySound(double frequency, string name)
         {
             PlaySound(
-                frequency, 
-                name, 
-                0.1f, 
+                frequency,
+                name,
+                0.1f,
                 1f);
-        } 
-
+        }
 
         public void PlaySound(double frequency, string name, float gain, float time)
         {
             PlaySound(
                 new MusicalNote(name, frequency, -1),
-                gain, 
-                time, 
+                gain,
+                time,
                 SignalGeneratorType.Sin
                 );
         }
 
-
         public void PlaySound(MusicalNote note, float gain, float time, SignalGeneratorType signalType)
         {
             PlaySound(
-                new MusicalNote[] {note},
-                gain, 
-                time, 
+                new MusicalNote[] { note },
+                gain,
+                time,
                 signalType
                 );
         }
@@ -77,7 +74,7 @@ namespace ChordGenerator
             AudioOut.Play();
             while (AudioOut.PlaybackState == PlaybackState.Playing)
             {
-                await Task.Delay((int) time*1000);
+                await Task.Delay((int)time * 1000);
             }
         }
 

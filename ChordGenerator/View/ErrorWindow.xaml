@@ -11,12 +11,10 @@
         FontFamily="Roboto"
         FontSize="24"
         Title="Error message" Height="175" Width="400"
-        Icon="../Resources/ChordApp.ico"
-        >
+        Icon="../Resources/ChordApp.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>

@@ -8,10 +8,10 @@
         ResizeMode="CanResize"
         MinHeight="750"
         MinWidth="400"
-        Title="Chord Generator" 
-        Height="800" 
-        Width="500" 
-        FontFamily="Roboto" 
+        Title="Chord Generator"
+        Height="800"
+        Width="500"
+        FontFamily="Roboto"
         FontSize="18"
         Icon="../Resources/ChordApp.ico">
 
@@ -63,65 +63,60 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6" 
+        <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6"
                     x:Name="Lang_InputName" Text="Enter chord" HorizontalAlignment="Center">
-                       
         </TextBlock>
-        <TextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" 
+        <TextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6"
                     x:Name="InputPrompt" Text="A4 ^ A4 + 7"></TextBox>
-        
-        <Button     Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6" 
+
+        <Button     Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6"
                     x:Name="GenerateButton" Content="Generate"  Click="Generate_Button_Click" />
 
-        <TextBlock  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" 
+        <TextBlock  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"
                     x:Name="Lang_Volume" Text="Volume"></TextBlock>
-        
-        <TextBox    Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" 
+
+        <TextBox    Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3"
                     x:Name="Volume" Text="03"></TextBox>
 
-        <TextBlock  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" 
+        <TextBlock  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"
                     x:Name="Lang_PlayType" Text="Volume"></TextBlock>
 
-        <ComboBox   Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="3" 
+        <ComboBox   Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="3"
                     x:Name="PlayType">
-            
+
             <ComboBoxItem>
                 Appregio
             </ComboBoxItem>
             <ComboBoxItem IsSelected="True">
                 Chord
             </ComboBoxItem>
-            
         </ComboBox>
 
-        <TextBlock  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" 
+        <TextBlock  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3"
                     x:Name="Lang_A4Frequency" Text="Frequency of A4"></TextBlock>
-        <TextBox    Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3" 
+        <TextBox    Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3"
                     x:Name="Frequency" Text="440"></TextBox>
 
-        <TextBlock  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" 
+        <TextBlock  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="Lang_PlayDuration" Text="Duration in seconds"></TextBlock>
-        <TextBox    Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3" 
+        <TextBox    Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="Duration" Text="1"></TextBox>
 
-        <TextBlock  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" 
+        <TextBlock  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"
                     x:Name="Lang_NumberOfStrings" Text="Number Of Strings"></TextBlock>
-        <TextBox    Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3" 
+        <TextBox    Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3"
                     x:Name="NumberOfStrings" Text="6"></TextBox>
-        <TextBlock  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" 
+        <TextBlock  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"
                     x:Name="Lang_StringSettings" Text="String setup"></TextBlock>
-        <Button     Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="6" 
+        <Button     Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="6"
                     x:Name="Lang_SaveSettings" Content="Save Settings"  Click="SaveSettings_Button_Click" />
 
-        <Button     Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6" 
+        <Button     Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6"
                     x:Name="Lang_Play" Content="Play"  Click="Play_Button_Click" />
 
         <ScrollViewer Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="10">
             <Canvas>
-
             </Canvas>
         </ScrollViewer>
-
     </Grid>
-    
 </Window>

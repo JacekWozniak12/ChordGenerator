@@ -2,7 +2,8 @@
 using System.ComponentModel;
 using System.Windows;
 
-namespace ChordGenerator { 
+namespace ChordGenerator
+{
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
@@ -20,9 +21,9 @@ namespace ChordGenerator {
 
         private void InitializeApplication()
         {
-            runtimeManager =        new RuntimeManager();
+            runtimeManager = new RuntimeManager();
             //display lang window
-            syntaxReader =          new SyntaxReader();
+            syntaxReader = new SyntaxReader();
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChordGenerator.Model
 {
@@ -25,6 +21,7 @@ namespace ChordGenerator.Model
             { '#', 'b' };
 
         private string _name;
+
         /// <summary>
         /// Can't be changed by settings, initialized once;
         /// </summary>
@@ -88,6 +85,5 @@ namespace ChordGenerator.Model
 
             return Char.IsDigit(name[1]);
         }
-
     }
 }
