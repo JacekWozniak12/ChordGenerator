@@ -18,7 +18,7 @@ namespace ChordGenerator
     {
         public static RuntimeManager Instance { get; private set; }
         public Settings RuntimeSettings;
-        public List<Chord> ChordsPlayed = new List<Chord>();        
+        public List<Chord> ChordsPlayed;        
         
         IOHandler ioHandler = new IOHandler();
         NAudioCommunication nAudioCommunication;
@@ -29,10 +29,9 @@ namespace ChordGenerator
         public RuntimeManager()
         {
             Instance = this;
-            RuntimeSettings = new Settings();
             nAudioCommunication = new NAudioCommunication();
-            ioHandler.HandleReadingSettings(obj: RuntimeSettings);
-            ioHandler.HandleReadingChords(obj: ChordsPlayed);
+            RuntimeSettings = ioHandler.HandleReadingSettings(obj: new Settings());
+            ChordsPlayed = ioHandler.HandleReadingChords(obj: new List<Chord>());
         }
 
         /// <summary>
