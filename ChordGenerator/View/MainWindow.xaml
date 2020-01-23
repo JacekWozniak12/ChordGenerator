@@ -85,10 +85,10 @@
         <ComboBox   Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="3" 
                     x:Name="PlayType">
             
-            <ComboBoxItem Padding="5,2,2,2">
+            <ComboBoxItem>
                 Appregio
             </ComboBoxItem>
-            <ComboBoxItem Padding="5,2,2,2" IsSelected="True">
+            <ComboBoxItem IsSelected="True">
                 Chord
             </ComboBoxItem>
             

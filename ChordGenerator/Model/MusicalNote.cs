@@ -72,7 +72,6 @@ namespace ChordGenerator
             return $"{Name}: {Frequency}";
         }
 
-
         /// <summary>
         /// Checks if frequency is hearable.
         /// </summary>

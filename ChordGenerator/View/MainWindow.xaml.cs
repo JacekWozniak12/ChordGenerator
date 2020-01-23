@@ -23,12 +23,11 @@ namespace ChordGenerator {
             runtimeManager =        new RuntimeManager();
             //display lang window
             syntaxReader =          new SyntaxReader();
-            ReadInputPrompt();
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            runtimeManager.Dispose();
+            runtimeManager.Close();
         }
 
         private void Generate_Button_Click(object sender, RoutedEventArgs e)
