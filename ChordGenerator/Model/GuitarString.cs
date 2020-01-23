@@ -9,7 +9,7 @@ namespace ChordGenerator.Model
     /// Uses const to prevent creating unrealistic string setups.
     /// </summary>
     [Serializable]
-    public struct GuitarString : INotifyPropertyChanged
+    public class GuitarString : INotifyPropertyChanged
     {
         public const double MINIMAL_OPENSTRING_FREQUENCY_POSSIBLE = 30.87f;
         public const double MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE = 440f;

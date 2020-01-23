@@ -18,7 +18,6 @@ namespace ChordGenerator
         public MainWindow()
         {
             InitializeApplication();
-
             Application.Current.MainWindow.Closing += new CancelEventHandler(MainWindow_Closing);
             InitializeComponent();
         }
@@ -58,7 +57,7 @@ namespace ChordGenerator
             {
                 syntaxReader.ReadInput(InputPrompt.Text.Trim());
             }
-            catch (ArgumentException err)
+            catch (Exception err)
             {
                 ErrorWindow errorWindow = new ErrorWindow(err.Message);
                 errorWindow.Show();
@@ -66,6 +65,10 @@ namespace ChordGenerator
             finally
             {
             }
+        }
+        private void Clear_Button_Click(object sender, RoutedEventArgs e)
+        {
+            runtimeManager.ChordsPlayed.Clear();
         }
     }
 }

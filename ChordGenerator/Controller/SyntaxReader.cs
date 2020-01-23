@@ -34,7 +34,7 @@ namespace ChordGenerator
                         break;
                 }
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
                 throw e;
             }

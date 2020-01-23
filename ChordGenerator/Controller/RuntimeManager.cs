@@ -64,14 +64,15 @@ namespace ChordGenerator
             try
             {
                 Chord chord;
-                if (ChordsPlayed.Count == 0) return;
-                if (MusicalNote.IsValidName(SelectedChord.Name))
+                chord = SelectedChord;
+                if (ChordsPlayed.Count == 0) return;              
+                foreach(var i in SelectedChord.MusicalNotes)
                 {
-                    chord = SelectedChord;
-                }
-                else
-                {
-                    chord = ChordsPlayed[ChordsPlayed.Count - 1];
+                    if (!MusicalNote.IsValidName(i.Name))
+                    {
+                        chord = ChordsPlayed[ChordsPlayed.Count - 1];
+                        break;
+                    }
                 }
                 List<MusicalNote> chordWithFrequencies = new List<MusicalNote>();
                 foreach (var n in chord.MusicalNotes)

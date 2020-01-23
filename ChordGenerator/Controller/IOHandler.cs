@@ -19,10 +19,17 @@ namespace ChordGenerator.Controller
         {
             try
             {
+                var a = (List<Chord>)obj;
+                if (a.Count == 0)
+                {
+                    File.Delete(FILE_CHORD);
+                    return null;
+                }
+
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Chord>));
                 TextWriter writer = new StreamWriter(fileName);
                 serializer.Serialize(writer, obj);
-                writer.Close();
+                writer.Close();               
             }
             catch (IOException e)
             {

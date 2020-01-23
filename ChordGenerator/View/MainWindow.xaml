@@ -62,13 +62,14 @@
             <RowDefinition Height="10*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6"
                     x:Name="Lang_InputName" Text="Enter chord" HorizontalAlignment="Center">
         </TextBlock>
         <TextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6"
-                    x:Name="InputPrompt" Text="A4 ^ A4 + 7"></TextBox>
+                    x:Name="InputPrompt" Text="{Binding SelectedChord}"></TextBox>
 
         <Button     Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6"
                     x:Name="GenerateButton" Content="Generate"  Click="Generate_Button_Click" />
@@ -114,6 +115,9 @@
 
         <Button     Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="6"
                     x:Name="Lang_Play" Content="Play"  Click="Play_Button_Click" />
+
+        <Button     Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="6"
+                    x:Name="Lang_Clear" Content="Clear"  Click="Clear_Button_Click" />
 
         <ComboBox x:Name="Chords" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6" SelectedItem="{Binding SelectedChord}" 
                   ItemsSource="{Binding ChordsPlayed, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}">

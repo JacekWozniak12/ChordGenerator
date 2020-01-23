@@ -8,7 +8,7 @@ namespace ChordGenerator.Model
     /// Object that can contain multiple strings from 1 up to 10.
     /// </summary>
     [Serializable]
-    public struct Guitar : INotifyPropertyChanged
+    public class Guitar : INotifyPropertyChanged
     {
         public const int MAXIMAL_STRING_AMOUNT = 10;
         public const int MINIMAL_STRING_AMOUNT = 1;

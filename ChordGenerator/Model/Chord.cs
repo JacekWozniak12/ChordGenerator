@@ -8,7 +8,7 @@ namespace ChordGenerator
     /// Chord created by user;
     /// </summary>
     [Serializable]
-    public struct Chord : INotifyPropertyChanged
+    public class Chord : INotifyPropertyChanged
     {
         private const int MAXIMAL_NOTES_PER_CHORD = 30;
 
@@ -30,6 +30,8 @@ namespace ChordGenerator
                 Name += $"{note.Name} ";
             }
         }
+
+        public Chord() { }
 
         public new string ToString()
         {
