@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChordGenerator.Model;
+using System;
 using System.Collections.Generic;
 
 namespace ChordGenerator
@@ -84,7 +85,7 @@ namespace ChordGenerator
             input = input.Replace(" ", "");
             var s = input.Split('^');
 
-            List<MusicalNote> notes = new List<MusicalNote>();
+            List<Note> notes = new List<Note>();
 
             foreach (var item in s)
             {
@@ -129,12 +130,14 @@ namespace ChordGenerator
                     }
                 }
                 var u = RuntimeManager.
-                    Instance.runtimeSettings.MusicalNotes.Find(x => x.Name == note);
+                    Instance.RuntimeSettings.MusicalNotes.Find(x => x.Name == note);
 
                 if(!(u.Frequency == 0))
                 {
-                    var z = rm.runtimeSettings.MusicalNotes.Find(y => y.Rank == u.Rank + modifier);
-                    notes.Add(z);
+                    var z = rm.RuntimeSettings.MusicalNotes.Find(y => y.Rank == u.Rank + modifier);
+                    Note o = new Note();
+                    o.Name = z.Name;
+                    notes.Add(o);
                 }
             }
             return new Chord(notes.ToArray());

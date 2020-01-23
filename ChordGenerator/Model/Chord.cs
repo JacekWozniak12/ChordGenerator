@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChordGenerator.Model;
+using System;
 
 namespace ChordGenerator
 {
@@ -8,20 +9,20 @@ namespace ChordGenerator
     [Serializable]
     public struct Chord
     {
+        private const int MAXIMAL_NOTES_PER_CHORD = 30;
+
         public string Name;
+        
+        public Note[] MusicalNotes { get; set; }
 
-        private const int MaximalNotesPerChord = 30;
-
-        public MusicalNote[] MusicalNotes { get; set; }
-
-        public Chord(MusicalNote[] notes)
+        public Chord(Note[] notes)
         {
-            if (notes.Length > MaximalNotesPerChord)
+            if (notes.Length > MAXIMAL_NOTES_PER_CHORD)
                 throw new ArgumentException
-                    ($"To many notes {notes.Length}\nReduce amount by {notes.Length - MaximalNotesPerChord}");
+                    ($"To many notes {notes.Length}\nReduce amount by {notes.Length - MAXIMAL_NOTES_PER_CHORD}");
 
             MusicalNotes = notes;
-            Name = "chord";
+            Name = "Chord";
         }
 
         public new string ToString()
