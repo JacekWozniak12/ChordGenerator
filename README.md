@@ -25,7 +25,6 @@ User can change the settings of app for his liking, but he need to save them bef
 * `-` Subtract semitone amount
 * `^` Add another note to chord
 
-
 ##### Examples
 
 - Single note examples:
@@ -38,11 +37,6 @@ User can change the settings of app for his liking, but he need to save them bef
   - `A4 ^ D4 + 2` Powerchord A4
   - `A4 ^ C4 ^ E4` A minor chord
 
-#### Settings
-
-```
-{Name of setting}[value of setting]
-```
 
 ## Used Software / Libraries
 
@@ -52,4 +46,4 @@ User can change the settings of app for his liking, but he need to save them bef
 
 ## Legal
 
-All rights of quoted sources in part *Used Materials* are in hold of their respective owners.
+All rights of quoted sources in part *Used Software / Libraries* are in hold of their respective owners.
