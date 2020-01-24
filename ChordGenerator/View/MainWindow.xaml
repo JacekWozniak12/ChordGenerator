@@ -57,11 +57,11 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="336*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="66*" />
+            <RowDefinition Height="33*" />
         </Grid.RowDefinitions>
 
         <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6"
@@ -107,13 +107,9 @@
         <TextBox    Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="S_Duration" Text="{Binding RuntimeSettings.Duration, UpdateSourceTrigger=LostFocus}"></TextBox>
 
-        <TextBlock  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"
-                    x:Name="Lang_NumberOfStrings" Text="Number Of Strings"></TextBlock>
 
-        <TextBox    Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3"
-                    x:Name="S_NumberOfStrings" Text="6"></TextBox>
 
-        <TextBlock  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"
+        <TextBlock  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="6" HorizontalAlignment="Center"
                     x:Name="Lang_StringSettings" Text="String setup"></TextBlock>
 
         <Button     Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="6"
@@ -122,19 +118,24 @@
         <Button     Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="6"
                     x:Name="Lang_Clear" Content="Clear"  Click="Clear_Button_Click" />
 
-        <ComboBox x:Name="Chords" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6" SelectedItem="{Binding SelectedChord}"
-                  ItemsSource="{Binding ChordsPlayed, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}">
+        <ComboBox x:Name="ChordsChange" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6"                  
+                  SelectedItem="{Binding SelectedChord, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                  ItemsSource="{Binding ChordsPlayed, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}"
+                  SelectionChanged="ChordsChange_SelectionChanged"
+                  IsSynchronizedWithCurrentItem="True"
+                  >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}"></TextBlock>
+                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=LostFocus}"></TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
 
         <ScrollViewer Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="10" Background="Beige">
-            <Grid Width="400" Height="500" HorizontalAlignment="Center"
-                         DataContext="{Binding RuntimeSettings.Guitar}">
-                <ItemsControl ItemsSource="{Binding GuitarStrings}">
+            <Grid Width="400" HorizontalAlignment="Center"
+                         DataContext="{Binding RuntimeSettings.Guitar, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ItemsControl
+                    ItemsSource="{Binding GuitarStrings, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="GuitarDatabase">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid HorizontalAlignment="Center" Rows="1">
@@ -145,16 +146,14 @@
                         <DataTemplate>
                             <ListBox Margin="1" HorizontalAlignment="Center" 
                                       HorizontalContentAlignment="Center"
-                                      Background="Transparent"
-                                      >
-                                <ItemsControl ItemsSource="{Binding NotesOnString}">
+                                      Background="Transparent">
+                                <ItemsControl ItemsSource="{Binding GraphicalNotes, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <ListBoxItem>
-                                                <StackPanel>
-                                                    <TextBlock Text="{Binding Name}"></TextBlock>
-                                                    <Border Background="Brown" BorderThickness="1"></Border>
-                                                </StackPanel>
+                                            <ListBoxItem Background="{Binding Color, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <TextBlock Height="50"
+                                                        HorizontalAlignment="Center" 
+                                                        Text="{Binding Name, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </ListBoxItem>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>

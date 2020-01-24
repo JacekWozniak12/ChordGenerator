@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Media;
 
 namespace ChordGenerator.Model
 {
@@ -18,18 +20,24 @@ namespace ChordGenerator.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private void OnPropertyRaised(string propertyname)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+        }
+
         /// <summary>
         /// From the lowest to the highest note;
         /// </summary>
-        public List<MusicalNote> NotesOnString
+        public ObservableCollection<MusicalNote> NotesOnString
         {
             get => _notesOnString;
             set
             {
+                OnPropertyRaised("NotesOnString");
                 _notesOnString = value;
             } 
         }
-        private List<MusicalNote>  _notesOnString;
+        private ObservableCollection<MusicalNote> _notesOnString;
 
         /// <summary>
         /// Creates single string from given note.
@@ -38,8 +46,55 @@ namespace ChordGenerator.Model
         /// </summary>
         public GuitarString(MusicalNote note)
         {
-            NotesOnString = new List<MusicalNote>();
+            NotesOnString = new ObservableCollection<MusicalNote>();
             NotesOnString = Creator(note);
+            SetColors();
+        }
+
+        ObservableCollection<GraphicalNote> graphicalNotes = new ObservableCollection<GraphicalNote>();
+
+        public ObservableCollection<GraphicalNote> GraphicalNotes 
+        {
+            get => graphicalNotes;
+            set
+            {
+                OnPropertyRaised("GraphicalNotes");
+                graphicalNotes = value;
+            } 
+        }
+
+        public void SetColors()
+        {
+            if(RuntimeManager.Instance.SelectedChord == null)
+            {
+                for (int i = 0; i < STRINGS_NOTES; i++)
+                {
+                    GraphicalNotes.Add(new GraphicalNote(NotesOnString[i]));
+                }
+            }
+
+            else
+            {
+                for (int i = 0; i < STRINGS_NOTES; i++)
+                {
+                    var t = 0;
+
+                    foreach(var test in RuntimeManager.Instance.SelectedChord.MusicalNotes)
+                    {
+                        if (NotesOnString[i].Name == test.Name)
+                        {
+                            t++;
+                            var x = new GraphicalNote(NotesOnString[i]);
+                            x.Color = Brushes.Red;
+                            GraphicalNotes.Add(x);
+                        }
+                    }
+                    if(t == 0)
+                    {
+                        GraphicalNotes.Add(new GraphicalNote(NotesOnString[i]));
+                    }
+                }
+            }
         }
 
         public void SetSettings(Settings settings)
@@ -47,7 +102,7 @@ namespace ChordGenerator.Model
             this.settings = settings;
         }
 
-        private List<MusicalNote> Creator(MusicalNote note)
+        private ObservableCollection<MusicalNote> Creator(MusicalNote note)
         {
             List<MusicalNote> notes = new List<MusicalNote>();
             MusicalNote musicalNote = note;
@@ -86,7 +141,7 @@ namespace ChordGenerator.Model
                         );
                 }
             settings = null;
-            return notes;
+            return new ObservableCollection<MusicalNote>(notes);
         }
     }
 }

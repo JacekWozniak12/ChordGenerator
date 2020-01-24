@@ -3,6 +3,8 @@ using NAudio.Wave.SampleProviders;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace ChordGenerator
@@ -10,7 +12,7 @@ namespace ChordGenerator
     /// <summary>
     /// may change name later
     /// </summary>
-    public class RuntimeManager
+    public class RuntimeManager : INotifyPropertyChanged
     {
         private const int MAXIMAL_AMOUNT_OF_CHORDS = 30;
 
@@ -19,9 +21,11 @@ namespace ChordGenerator
         public Chord SelectedChord { get; set; }  
         public ObservableCollection<Chord> ChordsPlayed { get; set; }
 
-        private IOHandler ioHandler = new IOHandler();
-        private NAudioCommunication nAudioCommunication;
+        private readonly IOHandler ioHandler = new IOHandler();
+        private readonly NAudioCommunication nAudioCommunication;
         public bool AllAtOnce = false;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Handles startup

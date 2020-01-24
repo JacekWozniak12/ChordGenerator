@@ -163,13 +163,6 @@ namespace ChordGenerator
             MusicalNotes.Add(note);
         }
 
-        /// <summary>
-        /// Opens file stream and search for config file
-        /// </summary>
-        public Settings(string fileAdress)
-        {
-        }
-
         public Settings
             (
             float volume = 0.5f,

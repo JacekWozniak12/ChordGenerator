@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace ChordGenerator
 {
@@ -36,7 +38,7 @@ namespace ChordGenerator
 
         private void Generate_Button_Click(object sender, RoutedEventArgs e)
         {
-            ReadInputPrompt();
+            ReadInputPrompt();          
         }
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
@@ -75,6 +77,39 @@ namespace ChordGenerator
         private void Chord_Selected(object sender, RoutedEventArgs e)
         {
             runtimeManager.AllAtOnce = true;
+        }
+
+        private void ChordsChange_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            runtimeManager.RuntimeSettings.Guitar = new Model.Guitar();
+            if(GuitarDatabase != null)
+            {
+                GuitarDatabase.DataContext = runtimeManager.RuntimeSettings.Guitar;
+            }
+        }
+    }
+
+    public class CorrectNote : IValueConverter
+    {
+        public Chord SelectedChord = RuntimeManager.Instance.SelectedChord;
+
+        public object Convert(object value, Type targetType, object expected, System.Globalization.CultureInfo culture)
+        {
+            if(value is TextBlock)
+            {
+                TextBlock t = (TextBlock) value;
+                var a = t.Text;
+                foreach(var i in SelectedChord.MusicalNotes)
+                {
+                    if (i.Name == a) return true;
+                }
+            }
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return false;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace ChordGenerator.Model
@@ -15,7 +16,16 @@ namespace ChordGenerator.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<GuitarString> GuitarStrings { get; set; }
+        private void OnPropertyRaised(string propertyname)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+        }
+
+        public ObservableCollection<GuitarString> GuitarStrings 
+        { 
+            get; 
+            set; 
+        }
 
         public Guitar(List<GuitarString> guitarStrings)
         {
@@ -25,10 +35,10 @@ namespace ChordGenerator.Model
                 )
                 throw new ArgumentException();
 
-            GuitarStrings = new List<GuitarString>(guitarStrings);
+            GuitarStrings = new ObservableCollection<GuitarString>(guitarStrings);
         }
 
-        private readonly MusicalNote[] DEFAULT_STRINGS =
+        private readonly MusicalNote[] DEFAULT_OPEN_STRINGS =
             {
                 new MusicalNote("E2", 82.41, 0),
                 new MusicalNote("A2", 110, 0),
@@ -40,10 +50,11 @@ namespace ChordGenerator.Model
 
         public Guitar()
         {
-            GuitarStrings = new List<GuitarString>();
+            OnPropertyRaised("Guitar");
+            GuitarStrings = new ObservableCollection<GuitarString>();
             for (int i = 0; i < 6; i++)
             {
-                var s = new GuitarString((DEFAULT_STRINGS[i]));
+                var s = new GuitarString((DEFAULT_OPEN_STRINGS[i]));
                 GuitarStrings.Add(s);
             }
            

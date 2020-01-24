@@ -69,10 +69,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\IOHandler.cs" />
+    <Compile Include="Model\GraphicalNote.cs" />
     <Compile Include="Model\Note.cs" />
     <Compile Include="Model\GuitarString.cs" />
     <Compile Include="Model\Guitar.cs" />
-    <Compile Include="View\DisplayManager.cs" />
     <Compile Include="View\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
