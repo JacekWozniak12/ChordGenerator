@@ -47,7 +47,7 @@ namespace ChordGenerator
             set
             {
                _a4Frequency = Clamp(value, MINIMAL_A4FREQ, MAXIMAL_A4FREQ);
-               GenerateMusicalNoteArray("A4", _a4Frequency);
+               MusicalNotes = new List<MusicalNote>(GenerateMusicalNoteArray("A4", _a4Frequency));
             }
         }
 
@@ -143,10 +143,8 @@ namespace ChordGenerator
             catch (ArgumentException e)
             {
                 MusicalNotes.Clear();
-                throw new ArgumentException(e.Message);
-            }
-            finally {
                 GenerateMusicalNoteArray(BASE_STARTING_FREQUENCY);
+                throw new ArgumentException(e.Message);
             }
             return MusicalNotes.ToArray();
         }
