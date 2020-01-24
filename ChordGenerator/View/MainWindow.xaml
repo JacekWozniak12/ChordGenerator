@@ -103,41 +103,61 @@
 
         <TextBlock  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="Lang_PlayDuration" Text="Duration in seconds"></TextBlock>
-        
+
         <TextBox    Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="S_Duration" Text="{Binding RuntimeSettings.Duration, UpdateSourceTrigger=LostFocus}"></TextBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"
                     x:Name="Lang_NumberOfStrings" Text="Number Of Strings"></TextBlock>
-        
+
         <TextBox    Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3"
                     x:Name="S_NumberOfStrings" Text="6"></TextBox>
-        
+
         <TextBlock  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"
                     x:Name="Lang_StringSettings" Text="String setup"></TextBlock>
 
-        
         <Button     Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="6"
                     x:Name="Lang_Play" Content="Play"  Click="Play_Button_Click" />
 
         <Button     Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="6"
                     x:Name="Lang_Clear" Content="Clear"  Click="Clear_Button_Click" />
 
-        <ComboBox x:Name="Chords" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6" SelectedItem="{Binding SelectedChord}" 
+        <ComboBox x:Name="Chords" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6" SelectedItem="{Binding SelectedChord}"
                   ItemsSource="{Binding ChordsPlayed, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}">
-                        
-                    </TextBlock>
+                    <TextBlock Text="{Binding Name}"></TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
 
         <ScrollViewer Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="10" Background="Beige">
-            <Grid Width="400" Height="1000" HorizontalAlignment="Center" DataContext="{Binding RuntimeSettings.Guitar}">
-
-
+            <Grid Width="400" Height="500" HorizontalAlignment="Center"
+                         DataContext="{Binding RuntimeSettings.Guitar}">
+                <ItemsControl ItemsSource="{Binding GuitarStrings}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="10" HorizontalAlignment="Center">
+                            </UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ListBox Margin="3" HorizontalAlignment="Center" 
+                                      HorizontalContentAlignment="Center" Width="150" 
+                                      Background="Transparent"
+                                      >
+                                <ItemsControl ItemsSource="{Binding NotesOnString}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}"></TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ListBox>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
         </ScrollViewer>
     </Grid>

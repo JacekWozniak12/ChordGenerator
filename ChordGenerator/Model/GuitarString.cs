@@ -13,7 +13,7 @@ namespace ChordGenerator.Model
     {
         public const double MINIMAL_OPENSTRING_FREQUENCY_POSSIBLE = 30.87f;
         public const double MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE = 440f;
-        public const int STRINGS_NOTES = 24;
+        public const int STRINGS_NOTES = 25;
         private Settings settings;
 
         public event PropertyChangedEventHandler PropertyChanged;
