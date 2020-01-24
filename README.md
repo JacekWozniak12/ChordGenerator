@@ -46,4 +46,4 @@ User can change the settings of app for his liking, but he need to save them bef
 
 ## Legal
 
-All rights of quoted sources in part *Used Spftware / Libraries* are in hold of their respective owners.
+All rights of quoted sources in part *Used Software / Libraries* are in hold of their respective owners.
