@@ -48,16 +48,16 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="10*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="2*" />
@@ -137,20 +137,25 @@
                 <ItemsControl ItemsSource="{Binding GuitarStrings}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid Columns="10" HorizontalAlignment="Center">
+                            <UniformGrid HorizontalAlignment="Center" Rows="1">
                             </UniformGrid>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <ListBox Margin="3" HorizontalAlignment="Center" 
-                                      HorizontalContentAlignment="Center" Width="150" 
+                            <ListBox Margin="1" HorizontalAlignment="Center" 
+                                      HorizontalContentAlignment="Center"
                                       Background="Transparent"
                                       >
                                 <ItemsControl ItemsSource="{Binding NotesOnString}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}"></TextBlock>
+                                            <ListBoxItem>
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Name}"></TextBlock>
+                                                    <Border Background="Brown" BorderThickness="1"></Border>
+                                                </StackPanel>
+                                            </ListBoxItem>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
