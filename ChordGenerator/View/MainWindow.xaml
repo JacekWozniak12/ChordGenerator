@@ -69,7 +69,7 @@
                     x:Name="Lang_InputName" Text="Enter chord" HorizontalAlignment="Center">
         </TextBlock>
         <TextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6"
-                    x:Name="InputPrompt" Text="{Binding SelectedChord}"></TextBox>
+                    x:Name="InputPrompt" Text="..."></TextBox>
 
         <Button     Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6"
                     x:Name="GenerateButton" Content="Generate"  Click="Generate_Button_Click" />
@@ -77,32 +77,35 @@
         <TextBlock  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"
                     x:Name="Lang_Volume" Text="Volume"></TextBlock>
 
-        <TextBox    Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3"
-                    x:Name="S_Volume" Text="03"></TextBox>
+        <TextBox    Text="{Binding RuntimeSettings.Volume, UpdateSourceTrigger=LostFocus}"
+                    Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3"
+                    x:Name="S_Volume"></TextBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"
-                    x:Name="Lang_PlayType" Text="Volume"></TextBlock>
+                    x:Name="Lang_PlayType" Text="PlayType"></TextBlock>
 
         <ComboBox   Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="3"
                     x:Name="S_PlayType">
 
-            <ComboBoxItem>
+            <ComboBoxItem Selected="Appregio_Selected">
                 Appregio
             </ComboBoxItem>
-            <ComboBoxItem IsSelected="True">
+            <ComboBoxItem IsSelected="True" Selected="Chord_Selected">
                 Chord
             </ComboBoxItem>
         </ComboBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3"
                     x:Name="Lang_A4Frequency" Text="Frequency of A4"></TextBlock>
-        <TextBox    Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3"
-                    x:Name="S_Frequency" Text="{Binding Volume}"></TextBox>
+
+        <TextBox    Text="{Binding RuntimeSettings.A4Frequency, UpdateSourceTrigger=LostFocus}"
+                    Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3"
+                    x:Name="S_Frequency"></TextBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="Lang_PlayDuration" Text="Duration in seconds"></TextBlock>
         <TextBox    Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3"
-                    x:Name="S_Duration" Text="1"></TextBox>
+                    x:Name="S_Duration" Text="{Binding RuntimeSettings.Duration, UpdateSourceTrigger=LostFocus}"></TextBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"
                     x:Name="Lang_NumberOfStrings" Text="Number Of Strings"></TextBlock>
@@ -110,9 +113,8 @@
                     x:Name="S_NumberOfStrings" Text="6"></TextBox>
         <TextBlock  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"
                     x:Name="Lang_StringSettings" Text="String setup"></TextBlock>
-        <Button     Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="6"
-                    x:Name="Lang_SaveSettings" Content="Save Settings"  Click="SaveSettings_Button_Click" />
 
+        
         <Button     Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="6"
                     x:Name="Lang_Play" Content="Play"  Click="Play_Button_Click" />
 

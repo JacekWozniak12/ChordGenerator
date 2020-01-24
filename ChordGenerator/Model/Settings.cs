@@ -11,14 +11,45 @@ namespace ChordGenerator
     [Serializable]
     public class Settings : INotifyPropertyChanged
     {
-        public const float MINIMAL_DURATION = 00.5f;
-        public const float MAXIMAL_DURATION = 15.0f;
+        public const float  MINIMAL_DURATION = 00.5f;
+        public const float  MAXIMAL_DURATION = 15.0f;
+        public const double BASE_STARTING_FREQUENCY = 16.355;
+        public const int    MAXIMAL_VOLUME = 1;
+        public const float  MINIMAL_VOLUME = 0.01f;
+        public const double MINIMAL_A4FREQ = 432d;
+        public const double MAXIMAL_A4FREQ = 450d;
 
         public Guitar Guitar { get; set; }
-        public float Volume { get; set; } = 0.5f;
-        public PlayType HowToPlay { get; set; } = PlayType.AllAtTheSameTime;
-        public float Duration { get; set; } = 2f;
-        public float TimeToPlayChord { get; set; } = 2f;
+        public float Volume 
+        {
+            get => _volume;
+            set 
+            {
+                _volume = Clamp(value, MINIMAL_VOLUME, MAXIMAL_VOLUME);
+            }
+        }
+       
+        public float Duration 
+        { 
+            get => _duration;
+            set 
+            {
+                _duration = Clamp(value, MINIMAL_DURATION, MAXIMAL_DURATION);
+            }    
+        }
+
+        private double _a4Frequency = 440f;
+        private float _volume = 0.5f;
+
+        public double A4Frequency 
+        { 
+            get => _a4Frequency; 
+            set
+            {
+               _a4Frequency = Clamp(value, MINIMAL_A4FREQ, MAXIMAL_A4FREQ);
+               GenerateMusicalNoteArray("A4", _a4Frequency);
+            }
+        }
 
         public List<MusicalNote> MusicalNotes;
 
@@ -29,39 +60,9 @@ namespace ChordGenerator
             "G", "G#", "Ab", "A", "A#",
             "Bb", "B"
         };
+        private float _duration = 2f;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public enum Type
-        {
-            Duration,
-            Volume,
-            DefaultTypeOfPlay
-        }
-
-        public enum PlayType
-        {
-            AllAtTheSameTime,
-            OneAfterAnother
-        }
-
-        public void Change(Type type, float value)
-        {
-            switch (type)
-            {
-                case Type.Duration:
-                    this.Duration = value;
-                    break;
-
-                case Type.Volume:
-                    this.Volume = value;
-                    break;
-
-                case Type.DefaultTypeOfPlay:
-                    this.HowToPlay = (PlayType)(int)value;
-                    break;
-            }
-        }
 
         /// <summary>
         /// Generates the MusicalNote Array from ContentDefinitions;
@@ -73,7 +74,8 @@ namespace ChordGenerator
             {
                 MusicalNotes = new List<MusicalNote>();
             }
-            else MusicalNotes.Clear();
+
+            MusicalNotes.Clear();
 
             double temp = stratingFrequency;
             int rank = 0;
@@ -141,11 +143,11 @@ namespace ChordGenerator
             catch (ArgumentException e)
             {
                 MusicalNotes.Clear();
-
                 throw new ArgumentException(e.Message);
             }
-            finally { }
-
+            finally {
+                GenerateMusicalNoteArray(BASE_STARTING_FREQUENCY);
+            }
             return MusicalNotes.ToArray();
         }
 
@@ -168,27 +170,54 @@ namespace ChordGenerator
         public Settings
             (
             float volume = 0.5f,
-            PlayType defaultPlayType = PlayType.AllAtTheSameTime,
             float defaultTimeToPlaySingleNote = 0.33f,
             float defaultTimeToPlayChord = 2f
             )
         {
             this.Volume = volume;
-            this.HowToPlay = defaultPlayType;
             this.Duration = defaultTimeToPlaySingleNote;
-            GenerateMusicalNoteArray(16.35f);
+            GenerateMusicalNoteArray(BASE_STARTING_FREQUENCY);
         }
 
         public Settings(Settings settings)
         {
             Volume = settings.Volume;
-            HowToPlay = settings.HowToPlay;
             Duration = settings.Duration;
+            A4Frequency = 440;
         }
 
         public Settings()
         {
-            GenerateMusicalNoteArray(16.35f);
+            GenerateMusicalNoteArray(BASE_STARTING_FREQUENCY);
+        }
+
+        private float Clamp(float value, float min, float max)
+        {
+            if (value > max)
+                return max;
+            else if
+                (value < min)
+            {
+                return min;
+            }
+            else
+            {
+                return value;
+            }
+        }
+        private double Clamp(double value, double min, double max)
+        {
+            if (value > max)
+                return max;
+            else if
+                (value < min)
+            {
+                return min;
+            }
+            else
+            {
+                return value;
+            }
         }
     }
 }

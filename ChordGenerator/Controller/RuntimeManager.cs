@@ -37,6 +37,8 @@ namespace ChordGenerator
             ChordsPlayed = new ObservableCollection<Chord>(ioHandler.HandleReadingChords(obj: new List<Chord>()));
         }
 
+        public bool AllAtOnce = false;
+
         /// <summary>
         /// Handles playing sound in view
         /// </summary>
@@ -58,9 +60,7 @@ namespace ChordGenerator
         }
 
         public async void PlaySound()
-        {
-            bool AllAtOnce = false;
-
+        {          
             try
             {
                 Chord chord;
@@ -108,9 +108,8 @@ namespace ChordGenerator
                     }
                 }
             }
-            catch (ArgumentException e)
+            catch (Exception e)
             {
-                throw e;
             }
         }
 

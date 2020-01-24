@@ -70,5 +70,15 @@ namespace ChordGenerator
         {
             runtimeManager.ChordsPlayed.Clear();
         }
+
+        private void Appregio_Selected(object sender, RoutedEventArgs e)
+        {
+            runtimeManager.AllAtOnce = false;
+        }
+
+        private void Chord_Selected(object sender, RoutedEventArgs e)
+        {
+            runtimeManager.AllAtOnce = true;
+        }
     }
 }
