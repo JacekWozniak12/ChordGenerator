@@ -43,6 +43,7 @@ User can change the settings of app for his liking, but he need to save them bef
 * Program written in C# and Windows Presentation Forms. 
 * Icon created in Inkscape and GIMP
 * Audio rendering provided by https://github.com/naudio/NAudio
+* Guidance from Microsoft on Serialization
 
 ## Legal
 
