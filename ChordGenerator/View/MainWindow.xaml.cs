@@ -14,7 +14,6 @@ namespace ChordGenerator
         public RuntimeManager runtimeManager;
         public SyntaxReader syntaxReader;
 
-
         public MainWindow()
         {
             InitializeApplication();
@@ -62,20 +61,17 @@ namespace ChordGenerator
                 ErrorWindow errorWindow = new ErrorWindow(err.Message);
                 errorWindow.Show();
             }
-            finally
-            {
-            }
         }
         private void Clear_Button_Click(object sender, RoutedEventArgs e)
         {
             runtimeManager.ChordsPlayed.Clear();
         }
 
+        // TODO change it for enum
         private void Appregio_Selected(object sender, RoutedEventArgs e)
         {
             runtimeManager.AllAtOnce = false;
         }
-
         private void Chord_Selected(object sender, RoutedEventArgs e)
         {
             runtimeManager.AllAtOnce = true;

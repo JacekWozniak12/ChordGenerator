@@ -15,7 +15,7 @@ namespace ChordGenerator.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<GuitarString> GuitarStrings { get; private set; }
+        public List<GuitarString> GuitarStrings { get; set; }
 
         public Guitar(List<GuitarString> guitarStrings)
         {
@@ -26,6 +26,27 @@ namespace ChordGenerator.Model
                 throw new ArgumentException();
 
             GuitarStrings = new List<GuitarString>(guitarStrings);
+        }
+
+        private readonly MusicalNote[] DEFAULT_STRINGS =
+            {
+                new MusicalNote("E2", 82.41, 0),
+                new MusicalNote("A2", 110, 0),
+                new MusicalNote("D3", 146.83, 0),
+                new MusicalNote("G3", 196.00, 0),
+                new MusicalNote("B3", 246.94, 0),
+                new MusicalNote("E4", 329.63, 0)
+            };
+
+        public Guitar()
+        {
+            GuitarStrings = new List<GuitarString>();
+            for (int i = 0; i < 6; i++)
+            {
+                var s = new GuitarString((DEFAULT_STRINGS[i]));
+                GuitarStrings.Add(s);
+            }
+           
         }
     }
 }

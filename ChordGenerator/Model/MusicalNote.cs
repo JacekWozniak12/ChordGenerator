@@ -63,9 +63,6 @@ namespace ChordGenerator
             Rank = note.Rank;
         }
 
-        public MusicalNote()
-        {
-        }
 
         /// <summary>
         /// Returns string as "Name: Frequency", for example: "A4: 440"

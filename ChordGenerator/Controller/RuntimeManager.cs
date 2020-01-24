@@ -16,12 +16,12 @@ namespace ChordGenerator
 
         public static RuntimeManager Instance { get; private set; }
         public Settings RuntimeSettings { get; set; }
+        public Chord SelectedChord { get; set; }  
         public ObservableCollection<Chord> ChordsPlayed { get; set; }
 
         private IOHandler ioHandler = new IOHandler();
         private NAudioCommunication nAudioCommunication;
-
-        public Chord SelectedChord { get; set; }
+        public bool AllAtOnce = false;
 
         /// <summary>
         /// Handles startup
@@ -29,15 +29,11 @@ namespace ChordGenerator
         public RuntimeManager()
         {
             Instance = this;
-            
             nAudioCommunication = new NAudioCommunication();
-            
             RuntimeSettings = ioHandler.HandleReadingSettings(obj: new Settings());
-            
+            RuntimeSettings.AddGuitar();
             ChordsPlayed = new ObservableCollection<Chord>(ioHandler.HandleReadingChords(obj: new List<Chord>()));
         }
-
-        public bool AllAtOnce = false;
 
         /// <summary>
         /// Handles playing sound in view

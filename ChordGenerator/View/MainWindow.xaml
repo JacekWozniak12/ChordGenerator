@@ -12,7 +12,7 @@
         Height="800"
         Width="500"
         FontFamily="Roboto"
-        FontSize="18"
+        FontSize="16"
         Icon="../Resources/ChordApp.ico">
 
     <Window.Resources>
@@ -22,7 +22,6 @@
             <Setter Property="HorizontalAlignment" Value="Right"></Setter>
         </Style>
         <Style TargetType="TextBox">
-            <Setter Property="Padding" Value="1"></Setter>
             <Setter Property="Margin" Value="3"></Setter>
         </Style>
         <Style TargetType="ComboBox">
@@ -104,13 +103,16 @@
 
         <TextBlock  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="Lang_PlayDuration" Text="Duration in seconds"></TextBlock>
+        
         <TextBox    Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="S_Duration" Text="{Binding RuntimeSettings.Duration, UpdateSourceTrigger=LostFocus}"></TextBox>
 
         <TextBlock  Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3"
                     x:Name="Lang_NumberOfStrings" Text="Number Of Strings"></TextBlock>
+        
         <TextBox    Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3"
                     x:Name="S_NumberOfStrings" Text="6"></TextBox>
+        
         <TextBlock  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3"
                     x:Name="Lang_StringSettings" Text="String setup"></TextBlock>
 
@@ -132,9 +134,11 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ScrollViewer Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="10">
-            <Canvas>
-            </Canvas>
+        <ScrollViewer Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="10" Background="Beige">
+            <Grid Width="400" Height="1000" HorizontalAlignment="Center" DataContext="{Binding RuntimeSettings.Guitar}">
+
+
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Window>

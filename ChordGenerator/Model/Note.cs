@@ -38,6 +38,15 @@ namespace ChordGenerator.Model
             }
         }
 
+        public Note(string name)
+        {
+            Name = name;
+        }
+
+        public Note()
+        {
+        }
+
         /// <summary>
         /// Check if given note name is valid
         /// </summary>

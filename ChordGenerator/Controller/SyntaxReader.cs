@@ -41,10 +41,11 @@ namespace ChordGenerator
         }
 
         /// <summary>
-        /// Tries to read the single setting.
+        /// Tries to read the single setting. TODO
         /// </summary>
         public Settings ReadSetting(string input)
         {
+            return null;
             var part = input.Split('}');
 
             part[0] =
@@ -132,6 +133,8 @@ namespace ChordGenerator
                 var u = RuntimeManager.
                     Instance.RuntimeSettings.MusicalNotes.Find(x => x.Name == note);
 
+                // Note tried to create MusicalNote because he has given frequency,
+                // Issues with serialization TODO
                 if (!(u.Frequency == 0))
                 {
                     var z = rm.RuntimeSettings.MusicalNotes.Find(y => y.Rank == u.Rank + modifier);

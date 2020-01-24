@@ -20,12 +20,14 @@ namespace ChordGenerator
         public const double MAXIMAL_A4FREQ = 450d;
 
         public Guitar Guitar { get; set; }
+
         public float Volume 
         {
             get => _volume;
             set 
             {
-                _volume = Clamp(value, MINIMAL_VOLUME, MAXIMAL_VOLUME);
+                _volume = 
+                    Clamp(value, MINIMAL_VOLUME, MAXIMAL_VOLUME);
             }
         }
        
@@ -34,24 +36,27 @@ namespace ChordGenerator
             get => _duration;
             set 
             {
-                _duration = Clamp(value, MINIMAL_DURATION, MAXIMAL_DURATION);
+                _duration = 
+                    Clamp(value, MINIMAL_DURATION, MAXIMAL_DURATION);
             }    
         }
-
-        private double _a4Frequency = 440f;
-        private float _volume = 0.5f;
-
-        public double A4Frequency 
-        { 
-            get => _a4Frequency; 
+        public double A4Frequency
+        {
+            get => _a4Frequency;
             set
             {
-               _a4Frequency = Clamp(value, MINIMAL_A4FREQ, MAXIMAL_A4FREQ);
-               MusicalNotes = new List<MusicalNote>(GenerateMusicalNoteArray("A4", _a4Frequency));
+                _a4Frequency = Clamp(value, MINIMAL_A4FREQ, MAXIMAL_A4FREQ);
+                MusicalNotes = 
+                    new List<MusicalNote>(GenerateMusicalNoteArray("A4", _a4Frequency));
             }
         }
 
-        public List<MusicalNote> MusicalNotes;
+        //TODO private var and changes
+        public List<MusicalNote> MusicalNotes 
+        { get; set; }
+
+        private double _a4Frequency = 440f;
+        private float _volume = 0.5f;
 
         private string[] noteNameContent =
         {
@@ -169,24 +174,29 @@ namespace ChordGenerator
             (
             float volume = 0.5f,
             float defaultTimeToPlaySingleNote = 0.33f,
-            float defaultTimeToPlayChord = 2f
+            double a4Frequency = 440d
             )
         {
             this.Volume = volume;
             this.Duration = defaultTimeToPlaySingleNote;
-            GenerateMusicalNoteArray(BASE_STARTING_FREQUENCY);
+            this.A4Frequency = A4Frequency;
         }
 
         public Settings(Settings settings)
         {
             Volume = settings.Volume;
             Duration = settings.Duration;
-            A4Frequency = 440;
+            A4Frequency = settings.A4Frequency;
         }
 
         public Settings()
         {
             GenerateMusicalNoteArray(BASE_STARTING_FREQUENCY);
+        }
+
+        public void AddGuitar()
+        {
+            Guitar = new Guitar();
         }
 
         private float Clamp(float value, float min, float max)
