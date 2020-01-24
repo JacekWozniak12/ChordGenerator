@@ -57,15 +57,15 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="336*" />
+            <RowDefinition Height="0" />
+            <RowDefinition Height="366*" />
             <RowDefinition Height="34*" />
             <RowDefinition Height="66*" />
             <RowDefinition Height="33*" />
         </Grid.RowDefinitions>
 
-        <TextBlock  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6"
-                    x:Name="Lang_InputName" Text="Enter chord" HorizontalAlignment="Center">
+        <TextBlock  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2"
+                    x:Name="Lang_InputName" Text="Enter chord" HorizontalAlignment="Center" Margin="40,3" Width="84">
         </TextBlock>
         <TextBox    Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6"
                     x:Name="InputPrompt" Text="..."></TextBox>
@@ -73,15 +73,15 @@
         <Button     Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="6"
                     x:Name="GenerateButton" Content="Generate"  Click="Generate_Button_Click" />
 
-        <TextBlock  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"
-                    x:Name="Lang_Volume" Text="Volume"></TextBlock>
+        <TextBlock  Grid.Column="2" Grid.Row="3"
+                    x:Name="Lang_Volume" Text="Volume" Margin="0,3,3,3" Width="55"/>
 
         <TextBox    Text="{Binding RuntimeSettings.Volume, UpdateSourceTrigger=LostFocus}"
                     Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3"
                     x:Name="S_Volume"></TextBox>
 
-        <TextBlock  Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"
-                    x:Name="Lang_PlayType" Text="PlayType"></TextBlock>
+        <TextBlock  Grid.Column="2" Grid.Row="5"
+                    x:Name="Lang_PlayType" Text="PlayType" Margin="0,3,3,3" Width="64"/>
 
         <ComboBox   Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="3"
                     x:Name="S_PlayType">
@@ -94,23 +94,22 @@
             </ComboBoxItem>
         </ComboBox>
 
-        <TextBlock  Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3"
-                    x:Name="Lang_A4Frequency" Text="Frequency of A4"></TextBlock>
+        <TextBlock  Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"
+                    x:Name="Lang_A4Frequency" Text="Frequency of A4" Margin="0,3,3,3" Width="117"></TextBlock>
 
         <TextBox    Text="{Binding RuntimeSettings.A4Frequency, UpdateSourceTrigger=LostFocus}"
                     Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3"
                     x:Name="S_Frequency"></TextBox>
 
-        <TextBlock  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3"
-                    x:Name="Lang_PlayDuration" Text="Duration in seconds"></TextBlock>
+        <TextBlock  Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"
+                    x:Name="Lang_PlayDuration" Text="Duration in seconds" Margin="0,3,3,3" Width="143"></TextBlock>
 
         <TextBox    Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3"
                     x:Name="S_Duration" Text="{Binding RuntimeSettings.Duration, UpdateSourceTrigger=LostFocus}"></TextBox>
 
+        <TextBlock  Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                    x:Name="Lang_StringSettings" Text="String setup" Margin="38,3" Width="88"></TextBlock>
 
-
-        <TextBlock  Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="6" HorizontalAlignment="Center"
-                    x:Name="Lang_StringSettings" Text="String setup"></TextBlock>
 
         <Button     Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="6"
                     x:Name="Lang_Play" Content="Play"  Click="Play_Button_Click" />
@@ -119,8 +118,8 @@
                     x:Name="Lang_Clear" Content="Clear"  Click="Clear_Button_Click" />
 
         <ComboBox x:Name="ChordsChange" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6"                  
-                  SelectedItem="{Binding SelectedChord, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                  ItemsSource="{Binding ChordsPlayed, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}"
+                  SelectedItem="{Binding SelectedChord}" 
+                  ItemsSource="{Binding ChordsPlayed}"
                   SelectionChanged="ChordsChange_SelectionChanged"
                   IsSynchronizedWithCurrentItem="True"
                   >

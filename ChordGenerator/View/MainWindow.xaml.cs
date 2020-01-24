@@ -88,28 +88,4 @@ namespace ChordGenerator
             }
         }
     }
-
-    public class CorrectNote : IValueConverter
-    {
-        public Chord SelectedChord = RuntimeManager.Instance.SelectedChord;
-
-        public object Convert(object value, Type targetType, object expected, System.Globalization.CultureInfo culture)
-        {
-            if(value is TextBlock)
-            {
-                TextBlock t = (TextBlock) value;
-                var a = t.Text;
-                foreach(var i in SelectedChord.MusicalNotes)
-                {
-                    if (i.Name == a) return true;
-                }
-            }
-            return false;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            return false;
-        }
-    }
 }

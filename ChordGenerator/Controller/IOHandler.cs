@@ -69,7 +69,7 @@ namespace ChordGenerator.Controller
             }
             catch (Exception e) { }
 
-            return (Settings)obj;
+            return (Settings) obj;
         }
 
         /// <summary>
