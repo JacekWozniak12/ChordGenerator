@@ -11,48 +11,49 @@ namespace ChordGenerator
     [Serializable]
     public class Settings : INotifyPropertyChanged
     {
-        public const float  MINIMAL_DURATION = 00.5f;
-        public const float  MAXIMAL_DURATION = 15.0f;
+        public const float MINIMAL_DURATION = 00.5f;
+        public const float MAXIMAL_DURATION = 15.0f;
         public const double BASE_STARTING_FREQUENCY = 16.355;
-        public const int    MAXIMAL_VOLUME = 1;
-        public const float  MINIMAL_VOLUME = 0.01f;
+        public const int MAXIMAL_VOLUME = 1;
+        public const float MINIMAL_VOLUME = 0.01f;
         public const double MINIMAL_A4FREQ = 432d;
         public const double MAXIMAL_A4FREQ = 450d;
 
         public Guitar Guitar { get; set; }
 
-        public float Volume 
+        public float Volume
         {
             get => _volume;
-            set 
+            set
             {
-                _volume = 
+                _volume =
                     Clamp(value, MINIMAL_VOLUME, MAXIMAL_VOLUME);
             }
         }
-       
-        public float Duration 
-        { 
+
+        public float Duration
+        {
             get => _duration;
-            set 
+            set
             {
-                _duration = 
+                _duration =
                     Clamp(value, MINIMAL_DURATION, MAXIMAL_DURATION);
-            }    
+            }
         }
+
         public double A4Frequency
         {
             get => _a4Frequency;
             set
             {
                 _a4Frequency = Clamp(value, MINIMAL_A4FREQ, MAXIMAL_A4FREQ);
-                MusicalNotes = 
+                MusicalNotes =
                     new List<MusicalNote>(GenerateMusicalNoteArray("A4", _a4Frequency));
             }
         }
 
         //TODO private var and changes
-        public List<MusicalNote> MusicalNotes 
+        public List<MusicalNote> MusicalNotes
         { get; set; }
 
         private double _a4Frequency = 440f;
@@ -65,6 +66,7 @@ namespace ChordGenerator
             "G", "G#", "Ab", "A", "A#",
             "Bb", "B"
         };
+
         private float _duration = 2f;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -206,6 +208,7 @@ namespace ChordGenerator
                 return value;
             }
         }
+
         private double Clamp(double value, double min, double max)
         {
             if (value > max)

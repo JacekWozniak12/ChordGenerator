@@ -74,14 +74,14 @@
                     x:Name="GenerateButton" Content="Generate"  Click="Generate_Button_Click" />
 
         <TextBlock  Grid.Column="2" Grid.Row="3"
-                    x:Name="Lang_Volume" Text="Volume" Margin="0,3,3,3" Width="55"/>
+                    x:Name="Lang_Volume" Text="Volume" Margin="0,3,3,3" Width="55" />
 
         <TextBox    Text="{Binding RuntimeSettings.Volume, UpdateSourceTrigger=LostFocus}"
                     Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3"
                     x:Name="S_Volume"></TextBox>
 
         <TextBlock  Grid.Column="2" Grid.Row="5"
-                    x:Name="Lang_PlayType" Text="PlayType" Margin="0,3,3,3" Width="64"/>
+                    x:Name="Lang_PlayType" Text="PlayType" Margin="0,3,3,3" Width="64" />
 
         <ComboBox   Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="3"
                     x:Name="S_PlayType">
@@ -110,19 +110,17 @@
         <TextBlock  Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center"
                     x:Name="Lang_StringSettings" Text="String setup" Margin="38,3" Width="88"></TextBlock>
 
-
         <Button     Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="6"
                     x:Name="Lang_Play" Content="Play"  Click="Play_Button_Click" />
 
         <Button     Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="6"
                     x:Name="Lang_Clear" Content="Clear"  Click="Clear_Button_Click" />
 
-        <ComboBox x:Name="ChordsChange" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6"                  
-                  SelectedItem="{Binding SelectedChord}" 
+        <ComboBox x:Name="ChordsChange" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="6"
+                  SelectedItem="{Binding SelectedChord}"
                   ItemsSource="{Binding ChordsPlayed}"
                   SelectionChanged="ChordsChange_SelectionChanged"
-                  IsSynchronizedWithCurrentItem="True"
-                  >
+                  IsSynchronizedWithCurrentItem="True">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name, UpdateSourceTrigger=LostFocus}"></TextBlock>
@@ -143,7 +141,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <ListBox Margin="1" HorizontalAlignment="Center" 
+                            <ListBox Margin="1" HorizontalAlignment="Center"
                                       HorizontalContentAlignment="Center"
                                       Background="Transparent">
                                 <ItemsControl ItemsSource="{Binding GraphicalNotes, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -151,7 +149,7 @@
                                         <DataTemplate>
                                             <ListBoxItem Background="{Binding Color, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                 <TextBlock Height="50"
-                                                        HorizontalAlignment="Center" 
+                                                        HorizontalAlignment="Center"
                                                         Text="{Binding Name, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                             </ListBoxItem>
                                         </DataTemplate>

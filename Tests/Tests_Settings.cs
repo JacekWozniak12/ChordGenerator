@@ -4,7 +4,7 @@ using System;
 
 namespace Tests
 {
-    internal class Tests_RuntimeManager
+    internal class Tests_Settings
     {
         [TestCase(442)]
         [TestCase(440)]
@@ -14,11 +14,10 @@ namespace Tests
         [TestCase(432)]
         public void GenerateArrayValid(float frequency)
         {
-            RuntimeManager RM = new RuntimeManager();
+            var s = new Settings();
+            s.GenerateMusicalNoteArray("A4", frequency);
 
-            RM.runtimeSettings.GenerateMusicalNoteArray("A4", frequency);
-
-            Assert.AreEqual(true, RM.runtimeSettings.MusicalNotes[3] is MusicalNote);
+            Assert.AreEqual(true, s.MusicalNotes[3] is MusicalNote);
         }
 
         [TestCase(2555)]
@@ -26,17 +25,17 @@ namespace Tests
         [TestCase(428)]
         public void GenerateArrayUnvalid(float frequency)
         {
-            RuntimeManager RM = new RuntimeManager();
+            var s = new Settings();
 
             try
             {
-                RM.runtimeSettings.GenerateMusicalNoteArray("A4", frequency);
+                s.GenerateMusicalNoteArray("A4", frequency);
             }
             catch (ArgumentException e)
             { }
 
             Assert.AreEqual
-                (0f, RM.runtimeSettings.MusicalNotes.Find(x => x.Name == "A4").Frequency);
+                ((int)440, (int)s.MusicalNotes.Find(x => x.Name == "A4").Frequency);
         }
     }
 }

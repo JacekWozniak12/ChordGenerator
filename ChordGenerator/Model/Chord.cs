@@ -31,7 +31,9 @@ namespace ChordGenerator
             }
         }
 
-        public Chord() { }
+        public Chord()
+        {
+        }
 
         public new string ToString()
         {

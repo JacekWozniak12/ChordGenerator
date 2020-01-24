@@ -1,4 +1,5 @@
 using ChordGenerator;
+using ChordGenerator.Model;
 using NUnit.Framework;
 using System;
 
@@ -6,18 +7,6 @@ namespace Tests
 {
     public class Tests_ContentDefinitions
     {
-        [TestCase("C0 ^ C1", "C0 ^ C1")]
-        [TestCase("C0 + 2 ^ C1 ", "D2 ^ C1")]
-        public void Chord_ToStringValid(string a, string expected)
-        {
-            RuntimeManager RM = new RuntimeManager();
-        }
-
-        public void Chord_ToStringUnvalid(string a, string expected)
-        {
-            RuntimeManager RM = new RuntimeManager();
-        }
-
         /// <summary>
         /// Test names only
         /// </summary>
@@ -30,7 +19,7 @@ namespace Tests
         [TestCase("Cb0")]
         public void MusicalNote_CheckNoteNameValid(string a)
         {
-            Assert.AreEqual(true, MusicalNote.IsValidName(a));
+            Assert.AreEqual(true, Note.IsValidName(a));
         }
 
         /// <summary>

@@ -35,8 +35,9 @@ namespace ChordGenerator.Model
             {
                 OnPropertyRaised("NotesOnString");
                 _notesOnString = value;
-            } 
+            }
         }
+
         private ObservableCollection<MusicalNote> _notesOnString;
 
         /// <summary>
@@ -51,35 +52,34 @@ namespace ChordGenerator.Model
             SetColors();
         }
 
-        ObservableCollection<GraphicalNote> graphicalNotes = new ObservableCollection<GraphicalNote>();
+        private ObservableCollection<GraphicalNote> graphicalNotes = new ObservableCollection<GraphicalNote>();
 
-        public ObservableCollection<GraphicalNote> GraphicalNotes 
+        public ObservableCollection<GraphicalNote> GraphicalNotes
         {
             get => graphicalNotes;
             set
             {
                 OnPropertyRaised("GraphicalNotes");
                 graphicalNotes = value;
-            } 
+            }
         }
 
         public void SetColors()
         {
-            if(RuntimeManager.Instance.SelectedChord == null)
+            if (RuntimeManager.Instance.SelectedChord == null)
             {
                 for (int i = 0; i < STRINGS_NOTES; i++)
                 {
                     GraphicalNotes.Add(new GraphicalNote(NotesOnString[i]));
                 }
             }
-
             else
             {
                 for (int i = 0; i < STRINGS_NOTES; i++)
                 {
                     var t = 0;
 
-                    foreach(var test in RuntimeManager.Instance.SelectedChord.MusicalNotes)
+                    foreach (var test in RuntimeManager.Instance.SelectedChord.MusicalNotes)
                     {
                         if (NotesOnString[i].Name == test.Name)
                         {
@@ -89,7 +89,7 @@ namespace ChordGenerator.Model
                             GraphicalNotes.Add(x);
                         }
                     }
-                    if(t == 0)
+                    if (t == 0)
                     {
                         GraphicalNotes.Add(new GraphicalNote(NotesOnString[i]));
                     }
@@ -107,39 +107,39 @@ namespace ChordGenerator.Model
             List<MusicalNote> notes = new List<MusicalNote>();
             MusicalNote musicalNote = note;
 
-            if(settings == null)
+            if (settings == null)
             {
                 settings = new Settings();
             }
             musicalNote = settings.MusicalNotes.Find(x => x.Name == note.Name);
             if (musicalNote.Frequency < MINIMAL_OPENSTRING_FREQUENCY_POSSIBLE)
-                {
-                    notes.AddRange(
-                        settings.
-                        GenerateNoteArrayFromAnotherNoteArray
-                        (settings.MusicalNotes.Find
-                        (x => x.Frequency >= MINIMAL_OPENSTRING_FREQUENCY_POSSIBLE),
-                        settings.MusicalNotes.ToArray(), STRINGS_NOTES)
-                    );
-                }
-                else
-                if (musicalNote.Frequency > MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE)
-                {
-                    notes.AddRange(
+            {
+                notes.AddRange(
                     settings.
-                        GenerateNoteArrayFromAnotherNoteArray
-                        (settings.MusicalNotes.FindLast
-                        (x => x.Frequency <= MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE),
-                        settings.MusicalNotes.ToArray(), STRINGS_NOTES)
+                    GenerateNoteArrayFromAnotherNoteArray
+                    (settings.MusicalNotes.Find
+                    (x => x.Frequency >= MINIMAL_OPENSTRING_FREQUENCY_POSSIBLE),
+                    settings.MusicalNotes.ToArray(), STRINGS_NOTES)
+                );
+            }
+            else
+                if (musicalNote.Frequency > MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE)
+            {
+                notes.AddRange(
+                settings.
+                    GenerateNoteArrayFromAnotherNoteArray
+                    (settings.MusicalNotes.FindLast
+                    (x => x.Frequency <= MAXIMAL_OPENSTRING_FREQUENCY_POSSIBLE),
+                    settings.MusicalNotes.ToArray(), STRINGS_NOTES)
+                );
+            }
+            else
+            {
+                notes.AddRange(
+                settings.GenerateNoteArrayFromAnotherNoteArray
+                    (musicalNote, settings.MusicalNotes.ToArray(), STRINGS_NOTES)
                     );
-                }
-                else
-                {
-                    notes.AddRange(
-                    settings.GenerateNoteArrayFromAnotherNoteArray
-                        (musicalNote, settings.MusicalNotes.ToArray(), STRINGS_NOTES)
-                        );
-                }
+            }
             settings = null;
             return new ObservableCollection<MusicalNote>(notes);
         }

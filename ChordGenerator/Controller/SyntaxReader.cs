@@ -13,6 +13,11 @@ namespace ChordGenerator
             rm = RuntimeManager.Instance;
         }
 
+        public SyntaxReader(RuntimeManager rm)
+        {
+            this.rm = rm;
+        }
+
         /// <summary>
         /// Checks user input.
         /// Handled by GenerateButton_Click.
@@ -130,12 +135,11 @@ namespace ChordGenerator
                         throw e;
                     }
                 }
-                var u = RuntimeManager.
-                    Instance.RuntimeSettings.MusicalNotes.Find(x => x.Name == note);
+                var u = rm.RuntimeSettings.MusicalNotes.Find(x => x.Name == note);
 
                 // Note tried to create MusicalNote because he has given frequency,
                 // Issues with serialization TODO
-                if (!(u.Frequency == 0))
+                if (u != null && !(u.Frequency == 0))
                 {
                     var z = rm.RuntimeSettings.MusicalNotes.Find(y => y.Rank == u.Rank + modifier);
                     Note o = new Note();

@@ -3,7 +3,6 @@ using NAudio.Wave.SampleProviders;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -18,7 +17,7 @@ namespace ChordGenerator
 
         public static RuntimeManager Instance { get; private set; }
         public Settings RuntimeSettings { get; set; }
-        public Chord SelectedChord { get; set; }  
+        public Chord SelectedChord { get; set; }
         public ObservableCollection<Chord> ChordsPlayed { get; set; }
 
         private readonly IOHandler ioHandler = new IOHandler();
@@ -37,6 +36,12 @@ namespace ChordGenerator
             RuntimeSettings = ioHandler.HandleReadingSettings(obj: new Settings());
             RuntimeSettings.AddGuitar();
             ChordsPlayed = new ObservableCollection<Chord>(ioHandler.HandleReadingChords(obj: new List<Chord>()));
+        }
+
+        public RuntimeManager(string TEST)
+        {
+            Instance = this;
+            RuntimeSettings = new Settings();
         }
 
         /// <summary>
@@ -60,13 +65,13 @@ namespace ChordGenerator
         }
 
         public async void PlaySound()
-        {          
+        {
             try
             {
                 Chord chord;
                 chord = SelectedChord;
-                if (ChordsPlayed.Count == 0) return;              
-                foreach(var i in SelectedChord.MusicalNotes)
+                if (ChordsPlayed.Count == 0) return;
+                foreach (var i in SelectedChord.MusicalNotes)
                 {
                     if (!MusicalNote.IsValidName(i.Name))
                     {

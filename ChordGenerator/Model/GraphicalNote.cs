@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows.Media;
 
 namespace ChordGenerator.Model
@@ -12,9 +7,10 @@ namespace ChordGenerator.Model
     {
         private Brush _color = Brushes.Transparent;
 
-        public Brush Color { 
-            get => _color; 
-            set => _color = value; 
+        public Brush Color
+        {
+            get => _color;
+            set => _color = value;
         }
 
         public GraphicalNote(MusicalNote note)
@@ -22,7 +18,9 @@ namespace ChordGenerator.Model
             base.Name = note.Name;
         }
 
-        public GraphicalNote() { }
+        public GraphicalNote()
+        {
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -2,9 +2,6 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Media;
 
 namespace ChordGenerator
 {
@@ -38,7 +35,7 @@ namespace ChordGenerator
 
         private void Generate_Button_Click(object sender, RoutedEventArgs e)
         {
-            ReadInputPrompt();          
+            ReadInputPrompt();
         }
 
         private void Play_Button_Click(object sender, RoutedEventArgs e)
@@ -64,6 +61,7 @@ namespace ChordGenerator
                 errorWindow.Show();
             }
         }
+
         private void Clear_Button_Click(object sender, RoutedEventArgs e)
         {
             runtimeManager.ChordsPlayed.Clear();
@@ -74,6 +72,7 @@ namespace ChordGenerator
         {
             runtimeManager.AllAtOnce = false;
         }
+
         private void Chord_Selected(object sender, RoutedEventArgs e)
         {
             runtimeManager.AllAtOnce = true;
@@ -82,7 +81,7 @@ namespace ChordGenerator
         private void ChordsChange_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             runtimeManager.RuntimeSettings.Guitar = new Model.Guitar();
-            if(GuitarDatabase != null)
+            if (GuitarDatabase != null)
             {
                 GuitarDatabase.DataContext = runtimeManager.RuntimeSettings.Guitar;
             }

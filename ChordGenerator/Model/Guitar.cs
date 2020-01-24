@@ -21,10 +21,10 @@ namespace ChordGenerator.Model
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
-        public ObservableCollection<GuitarString> GuitarStrings 
-        { 
-            get; 
-            set; 
+        public ObservableCollection<GuitarString> GuitarStrings
+        {
+            get;
+            set;
         }
 
         public Guitar(List<GuitarString> guitarStrings)
@@ -57,7 +57,6 @@ namespace ChordGenerator.Model
                 var s = new GuitarString((DEFAULT_OPEN_STRINGS[i]));
                 GuitarStrings.Add(s);
             }
-           
         }
     }
 }

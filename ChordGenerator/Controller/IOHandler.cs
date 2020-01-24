@@ -29,7 +29,7 @@ namespace ChordGenerator.Controller
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Chord>));
                 TextWriter writer = new StreamWriter(fileName);
                 serializer.Serialize(writer, obj);
-                writer.Close();               
+                writer.Close();
             }
             catch (IOException e)
             {
@@ -69,7 +69,7 @@ namespace ChordGenerator.Controller
             }
             catch (Exception e) { }
 
-            return (Settings) obj;
+            return (Settings)obj;
         }
 
         /// <summary>
