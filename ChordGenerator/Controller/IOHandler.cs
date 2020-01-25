@@ -82,10 +82,6 @@ namespace ChordGenerator.Controller
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Chord>));
                 FileStream fileStream = new FileStream(fileName, FileMode.Open);
                 obj = (List<Chord>)serializer.Deserialize(fileStream);
-                serializer.UnknownNode += new
-                XmlNodeEventHandler(serializer_UnknownNode);
-                serializer.UnknownAttribute += new
-                XmlAttributeEventHandler(serializer_UnknownAttribute);
             }
             catch (Exception e)
             {
